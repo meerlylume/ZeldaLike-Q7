@@ -1,13 +1,28 @@
 fileFormatVersion: 2
-guid: f62254e538e87fa48ba6bcc507927dd5
+guid: 80e3c49e2e86ae04e8b176d947243784
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7888168288973824947
-    second: spritesheet_test_0
+      213: -1053259602789492898
+    second: RESIZED spritesheet_0
   - first:
-      213: -1548078528984947726
-    second: spritesheet_test_1
+      213: 5778114751199415615
+    second: RESIZED spritesheet_1
+  - first:
+      213: 2680302720233473721
+    second: RESIZED spritesheet_2
+  - first:
+      213: 3058354436886460393
+    second: RESIZED spritesheet_3
+  - first:
+      213: -3995610969483678649
+    second: RESIZED spritesheet_4
+  - first:
+      213: -5435893764711545137
+    second: RESIZED spritesheet_5
+  - first:
+      213: 8559429668897280237
+    second: RESIZED spritesheet_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 2048
+  spritePixelsToUnits: 1024
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -116,89 +131,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet_test_0
+      name: RESIZED spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 2048
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c6bf9cb13595d7b4ea8819e84b14ff08
-      internalID: 1339822045
+      spriteID: e57967fb8f11261f0800000000000000
+      internalID: -1053259602789492898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_test_1
+      name: RESIZED spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3d8fa0a0ccff2050800000000000000
+      internalID: 5778114751199415615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RESIZED spritesheet_2
       rect:
         serializedVersion: 2
         x: 2048
         y: 0
-        width: 2048
-        height: 2048
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d8f0545323b440245ab9fdadb2000f0f
-      internalID: -23341927
+      spriteID: 9b6870a8f19523520800000000000000
+      internalID: 2680302720233473721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_test_2
+      name: RESIZED spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e77bdf0825717a20800000000000000
+      internalID: 3058354436886460393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RESIZED spritesheet_4
       rect:
         serializedVersion: 2
         x: 4096
         y: 0
-        width: 2048
-        height: 2048
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8a3279016afffec46a07d4e04362bb39
-      internalID: 1450145028
+      spriteID: 74c654f2efcbc88c0800000000000000
+      internalID: -3995610969483678649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_test_3
+      name: RESIZED spritesheet_5
       rect:
         serializedVersion: 2
-        x: 6144
+        x: 5120
         y: 0
-        width: 2048
-        height: 2048
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 61d99ca293ab95745a5d7144da5a4be8
-      internalID: 132858347
+      spriteID: fc68b9deb63df84b0800000000000000
+      internalID: -5435893764711545137
       vertices: []
       indices: 
       edges: []
@@ -207,7 +266,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 62c20d1a53e32514abe392f07665208e
+    spriteID: 06d0d7da15f573c4eba4e44369ab0504
     internalID: 0
     vertices: []
     indices: 
@@ -217,10 +276,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      spritesheet_test_0: 1339822045
-      spritesheet_test_1: -23341927
-      spritesheet_test_2: 1450145028
-      spritesheet_test_3: 132858347
+      RESIZED spritesheet_0: -1053259602789492898
+      RESIZED spritesheet_1: 5778114751199415615
+      RESIZED spritesheet_2: 2680302720233473721
+      RESIZED spritesheet_3: 3058354436886460393
+      RESIZED spritesheet_4: -3995610969483678649
+      RESIZED spritesheet_5: -5435893764711545137
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
