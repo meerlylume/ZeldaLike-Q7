@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,13 +14,10 @@ public class NPC : MonoBehaviour, IInteractable
     TMP_Text nameText;
     Image portraitImage;
 
-    Color defaultColor;
-    Color nameColor;
-
     private int lineIndex;
     private bool isTyping;
     private bool isDialogueActive;
-    [SerializeField] private string tagDetector;
+    private string tagDetector;
 
     private NPCParent parent;
     private PlayerMovement playerMovement;
@@ -33,9 +31,6 @@ public class NPC : MonoBehaviour, IInteractable
         namePanel     = parent.GetNamePanel();
         nameText      = parent.GetNameText();
         portraitImage = parent.GetPortraitImage();
-
-        defaultColor  = parent.GetDefaultColor();
-        nameColor     = parent.GetNameColor();
     }
 
     public bool CanInteract()
@@ -59,6 +54,7 @@ public class NPC : MonoBehaviour, IInteractable
     void StartDialogue()
     {
         CheckPortraitPosition();
+        tagDetector = "";
 
         isDialogueActive = true;
         lineIndex        = 0;
@@ -75,7 +71,7 @@ IEnumerator TypeLine()
     {
         //Stop player movement
         yield return new WaitForEndOfFrame();
-        if (playerMovement) playerMovement.StopPlayerMovement();
+        if (playerMovement) playerMovement.DisablePlayerMovement();
 
         //Clear the dialogue text and start typing
         isTyping = true;
@@ -84,30 +80,10 @@ IEnumerator TypeLine()
         //Parse the text
         foreach(char letter in dialogueData.dialogueLines[lineIndex])
         {
-            //Detect tag start
-            if (letter == '<') 
-            {
-                tagDetector       += letter;
-                dialogueText.text += letter;
-            }
-
-            //If tag detected, don't wait after adding the character to the dialogue
-            else if (tagDetector != "")
-            {
-                if (letter == '>')
-                {
-                    dialogueText.text += letter;
-                    tagDetector        = "";
-                }
-                else
-                {
-                    tagDetector       += letter;
-                    dialogueText.text += letter;
-                }
-            }
+            CheckingForTag(letter);
 
             //If there's no tag, add the character and wait
-            else
+            if (tagDetector == "" && letter != '>')
             {
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(dialogueData.talkingSpeed);
@@ -123,16 +99,79 @@ IEnumerator TypeLine()
         if (isTyping)
         {
             StopAllCoroutines();
-            dialogueText.SetText(dialogueData.dialogueLines[lineIndex]);
+            DisplayEntireLine();
+            //dialogueText.SetText(dialogueData.dialogueLines[lineIndex]);
             isTyping = false;
         }
+
         else if (++lineIndex < dialogueData.dialogueLines.Length) { StartCoroutine(TypeLine()); }
+
         else { EndDialogue(); }
+    }
+
+    void DisplayEntireLine()
+    {
+        dialogueText.SetText("");
+
+        foreach (char letter in dialogueData.dialogueLines[lineIndex])
+        {
+            //Detect tag
+            CheckingForTag(letter);
+
+            //If there's no tag, add the letter and wait
+            if (tagDetector == "" && letter != '>') { dialogueText.text += letter; }
+        }
+    }
+
+    void CheckingForTag(char letter)
+    {
+        if (letter == '<') { tagDetector += letter; }
+
+        //If tag detected, don't wait after adding the character to the dialogue
+        else if (tagDetector != "")
+        {
+            tagDetector += letter;
+
+            if (letter == '>')
+            {
+                switch (tagDetector)
+                {
+                    // NAME
+                    case "<name>":
+                        dialogueText.text += "<color=#" + parent.GetNameColor().ToHexString() + ">";
+                        break;
+                    case "</name>":
+                        dialogueText.text += "</color>";
+                        break;
+
+                    //ITEM
+                    case "<item>":
+
+                        break;
+                    case "</item>":
+                        dialogueText.text += "</color>";
+                        break;
+
+                    //PLACE
+                    case "<place>":
+
+                        break;
+                    case "</place>":
+                        dialogueText.text += "</color>";
+                        break;
+                    default:
+                        dialogueText.text += tagDetector;
+                        break;
+                }
+
+                tagDetector = "";
+            }
+        }
     }
 
     public void EndDialogue()
     {
-        if (playerMovement) playerMovement.SetCanMove(true);
+        if (playerMovement) playerMovement.EnablePlayerMovement();
 
         StopAllCoroutines();
         isDialogueActive = false;

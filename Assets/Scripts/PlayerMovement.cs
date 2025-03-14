@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,13 +10,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 moveInput;
     [SerializeField] private bool canMove;
 
-    public void SetCanMove(bool value) { canMove = value; }
-
-    public void StopPlayerMovement()
+    public void DisablePlayerMovement()
     {
-        SetCanMove(false);
+        canMove = false;
         rb.linearVelocity = Vector2.zero;
     }
+
+    public void EnablePlayerMovement() { canMove = true; }
 
     private void Start()
     {
@@ -35,5 +36,10 @@ public class PlayerMovement : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
         
         rb.linearVelocity = moveInput.normalized * moveSpeed;
+    }
+
+    private void TakeKnockback()
+    {
+        throw new NotImplementedException();
     }
 }
