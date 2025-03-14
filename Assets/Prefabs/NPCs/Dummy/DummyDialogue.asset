@@ -17,7 +17,6 @@ MonoBehaviour:
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 0
   talkingSpeed: 0.05
-  autoProgressDelay: 0.01
   dialogueLines:
   - Hi!
   - This is a dialogue test, so I don't know what to put here.
@@ -25,4 +24,3 @@ MonoBehaviour:
   - I'm saving those to code right now.
   - So, uh, yeah.
   - Bye!
-  autoProgressLines: 
