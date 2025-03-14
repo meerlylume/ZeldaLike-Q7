@@ -6,13 +6,11 @@ using UnityEngine.InputSystem;
 public class MenuController : MonoBehaviour
 {
     [SerializeField] GameObject menuCanvas;
-    [SerializeField] TabController tabController;
     [SerializeField] GameObject defaultSelection;
     [SerializeField] EventSystem eventSystem;
     void Start()
     {
         OnOpenCloseMenu(false);
-        eventSystem.SetSelectedGameObject(defaultSelection);
     }
 
     public void ToggleMenu(InputAction.CallbackContext context)
@@ -20,6 +18,7 @@ public class MenuController : MonoBehaviour
         if (context.started) 
         {
             OnOpenCloseMenu(!menuCanvas.activeSelf);
+            if (menuCanvas.activeSelf) eventSystem.SetSelectedGameObject(defaultSelection);
         }
     }
     private void OnOpenCloseMenu(bool isOpen)

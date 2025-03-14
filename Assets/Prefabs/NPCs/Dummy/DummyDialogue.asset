@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
   m_Name: DummyDialogue
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: Dummy
+  npcSprite: {fileID: 0}
+  npcPortrait: {fileID: 0}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.05
+  autoProgressDelay: 0.01
   dialogueLines:
   - Hi!
   - This is a dialogue test, so I don't know what to put here.
@@ -20,5 +25,4 @@ MonoBehaviour:
   - I'm saving those to code right now.
   - So, uh, yeah.
   - Bye!
-  talkingSpeed: 0.05
   autoProgressLines: 

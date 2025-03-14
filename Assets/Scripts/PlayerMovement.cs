@@ -12,13 +12,13 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        rb.linearVelocity = moveInput.normalized * moveSpeed;
-    }
+    //private void Update()
+    //{
+    //}
 
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+        rb.linearVelocity = moveInput.normalized * moveSpeed;
     }
 }

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class NPCDialogue : ScriptableObject
 {
-
+    [Header("Identity")]
     public string npcName;
-    //public sprite npcSprite;
+    public Sprite npcSprite;
+    public Sprite npcPortrait; 
+    public bool   isPortraitOnTheRight; [Space]
+
+    [Header("Speech Variables")]
+    public float talkingSpeed = 0.25f; [Space]
+    //talking sound & pitch goes here
+
+    [Header("Lines of Dialogue")]
     public string[] dialogueLines;
-    public bool[] autoProgressLines;
-    public float talkingSpeed = 0.05f;
-
 }
-
-//putting this here in case I wanna continue later .https://youtu.be/eSH9mzcMRqw?si=eJ-Il9ZZSRjT210S
