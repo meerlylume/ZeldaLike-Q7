@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -8,27 +7,35 @@ public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] NPCDialogue dialogueData;
 
-    GameObject  dialoguePanel;
-    TMP_Text    dialogueText;
-    GameObject  namePanel;
-    TMP_Text    nameText;
-    Image       portraitImage;
+    GameObject dialoguePanel;
+    TMP_Text dialogueText;
+    GameObject namePanel;
+    TMP_Text nameText;
+    Image portraitImage;
+
+    Color defaultColor;
+    Color nameColor;
 
     private int lineIndex;
     private bool isTyping;
     private bool isDialogueActive;
-    private string tagDetector;
+    [SerializeField] private string tagDetector;
 
-    [SerializeField] private PlayerMovement playerMovement;
+    private NPCParent parent;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
-        NPCParent _parent = transform.parent.GetComponent<NPCParent>();
-        dialoguePanel = _parent.GetDialoguePanel();
-        dialogueText  = _parent.GetDialogueText();
-        namePanel     = _parent.GetNamePanel();
-        nameText      = _parent.GetNameText();
-        portraitImage = _parent.GetPortraitImage();
+        parent = transform.parent.GetComponent<NPCParent>();
+
+        dialoguePanel = parent.GetDialoguePanel();
+        dialogueText  = parent.GetDialogueText();
+        namePanel     = parent.GetNamePanel();
+        nameText      = parent.GetNameText();
+        portraitImage = parent.GetPortraitImage();
+
+        defaultColor  = parent.GetDefaultColor();
+        nameColor     = parent.GetNameColor();
     }
 
     public bool CanInteract()
@@ -46,7 +53,7 @@ public class NPC : MonoBehaviour, IInteractable
 
         if (isDialogueActive) { NextLine(); }
 
-        else                  { StartDialogue(); }
+        else { StartDialogue(); }
     }
 
     void StartDialogue()
@@ -54,7 +61,7 @@ public class NPC : MonoBehaviour, IInteractable
         CheckPortraitPosition();
 
         isDialogueActive = true;
-        lineIndex = 0;
+        lineIndex        = 0;
 
         nameText.SetText(dialogueData.npcName);
         portraitImage.sprite = dialogueData.npcPortrait;
@@ -64,9 +71,9 @@ public class NPC : MonoBehaviour, IInteractable
         StartCoroutine(TypeLine());
     }
 
-    IEnumerator TypeLine()
+IEnumerator TypeLine()
     {
-        //Stop player momvement
+        //Stop player movement
         yield return new WaitForEndOfFrame();
         if (playerMovement) playerMovement.StopPlayerMovement();
 
@@ -77,29 +84,34 @@ public class NPC : MonoBehaviour, IInteractable
         //Parse the text
         foreach(char letter in dialogueData.dialogueLines[lineIndex])
         {
-            //Check for tags
-            if (letter == '$')
+            //Detect tag start
+            if (letter == '<') 
             {
-                tagDetector += letter;
-                Debug.Log("Dialogue tag detected");
-                yield return new WaitForEndOfFrame();
+                tagDetector       += letter;
+                dialogueText.text += letter;
             }
 
-            //If it's a tag tag, check what comes next
-            if (tagDetector != "")
+            //If tag detected, don't wait after adding the character to the dialogue
+            else if (tagDetector != "")
             {
-                if (letter == ' ')
+                if (letter == '>')
                 {
-                    tagDetector = "";
-                    yield return new WaitForEndOfFrame();
+                    dialogueText.text += letter;
+                    tagDetector        = "";
                 }
-
-                tagDetector += letter;
+                else
+                {
+                    tagDetector       += letter;
+                    dialogueText.text += letter;
+                }
             }
 
-            //Add the letter and wait
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(dialogueData.talkingSpeed);
+            //If there's no tag, add the character and wait
+            else
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(dialogueData.talkingSpeed);
+            }
         }
 
         //Stop typing
@@ -114,7 +126,7 @@ public class NPC : MonoBehaviour, IInteractable
             dialogueText.SetText(dialogueData.dialogueLines[lineIndex]);
             isTyping = false;
         }
-        else if(++lineIndex < dialogueData.dialogueLines.Length) { StartCoroutine(TypeLine()); }
+        else if (++lineIndex < dialogueData.dialogueLines.Length) { StartCoroutine(TypeLine()); }
         else { EndDialogue(); }
     }
 
@@ -124,7 +136,7 @@ public class NPC : MonoBehaviour, IInteractable
 
         StopAllCoroutines();
         isDialogueActive = false;
-        isTyping = false;
+        isTyping         = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
     }
@@ -138,7 +150,7 @@ public class NPC : MonoBehaviour, IInteractable
     {
         if (portraitImage.transform.localPosition.x > 0) //if the portrait is to the LEFT of the dialogue box
         {
-            if (dialogueData.isPortraitOnTheRight) { SwapPortraitSide(); }
+            if (dialogueData.isPortraitOnTheRight)  { SwapPortraitSide(); }
             return;
         }
         else                                          //if the portrait is to the RIGHT of the dialogue box
@@ -150,8 +162,8 @@ public class NPC : MonoBehaviour, IInteractable
 
     private void SwapPortraitSide()
     {
-        dialogueText.transform.localPosition  = new Vector3(-dialogueText.transform.localPosition.x,  dialogueText.transform.localPosition.y);
-        namePanel.transform.localPosition     = new Vector3(-namePanel.transform.localPosition.x,     namePanel.transform.localPosition.y);
+        dialogueText.transform.localPosition  = new Vector3(-dialogueText.transform.localPosition.x, dialogueText.transform.localPosition.y);
+        namePanel.transform.localPosition     = new Vector3(-namePanel.transform.localPosition.x, namePanel.transform.localPosition.y);
         portraitImage.transform.localPosition = new Vector3(-portraitImage.transform.localPosition.x, portraitImage.transform.localPosition.y);
     }
 }

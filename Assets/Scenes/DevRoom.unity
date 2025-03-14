@@ -22938,7 +22938,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 318603985887714740, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
       propertyPath: m_overrideHtmlColors
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 356489471640585990, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22982,15 +22982,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2363367119722788479, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2425832166832809274, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8259238463469483909, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -333.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

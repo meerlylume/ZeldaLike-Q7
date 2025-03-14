@@ -47,10 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: 7a8f2b9578feb6b43a8f5c8a53c7da5b, type: 2}
-  dialoguePanel: {fileID: 0}
-  dialogueText: {fileID: 0}
-  nameText: {fileID: 0}
-  portraitImage: {fileID: 0}
+  tagDetector: 
 --- !u!212 &7610276419048777763
 SpriteRenderer:
   m_ObjectHideFlags: 0
