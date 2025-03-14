@@ -1,10 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InteractionDetector : MonoBehaviour
 {
-    private IInteractable interactableInRange = null;
     [SerializeField] GameObject interactionIcon;
+
+    private IInteractable interactableInRange = null;
+    [SerializeField] private GameObject    interactableGameobjectInRange;
 
     private void Start()
     {
@@ -13,7 +16,18 @@ public class InteractionDetector : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.started) { interactableInRange?.Interact(); }
+        if (context.started) 
+        { 
+            interactableInRange?.Interact();
+
+            if (!interactableGameobjectInRange) return;
+
+            interactableGameobjectInRange.TryGetComponent(out NPC npcComponent);
+            if (npcComponent)
+            {
+                npcComponent.SetPlayerReference(transform.parent.gameObject);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +35,7 @@ public class InteractionDetector : MonoBehaviour
         if (collision.TryGetComponent(out IInteractable interactable) && interactable.CanInteract())
         {
             interactableInRange = interactable;
+            interactableGameobjectInRange = collision.gameObject;
             interactionIcon.SetActive(true);
         }
     }
@@ -30,6 +45,7 @@ public class InteractionDetector : MonoBehaviour
         if (collision.TryGetComponent(out IInteractable interactable) && interactable == interactableInRange)
         {
             interactableInRange = null;
+            interactableGameobjectInRange = null;
             interactionIcon.SetActive(false);
         }
     }

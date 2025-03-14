@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] NPCDialogue dialogueData;
+
     GameObject  dialoguePanel;
     TMP_Text    dialogueText;
     TMP_Text    nameText;
@@ -15,6 +16,8 @@ public class NPC : MonoBehaviour, IInteractable
     private int lineIndex;
     private bool isTyping;
     private bool isDialogueActive;
+
+    [SerializeField] private PlayerMovement playerMovement;
 
     private void Start()
     {
@@ -50,6 +53,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     void StartDialogue()
     {
+
         isDialogueActive = true;
         lineIndex = 0;
 
@@ -65,6 +69,10 @@ public class NPC : MonoBehaviour, IInteractable
     IEnumerator TypeLine()
     {
         //FOR FUTURE CHARACTER COLOR: https://discussions.unity.com/t/fixed-change-color-of-individual-characters-in-textmeshpro-text-ui/880934/2
+
+        yield return new WaitForEndOfFrame();
+        Debug.Log("End of frame");
+        if (playerMovement) playerMovement.StopPlayerMovement();
 
         isTyping = true;
         dialogueText.SetText("");
@@ -92,11 +100,18 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void EndDialogue()
     {
+        if (playerMovement) playerMovement.SetCanMove(true);
+
         StopAllCoroutines();
         isDialogueActive = false;
         isTyping = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
         // * Enable Player Movement
+    }
+
+    public void SetPlayerReference(GameObject _player)
+    {
+        playerMovement = _player.GetComponent<PlayerMovement>();
     }
 }
