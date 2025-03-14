@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2db910afc6308bf458b3d8205c305dbf
+guid: 7f5884158b03ca5418981cc3e7d6e0de
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2575280175718718761
-    second: 1party_0
+      213: 1838396632546494500
+    second: Cannelle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1party_0
+      name: Cannelle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 517
+        height: 988
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 92dd1d6ecab3db320800000000000000
-      internalID: 2575280175718718761
+      spriteID: 428453f3ffb438910800000000000000
+      internalID: 1838396632546494500
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      1party_0: 2575280175718718761
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

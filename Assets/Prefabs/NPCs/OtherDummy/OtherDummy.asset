@@ -10,17 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
-  m_Name: DummyDialogue
+  m_Name: OtherDummy
   m_EditorClassIdentifier: 
-  npcName: Dummy
+  npcName: Other Dummy
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 0
+  isPortraitOnTheRight: 1
   talkingSpeed: 0.05
   dialogueLines:
-  - Hi!
-  - This is a dialogue test, so I don't know what to put here.
-  - I could reference something funny, but this requires braincells.
-  - I'm saving those to code right now.
-  - So, uh, yeah.
-  - Bye!
+  - Hi! My name is <color="blue">OtherDummy</color>!

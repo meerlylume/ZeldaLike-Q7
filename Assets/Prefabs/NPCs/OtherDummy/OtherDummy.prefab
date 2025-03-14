@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7610276419048777763}
   - component: {fileID: 1146202127128058572}
   m_Layer: 0
-  m_Name: Dummy
+  m_Name: OtherDummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58af0c0e3fd6db4f87f683bc3dc470d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueData: {fileID: 11400000, guid: 7a8f2b9578feb6b43a8f5c8a53c7da5b, type: 2}
-  tagDetector: 
+  dialogueData: {fileID: 11400000, guid: 8769e7321d9ffc04396324fbfae5537e, type: 2}
+  playerMovement: {fileID: 0}
 --- !u!212 &7610276419048777763
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.6377357, g: 0.3934709, b: 0.3934709, a: 1}
+  m_Color: {r: 0.39215687, g: 0.6392157, b: 0.59888214, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
