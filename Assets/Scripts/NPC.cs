@@ -146,7 +146,7 @@ IEnumerator TypeLine()
 
                     //ITEM
                     case "<item>":
-
+                        dialogueText.text += "<color=#" + parent.GetItemColor().ToHexString() + ">";
                         break;
                     case "</item>":
                         dialogueText.text += "</color>";
@@ -154,7 +154,7 @@ IEnumerator TypeLine()
 
                     //PLACE
                     case "<place>":
-
+                        dialogueText.text += "<color=#" + parent.GetPlaceColor().ToHexString() + ">";
                         break;
                     case "</place>":
                         dialogueText.text += "</color>";
