@@ -14,6 +14,9 @@ public class NPCDialogue : ScriptableObject
     public float talkingSpeed = 0.25f; [Space]
     //talking sound & pitch goes here
 
-    [Header("Lines of Dialogue")]
+    [Header("Dialogue")]
     public string[] dialogueLines;
+    public DialogueChoices dialogueChoices;
+
+    //Dialogue flags?
 }
