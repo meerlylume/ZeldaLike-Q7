@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d80a39c2ef24248902b4997c63c3a2, type: 3}
+  m_Name: DumDumBranch1
+  m_EditorClassIdentifier: 
+  choices:
+  - You're in the <place>Devroom</place>!
+  - You're home :) Forever :)
+  - Where you want to be!
+  - Unity 6 (6000.0.35f1)
+  outcomes:
+  - {fileID: 11400000, guid: a519b7744e69d064c9989adbd3eb2f63, type: 2}
+  - {fileID: 11400000, guid: a525112b3ebe2dd488a95ab44fc8d0dc, type: 2}
+  - {fileID: 11400000, guid: b39ee48d85a929f4f93302c0b15c7bc4, type: 2}
+  - {fileID: 11400000, guid: 1c11448c198cbaa4680bdd0740f975c6, type: 2}

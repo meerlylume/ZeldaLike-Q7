@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,17 +8,21 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] NPCDialogue dialogueData;
+    private NPCDialogue firstDialogue;
 
-    GameObject dialoguePanel;
-    TMP_Text dialogueText;
-    GameObject namePanel;
-    TMP_Text nameText;
-    Image portraitImage;
+    private GameObject   dialoguePanel;
+    private TMP_Text     dialogueText;
+    private GameObject   namePanel;
+    private TMP_Text     nameText;
+    private Image        portraitImage;
+    private GameObject   choicesGrid;
+    private GameObject   choicePrefab;
+    List<GameObject>     choiceButtons = new List<GameObject> { };
 
-    private int lineIndex;
-    private bool isTyping;
-    private bool isDialogueActive;
-    private string tagDetector;
+    private int        lineIndex;
+    private bool       isTyping;
+    private bool       isDialogueActive;
+    private string     tagDetector;
 
     private NPCParent parent;
     private PlayerMovement playerMovement;
@@ -31,6 +36,20 @@ public class NPC : MonoBehaviour, IInteractable
         namePanel     = parent.GetNamePanel();
         nameText      = parent.GetNameText();
         portraitImage = parent.GetPortraitImage();
+        choicesGrid   = parent.GetChoicesGrid();
+        choicePrefab  = parent.GetChoicesPrefab();
+
+        firstDialogue = dialogueData;
+    }
+
+    public void StartNewDialogue(NPCDialogue newData)
+    {
+        dialogueData = newData;
+        Interact();
+
+        if (choiceButtons == null) return;
+
+        for (int i = 0; i < choiceButtons.Count; i++) { Destroy(choiceButtons[i].gameObject); }
     }
 
     public bool CanInteract()
@@ -54,8 +73,8 @@ public class NPC : MonoBehaviour, IInteractable
     void StartDialogue()
     {
         CheckPortraitPosition();
-        tagDetector = "";
 
+        tagDetector      = "";
         isDialogueActive = true;
         lineIndex        = 0;
 
@@ -171,13 +190,32 @@ IEnumerator TypeLine()
 
     public void EndDialogue()
     {
-        if (playerMovement) playerMovement.EnablePlayerMovement();
+        if (dialogueData.dialogueChoices != null) DisplayDialogueChoices();
+
+        else { if (playerMovement) playerMovement.EnablePlayerMovement(); }
 
         StopAllCoroutines();
         isDialogueActive = false;
         isTyping         = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
+    }
+
+    public void DisplayDialogueChoices()
+    {
+        for (int i = 0; i < dialogueData.dialogueChoices.choices.Count; i++)
+        {
+            GameObject choiceObject      = Instantiate(choicePrefab);
+            choiceObject.transform.SetParent(choicesGrid.transform);
+
+            ChoiceButton choiceButton    = choiceObject.GetComponent<ChoiceButton>();
+            choiceButton.SetChoiceText(dialogueData.dialogueChoices.choices[i]);
+            choiceButton.SetOutcome(dialogueData.dialogueChoices.outcomes[i]);
+            choiceButton.SetAsker(this);
+
+            choiceButton.InitializeButton();
+            choiceButtons.Add(choiceButton.gameObject);
+        }
     }
 
     public void SetPlayerReference(GameObject _player)

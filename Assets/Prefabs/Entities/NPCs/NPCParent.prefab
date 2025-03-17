@@ -51,6 +51,8 @@ MonoBehaviour:
   namePanel: {fileID: 0}
   nameText: {fileID: 0}
   portraitImage: {fileID: 0}
+  choicesGrid: {fileID: 0}
+  choicePrefab: {fileID: 8476606600417076956, guid: 1ae4e7a353553de4f820bc4a60407e20, type: 3}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   nameColor: {r: 0.99215686, g: 0.5568628, b: 1, a: 1}
   placeColor: {r: 0.3882353, g: 0.93333334, b: 0.50980395, a: 1}
