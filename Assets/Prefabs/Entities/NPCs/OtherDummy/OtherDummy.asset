@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: OtherDummy
+  m_EditorClassIdentifier: 
+  name: OtherDummy
+  npcSprite: {fileID: 0}
+  npcPortrait: {fileID: 0}
+  isPortraitOnTheRight: 1
+  talkingSpeed: 0.05
+  dialogueLines:
+  - Hi! My name is <name>OtherDummy</name>!
+  - Welcome to <place>The Devroom</place>!
+  - This is where all sorts of new game mechanics are tested out, such as <item>items</item>,
+    <name>color tags</name>, or even text wrapping, or even text wrapping, or even
+    text wrapping, or even text wrapping, or even text wrapping, or even text wrapping,
+    or even text wrapping, or even text wrapping, or even text wrapping!
+  - Enjoy your time here, and take it easy!

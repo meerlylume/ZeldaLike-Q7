@@ -4,7 +4,7 @@ using UnityEngine;
 public class Stats : ScriptableObject
 {
     [Header("Identity")]
-    public string charName;
+    public new string name;
     
     [Header("Health")]
     public int maxHP;
@@ -20,6 +20,8 @@ public class Stats : ScriptableObject
     public int creativity; 
     public int recovery; 
     //[Space]
+
+    //hitboxes
 
     //[Header("Hidden Stats")]
     //public int knockbackResistance;

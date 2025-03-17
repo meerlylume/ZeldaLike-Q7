@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPCDialogue : ScriptableObject
 {
     [Header("Identity")]
-    public string npcName;
+    public new string name;
     public Sprite npcSprite;
     public Sprite npcPortrait; 
     public bool   isPortraitOnTheRight = true; [Space]
