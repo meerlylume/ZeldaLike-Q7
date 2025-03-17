@@ -1,11 +1,6 @@
 using UnityEngine;
 
-public class MonsterFight : MonoBehaviour
+public class MonsterFight : Fight
 {
-    private Rigidbody2D rb;
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 }

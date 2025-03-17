@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbb1bac0db690345afaa748d7fd47e5, type: 3}
   m_Name: CannelleStats
   m_EditorClassIdentifier: 
+  charName: 
   maxHP: 10
   currentHP: 0
   maxMana: 10
   currentMana: 0
-  strength: 5
-  vitality: 5
+  attack: 5
+  defence: 5
+  creativity: 5
+  recovery: 5

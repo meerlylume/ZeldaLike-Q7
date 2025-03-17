@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewStats", menuName = "Scriptable Objects/Stats")]
 public class Stats : ScriptableObject
 {
+    [Header("Identity")]
+    public string charName;
+    
     [Header("Health")]
     public int maxHP;
     public int currentHP; 
@@ -12,8 +15,10 @@ public class Stats : ScriptableObject
     [Space]
 
     [Header("Character Stats")]
-    public int strength;
-    public int vitality; 
+    public int attack;
+    public int defence; 
+    public int creativity; 
+    public int recovery; 
     //[Space]
 
     //[Header("Hidden Stats")]

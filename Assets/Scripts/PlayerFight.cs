@@ -5,55 +5,50 @@ using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerFight : MonoBehaviour, IFight
+public class PlayerFight : Fight
 {
-    [SerializeField] Stats stats;
     PlayerMovement playerMovement;
-    private bool canTakeDamage = true;
 
-    //List<GameObject> defendersInRange;
-    HashSet<GameObject> defendersInRange;
+    [SerializeField] Transform testHitboxPos;
+    [SerializeField] Vector3 testHitboxSize;
 
-    public bool CanTakeDamage() { return canTakeDamage; }
+    HashSet<Collider2D> defendersInRange;
 
-    private void Start()
+    public override void Start()
     {
-        stats.currentHP   = stats.maxHP;
-        stats.currentMana = stats.maxMana;
-
-        playerMovement    = transform.parent.GetComponent<PlayerMovement>();
+        base.Start();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
-    public void TryAttack(InputAction.CallbackContext context)
+    public void Attack(InputAction.CallbackContext context)
     {
-        //if (Physics2D.OverlapBox(_groundCheckPos.position, _groundCheckSize, 0, _groundLayer)) return true;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out IFight defender) && defender.CanTakeDamage())
+        if (context.started)
         {
-            //defendersInRange.Add(collision.gameObject);
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(testHitboxPos.position, testHitboxSize, 0);
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].TryGetComponent(out MonsterFight monsterFight))
+                {
+                    Debug.Log("Attacked with " + stats.attack + " attack");
+                    monsterFight.TakeDamage(stats.attack);
+                }
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public override void Die()
     {
-        if (collision.TryGetComponent(out IFight defender) && defender.CanTakeDamage())
-        {
-            //if ()
-        }
+        //Stop Movement
+        //Gameover Coroutine
+
+        playerMovement.DisablePlayerMovement();
+        base.Die();
     }
 
-    public void TakeDamage(int dmg)
+    private void OnDrawGizmosSelected()
     {
-        stats.currentHP -= dmg;
-        if (stats.currentHP < 0) { Die(); }
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(testHitboxPos.position, testHitboxSize);
     }
-
-    private void Die()
-    {
-        if (playerMovement) playerMovement.DisablePlayerMovement();
-    }
-
 }
