@@ -4,9 +4,9 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] protected InventoryData inventory;
 
-    public virtual void Add(Item item, int quantity)
+    public virtual void AddItem(Item item, int quantity)
     {
-        //HANDLE STACKS for PLAYER ONLY
+        //don't forget to HANDLE STACKS for PLAYER ONLY
 
         for (int i = 0; inventory.items.Count > i; i++)
         {
@@ -24,8 +24,15 @@ public class Inventory : MonoBehaviour
         inventory.items.Add(item);
         inventory.quantities.Add(quantity);
     }
+    
+    public virtual void AddMoney(int amount)
+    {
+        if (amount < 0) { return; }
 
-    public virtual void Remove(Item item, int quantity)
+        else { inventory.money += amount; }
+    }
+
+    public virtual void RemoveItem(Item item, int quantity)
     {
         //handle stacks
 
@@ -52,6 +59,13 @@ public class Inventory : MonoBehaviour
         Debug.Log("ITEM NOT IN INVENTORY");
     }
 
+    public virtual void RemoveMoney(int amount)
+    {
+        if (amount > 0) { return; }
+
+        else { inventory.money -= amount; }
+    }
+
     public bool IsInInventory(Item item)
     {
         for (int i = 0; inventory.items.Count > i; i++) { if (inventory.items[i] == item) return true; }
@@ -59,12 +73,23 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public void EmptyInventory()
+    public void EmptyItems()
     {
         for (int i = 0; inventory.items.Count > i; i++)
         {
             inventory.items.RemoveAt(i);
             inventory.quantities.RemoveAt(i);
         }
+    }
+
+    public void EmptyMoney()
+    {
+        inventory.money = 0;
+    }
+
+    public void EmptyEverything()
+    {
+        EmptyItems();
+        EmptyMoney();
     }
 }

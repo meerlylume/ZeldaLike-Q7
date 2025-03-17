@@ -1,8 +1,11 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerInventory : Inventory
 {
@@ -11,21 +14,39 @@ public class PlayerInventory : Inventory
     private int inventorySize;
 
     [Header("References")]
+    [SerializeField] EventSystem eventSystem;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private GameObject inventoryGrid;
+    [SerializeField] private TextMeshProUGUI infoText;
+    [SerializeField] private TextMeshProUGUI descText;
     List<GameObject> slotList;
 
-    public override void Add(Item item, int quantity)
+    /* TO DO:
+     * Handle Item Descriptions
+     * Handle UI Navigation
+     * Take a break and have some tea
+     */
+
+    public override void AddItem(Item item, int quantity)
     {
         //check max size
         //handle stacks
-        base.Add(item, quantity);
+        base.AddItem(item, quantity);
         RefreshInventory();
     }
 
     private void Start()
     {
         RefreshInventory();
+    }
+
+    public void OnInventoryOpen()
+    {
+        if (slotList != null)
+        {
+            eventSystem.SetSelectedGameObject(slotList[0]);
+            //Button button = slotList[0].GetComponent<Button>();
+        }
     }
 
     private void RefreshInventory() //later replace this with overrides
@@ -48,10 +69,6 @@ public class PlayerInventory : Inventory
     {
         for (int i = 0; i < inventoryGrid.transform.childCount; i++)
         {
-            //for (int j = 0; j < inventoryGrid.transform.GetChild(i).childCount; j++)
-            //{
-            //    Destroy(inventoryGrid.transform.GetChild(j).gameObject);
-            //}
             Destroy(inventoryGrid.transform.GetChild(i).gameObject);
         }
     }

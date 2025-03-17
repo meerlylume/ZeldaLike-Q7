@@ -38,9 +38,10 @@ public class InteractionDetector : MonoBehaviour
                 InventoryData chestInventory = chest.GetInventory();
                 for (int i = 0; chestInventory.items.Count > i; i++)
                 {
-                    playerInventory.Add(chestInventory.items[i], chestInventory.quantities[i]);
+                    playerInventory.AddItem(chestInventory.items[i], chestInventory.quantities[i]);
+                    playerInventory.AddMoney(chestInventory.money);
                 }
-                //chest.EmptyInventory();
+                chest.EmptyEverything();
                 return;
             }
         }
