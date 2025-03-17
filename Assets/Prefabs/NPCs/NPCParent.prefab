@@ -50,6 +50,6 @@ MonoBehaviour:
   nameText: {fileID: 0}
   portraitImage: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  nameColor: {r: 0.8792453, g: 0.1642363, b: 0.6746496, a: 1}
-  placeColor: {r: 0.50300866, g: 0.9245283, b: 0.32620147, a: 1}
-  itemColor: {r: 0.36688498, g: 0.8196498, b: 0.85660374, a: 1}
+  nameColor: {r: 0.99215686, g: 0.5568628, b: 1, a: 1}
+  placeColor: {r: 0.3882353, g: 0.93333334, b: 0.50980395, a: 1}
+  itemColor: {r: 1, g: 0.9019608, b: 0.32156864, a: 1}

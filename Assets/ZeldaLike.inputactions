@@ -24,18 +24,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CloseMenu",
+                    "name": "Interact",
                     "type": "Button",
-                    "id": "23c271c8-5710-4dd8-94fd-ed7a34c5b8b2",
+                    "id": "d37fa1de-79bf-474c-9615-5441fe916e8c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "Fight",
                     "type": "Button",
-                    "id": "d37fa1de-79bf-474c-9615-5441fe916e8c",
+                    "id": "ad18284a-8518-44e6-8ab9-c4fa29168c23",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -188,23 +188,23 @@
                 },
                 {
                     "name": "",
-                    "id": "b89808f3-9d24-43a4-89b2-8b5316baae36",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CloseMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "cf4f2ae5-b258-4600-b33a-2862d74d8f12",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37a3b184-0d04-43fb-b542-dd01daf593fd",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

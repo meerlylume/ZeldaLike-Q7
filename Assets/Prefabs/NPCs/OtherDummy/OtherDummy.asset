@@ -18,4 +18,10 @@ MonoBehaviour:
   isPortraitOnTheRight: 1
   talkingSpeed: 0.05
   dialogueLines:
-  - Hi! My name is <color="blue">OtherDummy</color>!
+  - Hi! My name is <name>OtherDummy</name>!
+  - Welcome to <place>The Devroom</place>!
+  - This is where all sorts of new game mechanics are tested out, such as <item>items</item>,
+    <name>color tags</name>, or even text wrapping, or even text wrapping, or even
+    text wrapping, or even text wrapping, or even text wrapping, or even text wrapping,
+    or even text wrapping, or even text wrapping, or even text wrapping!
+  - Enjoy your time here, and take it easy!
