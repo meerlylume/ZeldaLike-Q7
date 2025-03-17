@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Inventory
   money: 0
+  items:
+  - {fileID: 11400000, guid: ad0f2778290c6e045b68a225c9712de0, type: 2}
+  quantities: 01000000

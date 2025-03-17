@@ -21,6 +21,8 @@ public class Stats : ScriptableObject
     public int recovery; 
     //[Space]
 
+    //hitboxes
+
     //[Header("Hidden Stats")]
     //public int knockbackResistance;
     //public int knockbackStrength;

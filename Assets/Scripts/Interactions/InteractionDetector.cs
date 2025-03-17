@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 public class InteractionDetector : MonoBehaviour
 {
     [SerializeField] GameObject interactionIcon;
+    [SerializeField] PlayerInventory playerInventory;
 
     private IInteractable interactableInRange = null;
-    [SerializeField] private GameObject    interactableGameobjectInRange;
+    private GameObject    interactableGameobjectInRange;
 
     private void Start()
     {
@@ -22,10 +23,25 @@ public class InteractionDetector : MonoBehaviour
 
             if (!interactableGameobjectInRange) return;
 
+            //NPC
             interactableGameobjectInRange.TryGetComponent(out NPC npcComponent);
             if (npcComponent)
             {
                 npcComponent.SetPlayerReference(transform.parent.gameObject);
+                return;
+            }
+
+            //CHEST
+            interactableGameobjectInRange.TryGetComponent(out Chest chest);
+            if (chest)
+            {
+                InventoryData chestInventory = chest.GetInventory();
+                for (int i = 0; chestInventory.items.Count > i; i++)
+                {
+                    playerInventory.Add(chestInventory.items[i], chestInventory.quantities[i]);
+                }
+                //chest.EmptyInventory();
+                return;
             }
         }
     }

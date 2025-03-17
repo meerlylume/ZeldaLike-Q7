@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Chest : MonoBehaviour, IInteractable
+public class Chest : Inventory, IInteractable
 {
     private bool isOpen = false;
     private SpriteRenderer spriteRenderer;
@@ -20,5 +20,10 @@ public class Chest : MonoBehaviour, IInteractable
         if (!CanInteract()) return;
         isOpen = true;
         spriteRenderer.color = Color.red;
+    }
+
+    public InventoryData GetInventory()
+    {
+        return inventory;
     }
 }
