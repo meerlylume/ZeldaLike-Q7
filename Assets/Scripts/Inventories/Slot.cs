@@ -19,7 +19,7 @@ public class Slot : MonoBehaviour
 
     private void Start()
     {
-        RefreshSlot();
+        //RefreshSlot();
     }
 
     public void RefreshSlot()

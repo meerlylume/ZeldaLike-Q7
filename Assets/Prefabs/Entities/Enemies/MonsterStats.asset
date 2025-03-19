@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbb1bac0db690345afaa748d7fd47e5, type: 3}
   m_Name: MonsterStats
   m_EditorClassIdentifier: 
-  charName: 
+  name: Monstaaa
   maxHP: 20
-  currentHP: 0
+  currentHP: 20
   maxMana: 0
   currentMana: 2
   attack: 2

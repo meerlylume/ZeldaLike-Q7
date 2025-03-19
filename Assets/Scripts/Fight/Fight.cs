@@ -1,9 +1,12 @@
 using Unity.Mathematics.Geometry;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Fight : MonoBehaviour, IFight
 {
+    [Header("Stats")]
     [SerializeField] protected Stats stats;
+    [Space]
     protected Rigidbody2D rb;
 
     protected bool canTakeDamage = true;
@@ -15,6 +18,7 @@ public abstract class Fight : MonoBehaviour, IFight
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0; //in case I forget to put it in the inspector
+
         FullHealHP();
     }
 
@@ -33,6 +37,7 @@ public abstract class Fight : MonoBehaviour, IFight
         //HANDLE DEFENCE AND ARMOR
 
         if (!isAlive) return;
+        if (!canTakeDamage) return;
 
         Debug.Log("CurrentHP: " + stats.currentHP + " Damage: " + dmg);
         int _totalDamage = Mathf.Clamp(dmg - stats.defence, 0, 999);

@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 257bc35e0d44a2f4488858443c236ddf, type: 2}
+  lootTable: {fileID: 11400000, guid: 06dd4acf50d16424897aee09544aeb55, type: 2}
+  lootRadius: 4
+  timeBetweenDrops: 0.25
 --- !u!212 &9027351696297036905
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -91,7 +94,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1247302803
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -166,4 +169,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
