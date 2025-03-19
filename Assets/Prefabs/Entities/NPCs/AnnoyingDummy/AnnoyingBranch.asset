@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d80a39c2ef24248902b4997c63c3a2, type: 3}
+  m_Name: AnnoyingBranch
+  m_EditorClassIdentifier: 
+  choices:
+  - Bye.
+  - You're not annoying
+  outcomes:
+  - {fileID: 11400000, guid: 70357a371e12ad342867f84b77e31168, type: 2}
+  - {fileID: 11400000, guid: add3acf91613843429f4b492ed19569b, type: 2}

@@ -23,4 +23,4 @@ MonoBehaviour:
   - I could reference something funny, but this requires braincells.
   - I'm saving those to code right now.
   - So, uh, yeah.
-  - Bye!
+  dialogueChoices: {fileID: 11400000, guid: 5e40cbb62046b68439bc56cb45e9ddcf, type: 2}

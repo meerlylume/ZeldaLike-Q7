@@ -17,6 +17,7 @@ MonoBehaviour:
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
   talkingSpeed: 0.05
+  endOfTree: 1
   dialogueLines:
   - Not really, no.
   dialogueChoices: {fileID: 0}

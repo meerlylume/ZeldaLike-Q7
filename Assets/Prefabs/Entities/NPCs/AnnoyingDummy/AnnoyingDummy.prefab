@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7610276419048777763}
   - component: {fileID: 1146202127128058572}
   m_Layer: 0
-  m_Name: DummyByChoice
+  m_Name: AnnoyingDummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58af0c0e3fd6db4f87f683bc3dc470d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootDialogueData: {fileID: 11400000, guid: f60c80eb0abc4504f91cccfad8b88259, type: 2}
+  rootDialogueData: {fileID: 11400000, guid: 3eb3177ad0d71b44ebd145a7b1c759b7, type: 2}
 --- !u!212 &7610276419048777763
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.6392157, g: 0.39215687, b: 0.6002115, a: 1}
+  m_Color: {r: 0.8490566, g: 0.5808156, b: 0.20986114, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

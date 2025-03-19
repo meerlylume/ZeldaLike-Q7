@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79aaa94471913b4ca276b3ab8c4b318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outcome: {fileID: 0}
   choiceText: {fileID: 714147685429454411}
   button: {fileID: 6841173727506043975}
 --- !u!222 &1531734922226213816
@@ -229,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
