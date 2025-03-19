@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: YUP
   money: 0
-  items:
-  - {fileID: 11400000, guid: f4051fa3b025c314ba35e11ba3bee142, type: 2}
-  quantities: 02000000
+  items: []
+  quantities: 0000000000000000

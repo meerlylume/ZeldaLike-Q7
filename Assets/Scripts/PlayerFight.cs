@@ -14,6 +14,8 @@ public class PlayerFight : Fight
 
     HashSet<Collider2D> defendersInRange;
 
+    public Stats GetStats() { return stats; }
+
     public override void Start()
     {
         base.Start();

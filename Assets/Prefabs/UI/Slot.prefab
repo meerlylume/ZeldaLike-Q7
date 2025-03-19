@@ -55,6 +55,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quantityText: {fileID: 2224171975086745988}
   image: {fileID: 1696496794252220296}
+  item: {fileID: 0}
+  quantity: 0
 --- !u!222 &588180585084444305
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -136,7 +138,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3735775898947593305}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 882659200092753265}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1885964674187803728
 GameObject:
   m_ObjectHideFlags: 0

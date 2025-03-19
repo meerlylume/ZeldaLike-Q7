@@ -14,6 +14,7 @@ public class PlayerInventory : Inventory
     private int inventorySize;
 
     [Header("References")]
+    [SerializeField] PlayerFight playerFight;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private GameObject inventoryGrid;
@@ -40,6 +41,11 @@ public class PlayerInventory : Inventory
         RefreshInventory();
     }
 
+    public void ConsumeItem(Consumable item)
+    {
+        item.Consume(playerFight.GetStats());
+    }
+
     public void OnInventoryOpen()
     {
         if (slotList != null)
@@ -59,8 +65,10 @@ public class PlayerInventory : Inventory
             newSlot.transform.SetParent(inventoryGrid.transform, false);
             Slot newScript              = newSlot.GetComponent<Slot>();
 
-            newScript.quantityText.text = "x" + inventory.quantities[i];
-            newScript.image.sprite      = inventory.items[i].sprite;
+            newScript.SetItem(inventory.items[i]);
+            newScript.SetQuantity(inventory.quantities[i]);
+            newScript.SetInventory(this);
+            newScript.RefreshSlot();
         }
     }
 
