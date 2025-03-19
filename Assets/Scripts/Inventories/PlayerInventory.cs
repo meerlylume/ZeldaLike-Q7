@@ -55,7 +55,6 @@ public class PlayerInventory : Inventory
 
         for (int i = 0; i < inventory.items.Count; i++)
         {
-            Debug.Log(inventory.items[i].name + i);
             GameObject newSlot          = Instantiate(slotPrefab);
             newSlot.transform.SetParent(inventoryGrid.transform, false);
             Slot newScript              = newSlot.GetComponent<Slot>();

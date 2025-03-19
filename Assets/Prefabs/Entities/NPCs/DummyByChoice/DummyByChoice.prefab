@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58af0c0e3fd6db4f87f683bc3dc470d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueData: {fileID: 11400000, guid: f60c80eb0abc4504f91cccfad8b88259, type: 2}
+  rootDialogueData: {fileID: 11400000, guid: f60c80eb0abc4504f91cccfad8b88259, type: 2}
 --- !u!212 &7610276419048777763
 SpriteRenderer:
   m_ObjectHideFlags: 0

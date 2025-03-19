@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour, IInteractable
 {
-    [SerializeField] NPCDialogue dialogueData;
-    private NPCDialogue firstDialogue;
+    [SerializeField] private NPCDialogue rootDialogueData;
+    NPCDialogue branchDialogueData;
 
     private GameObject   dialoguePanel;
     private TMP_Text     dialogueText;
@@ -19,13 +19,16 @@ public class NPC : MonoBehaviour, IInteractable
     private GameObject   choicePrefab;
     List<GameObject>     choiceButtons = new List<GameObject> { };
 
-    private int        lineIndex;
-    private bool       isTyping;
-    private bool       isDialogueActive;
-    private string     tagDetector;
+    private int          lineIndex;
+    private bool         isTyping;
+    private bool         isDialogueActive;
+    private bool         isWaitingForChoice = false;
+    private string       tagDetector;
 
     private NPCParent parent;
     private PlayerMovement playerMovement;
+
+    public void SetIsWaitingForChoice(bool value) { isWaitingForChoice = value; }
 
     private void Start()
     {
@@ -39,12 +42,12 @@ public class NPC : MonoBehaviour, IInteractable
         choicesGrid   = parent.GetChoicesGrid();
         choicePrefab  = parent.GetChoicesPrefab();
 
-        firstDialogue = dialogueData;
+        branchDialogueData = rootDialogueData;
     }
 
     public void StartNewDialogue(NPCDialogue newData)
     {
-        dialogueData = newData;
+        branchDialogueData = newData;
         Interact();
 
         if (choiceButtons == null) return;
@@ -52,14 +55,13 @@ public class NPC : MonoBehaviour, IInteractable
         for (int i = 0; i < choiceButtons.Count; i++) { Destroy(choiceButtons[i].gameObject); }
     }
 
-    public bool CanInteract()
-    {
-        return !isDialogueActive;
-    }
+    public bool CanInteract() { return !isDialogueActive; }
 
     public void Interact()
     {
-        if (!dialogueData)
+        if (isWaitingForChoice) return;
+
+        if (!branchDialogueData)
         {
             Debug.Log("NO DIALOGUE DATA FOUND");
             return;
@@ -78,8 +80,8 @@ public class NPC : MonoBehaviour, IInteractable
         isDialogueActive = true;
         lineIndex        = 0;
 
-        nameText.SetText(dialogueData.name);
-        portraitImage.sprite = dialogueData.npcPortrait;
+        nameText.SetText(branchDialogueData.name);
+        portraitImage.sprite = branchDialogueData.npcPortrait;
 
         dialoguePanel.SetActive(true);
 
@@ -97,7 +99,7 @@ IEnumerator TypeLine()
         dialogueText.SetText("");
 
         //Parse the text
-        foreach(char letter in dialogueData.dialogueLines[lineIndex])
+        foreach(char letter in branchDialogueData.dialogueLines[lineIndex])
         {
             CheckingForTag(letter);
 
@@ -105,7 +107,7 @@ IEnumerator TypeLine()
             if (tagDetector == "" && letter != '>')
             {
                 dialogueText.text += letter;
-                yield return new WaitForSeconds(dialogueData.talkingSpeed);
+                yield return new WaitForSeconds(branchDialogueData.talkingSpeed);
             }
         }
 
@@ -119,11 +121,10 @@ IEnumerator TypeLine()
         {
             StopAllCoroutines();
             DisplayEntireLine();
-            //dialogueText.SetText(dialogueData.dialogueLines[lineIndex]);
             isTyping = false;
         }
 
-        else if (++lineIndex < dialogueData.dialogueLines.Length) { StartCoroutine(TypeLine()); }
+        else if (++lineIndex < branchDialogueData.dialogueLines.Length) { StartCoroutine(TypeLine()); }
 
         else { EndDialogue(); }
     }
@@ -132,7 +133,7 @@ IEnumerator TypeLine()
     {
         dialogueText.SetText("");
 
-        foreach (char letter in dialogueData.dialogueLines[lineIndex])
+        foreach (char letter in branchDialogueData.dialogueLines[lineIndex])
         {
             //Detect tag
             CheckingForTag(letter);
@@ -163,7 +164,7 @@ IEnumerator TypeLine()
                         dialogueText.text += "</color>";
                         break;
 
-                    //ITEM
+                    // ITEM
                     case "<item>":
                         dialogueText.text += "<color=#" + parent.GetItemColor().ToHexString() + ">";
                         break;
@@ -171,13 +172,15 @@ IEnumerator TypeLine()
                         dialogueText.text += "</color>";
                         break;
 
-                    //PLACE
+                    // PLACE
                     case "<place>":
                         dialogueText.text += "<color=#" + parent.GetPlaceColor().ToHexString() + ">";
                         break;
                     case "</place>":
                         dialogueText.text += "</color>";
                         break;
+
+                    // NO VALID TAG FOUND
                     default:
                         dialogueText.text += tagDetector;
                         break;
@@ -190,7 +193,13 @@ IEnumerator TypeLine()
 
     public void EndDialogue()
     {
-        if (dialogueData.dialogueChoices != null) DisplayDialogueChoices();
+        if (branchDialogueData.dialogueChoices != null)
+        {
+            DisplayDialogueChoices();
+            isWaitingForChoice = true;
+        }
+
+        if (!branchDialogueData.endOfTree) return;
 
         else { if (playerMovement) playerMovement.EnablePlayerMovement(); }
 
@@ -199,18 +208,20 @@ IEnumerator TypeLine()
         isTyping         = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
+
+        branchDialogueData = rootDialogueData;
     }
 
     public void DisplayDialogueChoices()
     {
-        for (int i = 0; i < dialogueData.dialogueChoices.choices.Count; i++)
+        for (int i = 0; i < branchDialogueData.dialogueChoices.choices.Count; i++)
         {
             GameObject choiceObject      = Instantiate(choicePrefab);
             choiceObject.transform.SetParent(choicesGrid.transform);
 
             ChoiceButton choiceButton    = choiceObject.GetComponent<ChoiceButton>();
-            choiceButton.SetChoiceText(dialogueData.dialogueChoices.choices[i]);
-            choiceButton.SetOutcome(dialogueData.dialogueChoices.outcomes[i]);
+            choiceButton.SetChoiceText(branchDialogueData.dialogueChoices.choices[i]);
+            choiceButton.SetOutcome(branchDialogueData.dialogueChoices.outcomes[i]);
             choiceButton.SetAsker(this);
 
             choiceButton.InitializeButton();
@@ -225,14 +236,19 @@ IEnumerator TypeLine()
 
     void CheckPortraitPosition()
     {
-        if (portraitImage.transform.localPosition.x > 0) //if the portrait is to the LEFT of the dialogue box
+        //if the portrait is to the LEFT of the dialogue box
+        if (portraitImage.transform.localPosition.x > 0) 
         {
-            if (dialogueData.isPortraitOnTheRight)  { SwapPortraitSide(); }
+            //...but it's supposed to be on the RIGHT
+            if (branchDialogueData.isPortraitOnTheRight)  { SwapPortraitSide(); }
             return;
         }
-        else                                          //if the portrait is to the RIGHT of the dialogue box
+
+        //if the portrait is to the RIGHT of the dialogue box
+        else
         {
-            if (!dialogueData.isPortraitOnTheRight) { SwapPortraitSide(); }
+            //...but it's supposed to be on the LEFT
+            if (!branchDialogueData.isPortraitOnTheRight) { SwapPortraitSide(); }
             return;
         }
     }

@@ -15,6 +15,7 @@ public class NPCDialogue : ScriptableObject
     //talking sound & pitch goes here
 
     [Header("Dialogue")]
+    public bool endOfTree = true;
     public string[] dialogueLines;
     public DialogueChoices dialogueChoices;
 
