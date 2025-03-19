@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private NPCDialogue rootDialogueData;
-    NPCDialogue branchDialogueData;
+    private NPCDialogue branchDialogueData;
 
     private GameObject   dialoguePanel;
     private TMP_Text     dialogueText;
@@ -32,6 +32,8 @@ public class NPC : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        branchDialogueData = rootDialogueData;
+
         parent = transform.parent.GetComponent<NPCParent>();
 
         dialoguePanel = parent.GetDialoguePanel();
@@ -41,18 +43,23 @@ public class NPC : MonoBehaviour, IInteractable
         portraitImage = parent.GetPortraitImage();
         choicesGrid   = parent.GetChoicesGrid();
         choicePrefab  = parent.GetChoicesPrefab();
-
-        branchDialogueData = rootDialogueData;
     }
 
     public void StartNewDialogue(NPCDialogue newData)
     {
         branchDialogueData = newData;
-        Interact();
 
         if (choiceButtons == null) return;
 
         for (int i = 0; i < choiceButtons.Count; i++) { Destroy(choiceButtons[i].gameObject); }
+
+        if (newData.name == "EndOfTree")
+        {
+            EndDialogue();
+            return;
+        }
+
+        Interact();
     }
 
     public bool CanInteract() { return !isDialogueActive; }
@@ -64,7 +71,8 @@ public class NPC : MonoBehaviour, IInteractable
         if (!branchDialogueData)
         {
             Debug.Log("NO DIALOGUE DATA FOUND");
-            return;
+            if (rootDialogueData) branchDialogueData = rootDialogueData;
+            else return;
         }
 
         if (isDialogueActive) { NextLine(); }
@@ -101,7 +109,7 @@ IEnumerator TypeLine()
         //Parse the text
         foreach(char letter in branchDialogueData.dialogueLines[lineIndex])
         {
-            CheckingForTag(letter);
+            dialogueText.text += CheckingForTag(letter);
 
             //If there's no tag, add the character and wait
             if (tagDetector == "" && letter != '>')
@@ -136,15 +144,17 @@ IEnumerator TypeLine()
         foreach (char letter in branchDialogueData.dialogueLines[lineIndex])
         {
             //Detect tag
-            CheckingForTag(letter);
+            dialogueText.text += CheckingForTag(letter);
 
             //If there's no tag, add the letter and wait
             if (tagDetector == "" && letter != '>') { dialogueText.text += letter; }
         }
     }
 
-    void CheckingForTag(char letter)
+    string CheckingForTag(char letter)
     {
+        string returnedText = "";
+
         if (letter == '<') { tagDetector += letter; }
 
         //If tag detected, don't wait after adding the character to the dialogue
@@ -158,37 +168,39 @@ IEnumerator TypeLine()
                 {
                     // NAME
                     case "<name>":
-                        dialogueText.text += "<color=#" + parent.GetNameColor().ToHexString() + ">";
+                        returnedText += "<color=#" + parent.GetNameColor().ToHexString() + ">";
                         break;
                     case "</name>":
-                        dialogueText.text += "</color>";
+                        returnedText += "</color>";
                         break;
 
                     // ITEM
                     case "<item>":
-                        dialogueText.text += "<color=#" + parent.GetItemColor().ToHexString() + ">";
+                        returnedText += "<color=#" + parent.GetItemColor().ToHexString() + ">";
                         break;
                     case "</item>":
-                        dialogueText.text += "</color>";
+                        returnedText += "</color>";
                         break;
 
                     // PLACE
                     case "<place>":
-                        dialogueText.text += "<color=#" + parent.GetPlaceColor().ToHexString() + ">";
+                        returnedText += "<color=#" + parent.GetPlaceColor().ToHexString() + ">";
                         break;
                     case "</place>":
-                        dialogueText.text += "</color>";
+                        returnedText += "</color>";
                         break;
 
                     // NO VALID TAG FOUND
                     default:
-                        dialogueText.text += tagDetector;
+                        returnedText += tagDetector;
                         break;
                 }
 
                 tagDetector = "";
             }
         }
+
+        return returnedText;
     }
 
     public void EndDialogue()
@@ -198,8 +210,6 @@ IEnumerator TypeLine()
             DisplayDialogueChoices();
             isWaitingForChoice = true;
         }
-
-        if (!branchDialogueData.endOfTree) return;
 
         else { if (playerMovement) playerMovement.EnablePlayerMovement(); }
 
@@ -211,7 +221,6 @@ IEnumerator TypeLine()
 
         branchDialogueData = rootDialogueData;
     }
-
     public void DisplayDialogueChoices()
     {
         for (int i = 0; i < branchDialogueData.dialogueChoices.choices.Count; i++)
@@ -221,12 +230,29 @@ IEnumerator TypeLine()
 
             ChoiceButton choiceButton    = choiceObject.GetComponent<ChoiceButton>();
             choiceButton.SetChoiceText(branchDialogueData.dialogueChoices.choices[i]);
+            choiceButton.SetChoiceText(ParseChoiceText(branchDialogueData.dialogueChoices.choices[i]));
             choiceButton.SetOutcome(branchDialogueData.dialogueChoices.outcomes[i]);
             choiceButton.SetAsker(this);
 
             choiceButton.InitializeButton();
             choiceButtons.Add(choiceButton.gameObject);
         }
+    }
+
+    string ParseChoiceText(string choiceText)
+    {
+        string resultText = string.Empty;
+        
+        foreach (char letter in choiceText)
+        {
+            //Detect tag
+            resultText += CheckingForTag(letter);
+
+            //If there's no tag, add the letter and wait
+            if (tagDetector == "" && letter != '>') { resultText += letter; }
+        }
+
+        return resultText;
     }
 
     public void SetPlayerReference(GameObject _player)
