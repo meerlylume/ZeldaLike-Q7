@@ -45,6 +45,8 @@ public abstract class Fight : MonoBehaviour, IFight
         stats.currentHP = Mathf.Clamp(stats.currentHP - _totalDamage, 0, stats.maxHP);
         Debug.Log("CurrentHP: " + stats.currentHP + " TotalDamage: " + _totalDamage);
 
+        OnHPChanged();
+
         if (stats.currentHP <= 0) { Die(); }
     }
 
@@ -59,11 +61,16 @@ public abstract class Fight : MonoBehaviour, IFight
     {
         if (!isAlive) return;
         stats.currentHP = Mathf.Clamp(stats.currentHP + amount, 0, stats.maxHP);
+        OnHPChanged();
     }
 
     public virtual void FullHealHP()
     {
         if (!isAlive) return;
         stats.currentHP = stats.maxHP;
+        OnHPChanged();
     }
+
+    public abstract void OnHPChanged();
+    public abstract void OnManaChanged();
 }

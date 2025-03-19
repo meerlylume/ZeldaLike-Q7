@@ -33,7 +33,6 @@ public class MonsterFight : Fight
 
     public override void Die()
     {
-        Debug.Log("Die()");
         canTakeDamage = false;
 
         StartCoroutine(DeathRoutine());
@@ -53,8 +52,6 @@ public class MonsterFight : Fight
 
     IEnumerator DeathRoutine()
     {
-        Debug.Log("Started Death Routine");
-
         if (!lootTable) yield break;
 
         for (int i = 0; lootTable.items.Count > i; i++)
@@ -78,5 +75,17 @@ public class MonsterFight : Fight
         }
 
         base.Die();
+    }
+
+    public override void OnHPChanged()
+    {
+        // UNIMPLEMENTED
+        return;
+    }
+
+    public override void OnManaChanged()
+    {
+        // UNIMPLEMENTED
+        return;
     }
 }

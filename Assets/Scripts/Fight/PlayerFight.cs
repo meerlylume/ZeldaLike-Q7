@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerFight : Fight
 {
@@ -11,6 +12,9 @@ public class PlayerFight : Fight
 
     [SerializeField] Transform testHitboxPos;
     [SerializeField] Vector3 testHitboxSize;
+
+    [SerializeField] Slider healthSlider;
+    [SerializeField] Slider manaSlider;
 
     HashSet<Collider2D> defendersInRange;
 
@@ -20,6 +24,10 @@ public class PlayerFight : Fight
     {
         base.Start();
         playerMovement = GetComponent<PlayerMovement>();
+        stats.currentMana = stats.maxMana;
+
+        RefreshHealthBar();
+        RefreshManaBar();
     }
 
     public void Attack(InputAction.CallbackContext context)
@@ -39,6 +47,18 @@ public class PlayerFight : Fight
         }
     }
 
+    public void RefreshHealthBar()
+    {
+        if (stats.currentHP == 0) return;
+        healthSlider.value = stats.maxHP / stats.currentHP;
+    }
+
+    public void RefreshManaBar()
+    {
+        if (stats.currentMana == 0) return;
+        manaSlider.value   = stats.maxMana / stats.currentMana;
+    }
+
     public override void Die()
     {
         //Stop Movement
@@ -52,5 +72,15 @@ public class PlayerFight : Fight
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(testHitboxPos.position, testHitboxSize);
+    }
+
+    public override void OnHPChanged()
+    {
+        RefreshHealthBar();
+    }
+
+    public override void OnManaChanged()
+    {
+        RefreshManaBar();
     }
 }
