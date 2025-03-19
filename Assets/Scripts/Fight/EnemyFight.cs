@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MonsterFight : Fight
+public class EnemyFight : Fight
 {
     protected Stats baseStats;
     [Header("Monster Loot")]

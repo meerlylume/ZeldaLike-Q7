@@ -18,12 +18,13 @@ public class Stats : ScriptableObject
     public int attack;
     public int defence; 
     public int creativity; 
-    public int recovery; 
+    public int recovery;
     //[Space]
 
     //hitboxes
 
-    //[Header("Hidden Stats")]
+    [Header("Hidden Stats")]
+    public float movementSpeed;
     //public int knockbackResistance;
     //public int knockbackStrength;
 }

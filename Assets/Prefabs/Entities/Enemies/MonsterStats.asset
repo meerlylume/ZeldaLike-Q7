@@ -21,3 +21,4 @@ MonoBehaviour:
   defence: 2
   creativity: 1
   recovery: 1
+  movementSpeed: 6.5

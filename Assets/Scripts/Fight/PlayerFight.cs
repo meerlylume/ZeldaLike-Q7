@@ -19,11 +19,12 @@ public class PlayerFight : Fight
     HashSet<Collider2D> defendersInRange;
 
     public Stats GetStats() { return stats; }
+    public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
 
     public override void Start()
     {
         base.Start();
-        playerMovement = GetComponent<PlayerMovement>();
+        playerMovement    = GetComponent<PlayerMovement>();
         stats.currentMana = stats.maxMana;
 
         RefreshHealthBar();
@@ -34,11 +35,12 @@ public class PlayerFight : Fight
     {
         if (context.started)
         {
+            //To replace with unique colliders for combos
             Collider2D[] colliders = Physics2D.OverlapBoxAll(testHitboxPos.position, testHitboxSize, 0);
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].TryGetComponent(out MonsterFight monsterFight))
+                if (colliders[i].TryGetComponent(out EnemyFight monsterFight))
                 {
                     Debug.Log("Attacked with " + stats.attack + " attack");
                     monsterFight.TakeDamage(stats.attack);

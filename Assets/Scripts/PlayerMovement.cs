@@ -6,9 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    private Rigidbody2D rb;
     [SerializeField] private Vector2 moveInput;
     [SerializeField] private bool canMove;
+    private Rigidbody2D rb;
+
+    public void SetSpeed(float value) { moveSpeed = value; }
 
     public void DisablePlayerMovement()
     {
