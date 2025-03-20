@@ -2227,8 +2227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 0f7cfd10ce820da44a3fc7b4999db17f, type: 2}
-  testHitboxPos: {fileID: 8590923498835430621}
-  testHitboxSize: {x: 5, y: 5, z: 0}
+  attacks:
+  - {fileID: 5508319690698197638, guid: d34df89d9ed3c854392d374a2999626e, type: 3}
   healthSlider: {fileID: 1026033823210397778}
   manaSlider: {fileID: 7864827875715011398}
 --- !u!114 &5378168281552671222
@@ -2383,7 +2383,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3285378661144251519}
         m_TargetAssemblyTypeName: PlayerFight, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: PlayerAttack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -10,13 +10,9 @@ public class PlayerFight : Fight
 {
     PlayerMovement playerMovement;
 
-    [SerializeField] Transform testHitboxPos;
-    [SerializeField] Vector3 testHitboxSize;
-
+    [Header("UI References")]
     [SerializeField] Slider healthSlider;
     [SerializeField] Slider manaSlider;
-
-    HashSet<Collider2D> defendersInRange;
 
     public Stats GetStats() { return stats; }
     public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
@@ -31,22 +27,18 @@ public class PlayerFight : Fight
         RefreshManaBar();
     }
 
-    public void Attack(InputAction.CallbackContext context)
+    public void PlayerAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            //To replace with unique colliders for combos
-            Collider2D[] colliders = Physics2D.OverlapBoxAll(testHitboxPos.position, testHitboxSize, 0);
+        if (context.started) { Attack(); }
+    }
 
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (colliders[i].TryGetComponent(out EnemyFight monsterFight))
-                {
-                    Debug.Log("Attacked with " + stats.attack + " attack");
-                    monsterFight.TakeDamage(stats.attack);
-                }
-            }
-        }
+    public override void Die()
+    {
+        //Stop Movement
+        //Gameover Coroutine
+
+        playerMovement.DisablePlayerMovement();
+        base.Die();
     }
 
     public void RefreshHealthBar()
@@ -61,28 +53,7 @@ public class PlayerFight : Fight
         manaSlider.value   = stats.maxMana / stats.currentMana;
     }
 
-    public override void Die()
-    {
-        //Stop Movement
-        //Gameover Coroutine
+    public override void OnHPChanged()   { RefreshHealthBar(); }
 
-        playerMovement.DisablePlayerMovement();
-        base.Die();
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(testHitboxPos.position, testHitboxSize);
-    }
-
-    public override void OnHPChanged()
-    {
-        RefreshHealthBar();
-    }
-
-    public override void OnManaChanged()
-    {
-        RefreshManaBar();
-    }
+    public override void OnManaChanged() { RefreshManaBar();   }
 }

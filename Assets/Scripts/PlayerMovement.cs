@@ -15,10 +15,14 @@ public class PlayerMovement : MonoBehaviour
     public void DisablePlayerMovement()
     {
         canMove = false;
-        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
-    public void EnablePlayerMovement() { canMove = true; }
+    public void EnablePlayerMovement() 
+    {
+        canMove = true; 
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
 
     private void Start()
     {

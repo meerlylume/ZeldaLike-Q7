@@ -225,10 +225,10 @@ IEnumerator TypeLine()
     {
         for (int i = 0; i < branchDialogueData.dialogueChoices.choices.Count; i++)
         {
-            GameObject choiceObject      = Instantiate(choicePrefab);
+            GameObject choiceObject   = Instantiate(choicePrefab);
             choiceObject.transform.SetParent(choicesGrid.transform);
 
-            ChoiceButton choiceButton    = choiceObject.GetComponent<ChoiceButton>();
+            ChoiceButton choiceButton = choiceObject.GetComponent<ChoiceButton>();
             choiceButton.SetChoiceText(branchDialogueData.dialogueChoices.choices[i]);
             choiceButton.SetChoiceText(ParseChoiceText(branchDialogueData.dialogueChoices.choices[i]));
             choiceButton.SetOutcome(branchDialogueData.dialogueChoices.outcomes[i]);

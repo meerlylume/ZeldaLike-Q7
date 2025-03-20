@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: MonsterStats
   m_EditorClassIdentifier: 
   name: Monstaaa
+  isAlly: 0
   maxHP: 20
-  currentHP: 20
+  currentHP: 0
   maxMana: 0
   currentMana: 2
   attack: 2
   defence: 2
   creativity: 1
   recovery: 1
-  movementSpeed: 6.5
+  movementSpeed: 2

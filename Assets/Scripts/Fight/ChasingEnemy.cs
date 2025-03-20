@@ -21,9 +21,11 @@ public class ChasingEnemy : EnemyFight
     {
         if (GetIsChasing() && GetPlayerFight())
         {
+            Debug.Log("I am speed. Speed of: " + stats.movementSpeed);
+
             Vector2 direction = GetPlayerFight().transform.position - transform.position;
 
-            rb.linearVelocity += direction.normalized * stats.movementSpeed;
+            rb.linearVelocity = direction.normalized * stats.movementSpeed;
         }
     }
 }

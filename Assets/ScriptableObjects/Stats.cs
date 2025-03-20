@@ -5,6 +5,7 @@ public class Stats : ScriptableObject
 {
     [Header("Identity")]
     public new string name;
+    public bool isAlly;
     
     [Header("Health")]
     public int maxHP;

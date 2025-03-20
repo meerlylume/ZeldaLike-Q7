@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using Unity.Mathematics.Geometry;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class Fight : MonoBehaviour, IFight
 {
@@ -9,10 +11,21 @@ public abstract class Fight : MonoBehaviour, IFight
     [Space]
     protected Rigidbody2D rb;
 
+    [Header("Attacks")]
+    [SerializeField] List<Attack> attacks;
+    private int attackIndex = 0;
+
     protected bool canTakeDamage = true;
     protected bool isAlive       = true;
+    protected bool isAlly;
 
-    public virtual bool CanTakeDamage() { return canTakeDamage; } //HANDLE ALLIES
+    #region Getters
+    public virtual bool CanTakeDamage()                { return canTakeDamage;                      }
+
+    public virtual bool IsAlliedWith(Fight fight)      { return fight.stats.isAlly == stats.isAlly; }
+
+    public virtual bool IsAlliedWith(Stats otherStats) { return otherStats.isAlly == stats.isAlly;  }
+    #endregion
 
     public virtual void Start()
     {
@@ -20,6 +33,12 @@ public abstract class Fight : MonoBehaviour, IFight
         rb.gravityScale = 0; //in case I forget to put it in the inspector
 
         FullHealHP();
+    }
+    public void Attack()
+    {
+        attacks[attackIndex].PerformAttack(stats, transform.position);
+        if (attackIndex < attacks.Count - 1) { attackIndex++;   }
+        else                                 { attackIndex = 0; }
     }
 
     public virtual void Die()
@@ -73,4 +92,9 @@ public abstract class Fight : MonoBehaviour, IFight
 
     public abstract void OnHPChanged();
     public abstract void OnManaChanged();
+
+    public virtual void Attack(Attack attack)
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -20,13 +20,14 @@ public class EnemyFight : Fight
     }
     private void CopyBaseStats()
     {
-        stats.name = baseStats.name;
-        stats.maxHP = baseStats.maxHP;
-        stats.maxMana = baseStats.maxMana;
-        stats.attack = baseStats.attack;
-        stats.defence = baseStats.defence;
-        stats.creativity = baseStats.creativity;
-        stats.recovery = baseStats.recovery;
+        stats.name          = baseStats.name;
+        stats.maxHP         = baseStats.maxHP;
+        stats.maxMana       = baseStats.maxMana;
+        stats.attack        = baseStats.attack;
+        stats.defence       = baseStats.defence;
+        stats.creativity    = baseStats.creativity;
+        stats.recovery      = baseStats.recovery;
+        stats.movementSpeed = baseStats.movementSpeed;
 
         FullHealHP();
     }

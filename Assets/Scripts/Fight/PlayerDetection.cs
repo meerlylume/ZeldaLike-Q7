@@ -13,14 +13,22 @@ public class PlayerDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!playerFight) collision.TryGetComponent(out PlayerFight playerFight);
+        if (!playerFight)
+        {
+            collision.TryGetComponent(out PlayerFight enteringCollider);
 
-        if (playerFight) isChasing = true;
+            if (!enteringCollider) return;
+
+            playerFight = enteringCollider;
+            isChasing = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.TryGetComponent(out PlayerFight playerFight);
+        collision.TryGetComponent(out PlayerFight exitingCollider);
+
+        if (!exitingCollider) return;
 
         playerFight = null;
         isChasing = false;

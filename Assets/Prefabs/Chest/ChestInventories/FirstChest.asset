@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FirstChest
   m_EditorClassIdentifier: 
   name: YUP
-  money: 0
-  items: []
-  quantities: 0000000000000000
+  money: 69
+  items:
+  - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
+  quantities: 02000000

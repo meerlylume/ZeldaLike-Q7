@@ -5,8 +5,6 @@ public interface IFight
 
     void TakeDamage(int dmg);
 
-    void DealDamage(int dmg, IFight target);
-
     void Die();
 
     void HealHP(int amount);
