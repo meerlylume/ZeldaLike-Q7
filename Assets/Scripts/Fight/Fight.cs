@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using Unity.Mathematics.Geometry;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,12 +14,14 @@ public abstract class Fight : MonoBehaviour, IFight
     protected Rigidbody2D rb;
 
     [Header("Attacks")]
-    [SerializeField] List<Attack> attacks;
-    private int attackIndex = 0;
+    [SerializeField] protected List<Attack> attacks;
+    protected int attackIndex = 0;
 
     protected bool canTakeDamage = true;
     protected bool isAlive       = true;
     protected bool isAlly;
+    protected bool isInCooldown  = false;
+    //protected bool isInIFrame   = false; //NOT MVP
 
     #region Getters
     public virtual bool CanTakeDamage()                { return canTakeDamage;                      }
@@ -34,7 +38,7 @@ public abstract class Fight : MonoBehaviour, IFight
 
         FullHealHP();
     }
-    public void Attack()
+    public virtual void Attack()
     {
         attacks[attackIndex].PerformAttack(stats, transform.position);
         if (attackIndex < attacks.Count - 1) { attackIndex++;   }
@@ -51,32 +55,25 @@ public abstract class Fight : MonoBehaviour, IFight
         gameObject.SetActive(false);
     }
 
-    public virtual void TakeDamage(int dmg)
+    public virtual void TakeDamage(float dmg)
     {
-        //HANDLE DEFENCE AND ARMOR
+        //DAMAGE FORKS
 
         if (!isAlive) return;
         if (!canTakeDamage) return;
 
-        Debug.Log("CurrentHP: " + stats.currentHP + " Damage: " + dmg);
-        int _totalDamage = Mathf.Clamp(dmg - stats.defence, 0, 999);
+        float _totalDamage = Mathf.Clamp(dmg - stats.defence, 0, 999);
 
         stats.currentHP = Mathf.Clamp(stats.currentHP - _totalDamage, 0, stats.maxHP);
-        Debug.Log("CurrentHP: " + stats.currentHP + " TotalDamage: " + _totalDamage);
+
+        Debug.Log(stats.name + "'s HP: " + stats.currentHP + " Damage: " + _totalDamage);
 
         OnHPChanged();
 
         if (stats.currentHP <= 0) { Die(); }
     }
 
-    public virtual void DealDamage(int dmg, IFight target)
-    {
-        if (!isAlive) return;
-
-        throw new System.NotImplementedException();
-    }
-
-    public virtual void HealHP(int amount)
+    public virtual void HealHP(float amount)
     {
         if (!isAlive) return;
         stats.currentHP = Mathf.Clamp(stats.currentHP + amount, 0, stats.maxHP);
@@ -93,8 +90,15 @@ public abstract class Fight : MonoBehaviour, IFight
     public abstract void OnHPChanged();
     public abstract void OnManaChanged();
 
-    public virtual void Attack(Attack attack)
+    public virtual IEnumerator AttackRoutine()
     {
-        throw new System.NotImplementedException();
-    }
+        if (isInCooldown) yield break;
+
+        Attack();
+        isInCooldown = true;
+
+        yield return new WaitForSeconds(attacks[attackIndex].GetCooldown());
+
+        isInCooldown = false;
+}
 }

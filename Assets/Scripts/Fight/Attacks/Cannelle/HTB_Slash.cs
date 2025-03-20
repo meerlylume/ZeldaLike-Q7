@@ -15,7 +15,6 @@ public class HTB_Slash : Hitbox
         for (int i = 0; i < colliders.Length; i++) {
             if (colliders[i].TryGetComponent(out Fight otherFight)) { fighters.Add(otherFight); } }
 
-        Debug.Log("Returning fighters");
         return fighters;
     }
 

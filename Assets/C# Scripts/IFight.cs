@@ -3,11 +3,11 @@ public interface IFight
     bool CanTakeDamage();
     //bool CanDealDamage(); //maybe?
 
-    void TakeDamage(int dmg);
+    void TakeDamage(float dmg);
 
     void Die();
 
-    void HealHP(int amount);
+    void HealHP(float amount);
 
     //To do:
     //Handle drain HP (not necessarily on this interface though)

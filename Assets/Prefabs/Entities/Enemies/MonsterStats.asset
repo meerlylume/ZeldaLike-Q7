@@ -18,7 +18,7 @@ MonoBehaviour:
   currentHP: 0
   maxMana: 0
   currentMana: 2
-  attack: 2
+  attack: 5
   defence: 2
   creativity: 1
   recovery: 1

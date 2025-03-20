@@ -29,7 +29,7 @@ public class PlayerFight : Fight
 
     public void PlayerAttack(InputAction.CallbackContext context)
     {
-        if (context.started) { Attack(); }
+        if (context.started) { StartCoroutine(AttackRoutine()); }
     }
 
     public override void Die()
@@ -41,19 +41,22 @@ public class PlayerFight : Fight
         base.Die();
     }
 
+    #region HealthBar & ManaBar
     public void RefreshHealthBar()
     {
-        if (stats.currentHP == 0) return;
-        healthSlider.value = stats.maxHP / stats.currentHP;
+        if (stats.maxHP == 0) return;
+        healthSlider.value = stats.currentHP / stats.maxHP;
+
     }
 
     public void RefreshManaBar()
     {
-        if (stats.currentMana == 0) return;
-        manaSlider.value   = stats.maxMana / stats.currentMana;
+        if (stats.maxMana == 0) return;
+        manaSlider.value = stats.currentMana / stats.maxMana;
     }
 
     public override void OnHPChanged()   { RefreshHealthBar(); }
 
     public override void OnManaChanged() { RefreshManaBar();   }
+    #endregion
 }

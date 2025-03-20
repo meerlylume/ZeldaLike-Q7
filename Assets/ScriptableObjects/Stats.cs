@@ -8,11 +8,11 @@ public class Stats : ScriptableObject
     public bool isAlly;
     
     [Header("Health")]
-    public int maxHP;
-    public int currentHP; 
+    public float maxHP;
+    public float currentHP; 
     [Space]
-    public int maxMana;
-    public int currentMana; 
+    public float maxMana;
+    public float currentMana; 
     [Space]
 
     [Header("Character Stats")]

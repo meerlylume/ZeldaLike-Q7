@@ -2211,7 +2211,6 @@ Transform:
   - {fileID: 6700279935335630871}
   - {fileID: 2678686479168865794}
   - {fileID: 4275740273273251981}
-  - {fileID: 8590923498835430621}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3285378661144251519
@@ -2243,9 +2242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa7d68a044907847b6d4035c084ba3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  moveInput: {x: 0, y: 0}
-  canMove: 0
 --- !u!114 &1544510492908036348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2260,7 +2256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: dc9cd9075459b5043a6de77b0a463c8a, type: 2}
   maxInventorySize: 10
-  playerFight: {fileID: 0}
+  playerFight: {fileID: 3285378661144251519}
   eventSystem: {fileID: 5114548232388249325}
   slotPrefab: {fileID: 882659200092753265, guid: 1a34e24621a7392408ea8da60807f48d, type: 3}
   inventoryGrid: {fileID: 1966524320492791982}
@@ -5390,37 +5386,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &6135452680426154587
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8590923498835430621}
-  m_Layer: 0
-  m_Name: TestHitboxTransform
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8590923498835430621
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6135452680426154587}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 356489471640585990}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6239394339012068116
 GameObject:
   m_ObjectHideFlags: 0
@@ -6826,7 +6791,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 250, y: 50}
+  m_CellSize: {x: 500, y: 100}
   m_Spacing: {x: 0, y: 100}
   m_Constraint: 1
   m_ConstraintCount: 1

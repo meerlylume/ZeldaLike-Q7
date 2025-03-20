@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ChasingEnemy : EnemyFight
@@ -19,13 +20,13 @@ public class ChasingEnemy : EnemyFight
 
     private void FixedUpdate()
     {
-        if (GetIsChasing() && GetPlayerFight())
-        {
-            Debug.Log("I am speed. Speed of: " + stats.movementSpeed);
+        if (!(GetIsChasing() && GetPlayerFight())) return;
 
-            Vector2 direction = GetPlayerFight().transform.position - transform.position;
+        Vector2 direction = GetPlayerFight().transform.position - transform.position;
+        rb.linearVelocity = direction.normalized * stats.movementSpeed;
 
-            rb.linearVelocity = direction.normalized * stats.movementSpeed;
-        }
+        if (!(attacks[attackIndex].CheckIfInRange(stats, transform.position))) return;
+
+        StartCoroutine(AttackRoutine());
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private Vector2 moveInput;
-    [SerializeField] private bool canMove;
+    private float moveSpeed = 5f; //Only if PlayerFight failed to set this value
+    private Vector2 moveInput;
+    private bool canMove;
     private Rigidbody2D rb;
 
     public void SetSpeed(float value) { moveSpeed = value; }
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         moveInput = context.ReadValue<Vector2>();
-        
+
         rb.linearVelocity = moveInput.normalized * moveSpeed;
     }
 
