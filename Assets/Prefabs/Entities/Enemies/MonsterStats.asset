@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Monstaaa
   isAlly: 0
-  maxHP: 20
+  maxHP: 5
   currentHP: 0
   maxMana: 0
   currentMana: 2
-  attack: 5
-  defence: 2
+  attack: 3
+  defence: 0
   creativity: 1
   recovery: 1
   movementSpeed: 2

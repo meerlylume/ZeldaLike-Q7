@@ -9,6 +9,7 @@ public class InteractionDetector : MonoBehaviour
 
     private IInteractable interactableInRange = null;
     private GameObject    interactableGameobjectInRange;
+    private bool canInteract = true;
 
     private void Start()
     {
@@ -17,6 +18,8 @@ public class InteractionDetector : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!canInteract) return;
+
         if (context.started) 
         { 
             interactableInRange?.Interact();
@@ -28,6 +31,14 @@ public class InteractionDetector : MonoBehaviour
             if (npcComponent)
             {
                 npcComponent.SetPlayerReference(transform.parent.gameObject);
+                return;
+            }
+
+            //ITEM
+            interactableGameobjectInRange.TryGetComponent(out Item item);
+            if (item)
+            {
+                playerInventory.AddItem(item, 1);
                 return;
             }
 

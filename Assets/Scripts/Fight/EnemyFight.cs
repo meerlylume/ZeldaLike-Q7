@@ -5,7 +5,7 @@ public class EnemyFight : Fight
 {
     protected Stats baseStats;
     [Header("Monster Loot")]
-    [SerializeField] InventoryData lootTable;
+    [SerializeField] LootTable lootTable;
     [SerializeField] float lootRadius = 4f;
     [SerializeField] float timeBetweenDrops = 0.1f;
     private Vector3 deathPos;
@@ -41,39 +41,47 @@ public class EnemyFight : Fight
 
     public void DropItem(Item item) 
     {
-        //Made this into a seperate function so I can reuse it, for example for a mimic enemy that drops money
+        //Made this into a seperate function so I can reuse it, for example for a mimic enemy that drops money when it is damaged
 
         deathPos = transform.position;
 
         Instantiate(item);
         item.transform.position = new Vector3(Random.Range(deathPos.x - lootRadius, deathPos.x + lootRadius), 
-                                              Random.Range(deathPos.y - lootRadius, deathPos.y + lootRadius), 
-                                              0);
+                                              Random.Range(deathPos.y - lootRadius, deathPos.y + lootRadius), 0);
     }
 
     IEnumerator DeathRoutine()
     {
         if (!lootTable) yield break;
 
-        for (int i = 0; lootTable.items.Count > i; i++)
+        //If quantities or odds list is wrong, drop every item once regardless of rarity
+        if (!((lootTable.items.Count == lootTable.quantities.Count) == (lootTable.items.Count == lootTable.odds.Count)))
         {
-            //If quantities list is wrong, drop item once
-            if (!(lootTable.items.Count == lootTable.quantities.Count))
+            Debug.Log("Error with the LootTable, dropping every item once.");
+            for (int i = 0; lootTable.items.Count > 0; i++)
             {
                 DropItem(lootTable.items[i]);
                 yield return new WaitForSeconds(timeBetweenDrops);
             }
+        }
 
-            //Else drop everything
-            else 
-            { 
+        //Else proceed as expected
+        else
+        {
+            for (int i = 0; lootTable.items.Count > i; i++)
+            {
                 for (int j = 0; lootTable.quantities[i] > j; j++)
-                {
-                    DropItem(lootTable.items[i]);
-                    yield return new WaitForSeconds(timeBetweenDrops);
+                { 
+                    //Find a random between 0 and 1, if it is smaller than this item's dropping odds, drop it.
+                    if (Random.Range(0.0f, 1.0f) <= lootTable.odds[i])
+                    {
+                        DropItem(lootTable.items[i]);
+                        yield return new WaitForSeconds(timeBetweenDrops);
+                    }
                 }
             }
         }
+        
 
         base.Die();
     }

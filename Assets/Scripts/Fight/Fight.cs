@@ -66,8 +66,6 @@ public abstract class Fight : MonoBehaviour, IFight
 
         stats.currentHP = Mathf.Clamp(stats.currentHP - _totalDamage, 0, stats.maxHP);
 
-        Debug.Log(stats.name + "'s HP: " + stats.currentHP + " Damage: " + _totalDamage);
-
         OnHPChanged();
 
         if (stats.currentHP <= 0) { Die(); }
