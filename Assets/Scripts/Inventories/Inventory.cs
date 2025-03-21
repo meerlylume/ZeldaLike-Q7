@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -94,5 +95,10 @@ public class Inventory : MonoBehaviour
     {
         EmptyItems();
         EmptyMoney();
+    }
+
+    public void ConsumeItem(Item item)
+    {
+        throw new NotImplementedException();
     }
 }

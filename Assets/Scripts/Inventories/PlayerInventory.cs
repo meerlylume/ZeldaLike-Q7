@@ -38,7 +38,6 @@ public class PlayerInventory : Inventory
                     //..then if it doesn't go over the maxStackQuantity, add 1 to the inventory quantity and remove 1 from the added quantity
                     if (inventory.quantities[i] + 1 <= inventory.items[i].maxStackQuantity)
                     {
-                        Debug.Log("inventory.quantities[" + i + "] + 1 <= inventory.items[" + i + "].maxStackQuantity");
                         inventory.quantities[i]++;
                         quantity--;
                     }
@@ -55,7 +54,6 @@ public class PlayerInventory : Inventory
 
         if (quantity <= item.maxStackQuantity) //..then if the remaining quantity is smaller or equal to the max stack quantity
         {
-            Debug.Log("quantity <= item.maxStackQuantity");
             //..add these two and be on your merry way..
             inventory.items.Add(item);
             inventory.quantities.Add(quantity);
@@ -63,7 +61,6 @@ public class PlayerInventory : Inventory
 
         else //..but if it's bigger instead
         {
-            Debug.Log("quantity > item.maxStackQuantity");
             for (int i = 0; quantity / item.maxStackQuantity < i; i++) //..then for as many times as you can fit maxQuantities in quantity..
             {
                 inventory.items.Add(item);                             //..add an item..

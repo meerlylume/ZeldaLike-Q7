@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Physical Boost Crystal
   description: Crystallised energy that can be absorbed to raise Strength or Defence
+  information: Raises Attack or Defence.
   sprite: {fileID: 146077903990702659, guid: 0df578404b411c742b4be78340fb0411, type: 3}
   maxStackQuantity: 1
   basePrice: 0

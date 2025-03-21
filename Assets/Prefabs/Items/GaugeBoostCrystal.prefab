@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Gauge Boost Crystal
   description: Crystallised energy that can be absorbed to raise Max HP or Max Mana
+  information: Raises HP or Mana.
   sprite: {fileID: -6311028441920452771, guid: 82e86c0709fb580488df2e51febb25b2, type: 3}
   maxStackQuantity: 1
   basePrice: 0

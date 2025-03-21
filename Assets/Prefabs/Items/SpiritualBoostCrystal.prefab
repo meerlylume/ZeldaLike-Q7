@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Spiritual Boost Crystal
   description: Crystallised energy that can be absorbed to raise Creativity or Recovery
+  information: Raises Creativity or Recovery.
   sprite: {fileID: -3025662117350904023, guid: 51cd1be87702d6b4dafb4db60b1b17fc, type: 3}
   maxStackQuantity: 1
   basePrice: 0

@@ -5,7 +5,8 @@ public abstract class Item : MonoBehaviour, IInteractable
 {
     [Header("Appearance")]
     public new string name      = "Item";
-    public string description   = "Placeholder";
+    public string description   = "Placeholder Description";
+    public string information   = "Placeholder Information";
     public Sprite sprite;
     [Space]
     [Header("Properties")]
