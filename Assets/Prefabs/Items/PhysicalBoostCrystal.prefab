@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 444214532077148488}
-  - component: {fileID: 6931089718501590547}
+  - component: {fileID: 3353908368094435337}
   - component: {fileID: 8964735247898518524}
-  - component: {fileID: -3462459571306838056}
+  - component: {fileID: 1122514795668896220}
   m_Layer: 0
-  m_Name: GaugeBoostCrystal
+  m_Name: PhysicalBoostCrystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6931089718501590547
+--- !u!114 &3353908368094435337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,17 +43,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5870478283349005392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e5c476c68e21814c98a336d06036961, type: 3}
+  m_Script: {fileID: 11500000, guid: e21cc6a2c23432347bf5bc6e3aa705bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Gauge Boost Crystal
-  description: Crystallised energy that can be absorbed to raise Max HP or Max Mana
-  sprite: {fileID: -6311028441920452771, guid: 82e86c0709fb580488df2e51febb25b2, type: 3}
+  name: Physical Boost Crystal
+  description: Crystallised energy that can be absorbed to raise Strength or Defence
+  sprite: {fileID: 146077903990702659, guid: 0df578404b411c742b4be78340fb0411, type: 3}
   maxStackQuantity: 1
   basePrice: 0
   canBeSold: 0
-  minRandomRange: 5
-  maxRandomRange: 10
+  minRandomRange: 1
+  maxRandomRange: 3
 --- !u!212 &8964735247898518524
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ SpriteRenderer:
   m_SortingLayerID: 2089307623
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6311028441920452771, guid: 82e86c0709fb580488df2e51febb25b2, type: 3}
+  m_Sprite: {fileID: 146077903990702659, guid: 0df578404b411c742b4be78340fb0411, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,7 +109,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &-3462459571306838056
+--- !u!58 &1122514795668896220
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

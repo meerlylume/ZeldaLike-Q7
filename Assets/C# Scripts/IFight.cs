@@ -1,16 +1,15 @@
 public interface IFight
 {
     bool CanTakeDamage();
-    //bool CanDealDamage();
+    //bool CanDealDamage(); //maybe?
 
-    void TakeDamage(int dmg);
-
-    void DealDamage(int dmg, IFight target);
+    void TakeDamage(float dmg);
 
     void Die();
 
-    void HealHP(int amount);
+    void HealHP(float amount);
 
+    //To do:
     //Handle drain HP (not necessarily on this interface though)
     //Handle drain Mana (not necessarily on this interface though)
 }

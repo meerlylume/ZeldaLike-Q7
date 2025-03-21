@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: CannelleStats
   m_EditorClassIdentifier: 
   name: Cannelle
-  maxHP: 10
+  isAlly: 1
+  maxHP: 30
   currentHP: 0
   maxMana: 10
-  currentMana: 0
-  attack: 5
-  defence: 5
+  currentMana: 10
+  attack: 8
+  defence: 2
   creativity: 5
   recovery: 5
+  movementSpeed: 7

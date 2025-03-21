@@ -5,18 +5,24 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    private float moveSpeed = 5f; //Only if PlayerFight failed to set this value
+    private Vector2 moveInput;
+    private bool canMove;
     private Rigidbody2D rb;
-    [SerializeField] private Vector2 moveInput;
-    [SerializeField] private bool canMove;
+
+    public void SetSpeed(float value) { moveSpeed = value; }
 
     public void DisablePlayerMovement()
     {
         canMove = false;
-        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
-    public void EnablePlayerMovement() { canMove = true; }
+    public void EnablePlayerMovement() 
+    {
+        canMove = true; 
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
 
     private void Start()
     {
@@ -34,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         moveInput = context.ReadValue<Vector2>();
-        
+
         rb.linearVelocity = moveInput.normalized * moveSpeed;
     }
 
