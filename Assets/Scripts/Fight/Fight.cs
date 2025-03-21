@@ -63,8 +63,7 @@ public abstract class Fight : MonoBehaviour, IFight
     public virtual void Attack()
     {
         attacks[attackIndex].PerformAttack(stats, transform.position);
-        if (attackIndex < attacks.Count - 1) { attackIndex++;   }
-        else                                 { attackIndex = 0; }
+        attackIndex = (attackIndex + 1) % attacks.Count; //increments attackIndex if it's under attacks.Count, else sets it to 0
     }
 
     public virtual void Die()
@@ -85,12 +84,18 @@ public abstract class Fight : MonoBehaviour, IFight
         if (!canTakeDamage) return;
 
         float _totalDamage = Mathf.Clamp(dmg - stats.defence, 0, 999);
-
         stats.currentHP = Mathf.Clamp(stats.currentHP - _totalDamage, 0, stats.maxHP);
 
         OnHPChanged();
 
         if (stats.currentHP <= 0) { Die(); }
+
+        if (stats.name == "Cannelle") return;
+
+        Debug.Log("" + stats.name + "Got hit with: " + _totalDamage + " damage.");
+
+        if (spriteRenderer.color == Color.red) spriteRenderer.color = Color.yellow;
+        else spriteRenderer.color = Color.red;
     }
 
     public virtual void HealHP(float amount)
@@ -111,12 +116,14 @@ public abstract class Fight : MonoBehaviour, IFight
     {
         if (isInCooldown) yield break;
 
+        // Attack
         Attack();
-        spriteRenderer.color = Color.gray;
+        if (stats.name == "Cannelle") spriteRenderer.color = Color.gray;
+        
+        //Cooldown
         isInCooldown = true;
-
         yield return new WaitForSeconds(attacks[attackIndex].GetCooldown(stats));
-        spriteRenderer.color = Color.white;
+        if (stats.name == "Cannelle") spriteRenderer.color = Color.white;
 
         isInCooldown = false;
     }
@@ -128,7 +135,6 @@ public abstract class Fight : MonoBehaviour, IFight
 
     public virtual void RefreshHealthBar()
     {
-        Debug.Log("Refreshed healthbar of " + stats.name);
         healthSlider.maxValue = stats.maxHP;
         healthSlider.value    = stats.currentHP;
     }

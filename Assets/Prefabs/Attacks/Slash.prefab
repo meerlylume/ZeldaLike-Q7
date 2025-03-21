@@ -48,6 +48,7 @@ MonoBehaviour:
   hitbox: {fileID: 8456097486384409711}
   cooldown: 0.5
   knockback: 0
+  TempPrefab: {fileID: 8417278239123675468, guid: ecd5c40987934954688b489ee5692600, type: 3}
 --- !u!114 &8456097486384409711
 MonoBehaviour:
   m_ObjectHideFlags: 0

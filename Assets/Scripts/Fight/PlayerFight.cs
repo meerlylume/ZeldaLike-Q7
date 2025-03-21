@@ -4,7 +4,7 @@ public class PlayerFight : Fight
 {
     PlayerMovement playerMovement;
 
-    public Stats GetStats() { return stats; }
+    public Stats GetStats()      { return stats; }
     public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
 
     public override void Start()
