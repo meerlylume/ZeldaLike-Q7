@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
     {
         //don't forget to HANDLE STACKS for PLAYER ONLY
 
+        //I SAID PLAYER ONLY. PLAYER ONLY. THIS MEANS NOT IN THIS SCRIPT. IN THE PLAYER INVENTORY SCRIPT. NOT THIS ONE. DID YOU GET THAT? ARE YOU SURE?
+
         for (int i = 0; inventory.items.Count > i; i++)
         {
             if (inventory.items[i] == item) //if item ALREADY in inventory

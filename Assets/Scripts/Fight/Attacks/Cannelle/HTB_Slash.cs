@@ -9,16 +9,12 @@ public class HTB_Slash : Hitbox
 
     public override List<Fight> GetCollidersInHitbox(Vector2 hitboxPos)
     {
-        Debug.Log("GetCollidersInHitbox()");
-
         Collider2D[] colliders = Physics2D.OverlapBoxAll(hitboxPos, hitboxSize, 0);
         List<Fight> fighters   = new List<Fight>();
 
 
         for (int i = 0; i < colliders.Length; i++) {
             if (colliders[i].TryGetComponent(out Fight otherFight)) { fighters.Add(otherFight); } }
-
-        Debug.Log(fighters.Count);
 
         return fighters;
     }

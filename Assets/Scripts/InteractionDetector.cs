@@ -21,15 +21,15 @@ public class InteractionDetector : MonoBehaviour
 
         if (context.started) 
         { 
-            interactableInRange?.Interact();
-
             if (!interactableGameobjectInRange) return;
 
             //NPC
             interactableGameobjectInRange.TryGetComponent(out NPC npc);
             if (npc)
             {
+                npc.Interact();
                 npc.SetPlayerReference(transform.parent.gameObject);
+                interactionIcon.SetActive(false);
                 return;
             }
 
@@ -37,7 +37,10 @@ public class InteractionDetector : MonoBehaviour
             interactableGameobjectInRange.TryGetComponent(out Item item);
             if (item)
             {
+                if (!item.CanInteract()) return;
+                item.Interact();
                 playerInventory.AddItem(item, 1);
+                interactionIcon.SetActive(false);
                 return;
             }
 
@@ -45,12 +48,15 @@ public class InteractionDetector : MonoBehaviour
             interactableGameobjectInRange.TryGetComponent(out Chest chest);
             if (chest)
             {
+                if (!chest.CanInteract()) return;
+                chest.Interact();
                 InventoryData chestInventory = chest.GetInventory();
                 for (int i = 0; chestInventory.items.Count > i; i++)
                 {
                     playerInventory.AddItem(chestInventory.items[i], chestInventory.quantities[i]);
                     playerInventory.AddMoney(chestInventory.money);
                 }
+                interactionIcon.SetActive(false);
                 return;
             }
         }
@@ -62,7 +68,7 @@ public class InteractionDetector : MonoBehaviour
         {
             interactableInRange = interactable;
             interactableGameobjectInRange = collision.gameObject;
-            interactionIcon.SetActive(true);
+            if (interactableInRange.CanInteract()) interactionIcon.SetActive(true);
         }
     }
 
