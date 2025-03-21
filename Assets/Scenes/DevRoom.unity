@@ -20090,6 +20090,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2201052470313659658, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201052470313659658, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster (2)
@@ -20414,7 +20422,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000003b639aafe74d887c8f303da06daba7b58394b1589fb37efc
+  m_ApplyToSortingLayers: 000000003b639aafe74d887c8f303da06daba7b58394b1589fb37efc6dca39de
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -20672,6 +20680,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2201052470313659658, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201052470313659658, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster (3)
@@ -21733,6 +21749,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2201052470313659658, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201052470313659658, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster (1)
@@ -22999,9 +23023,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2201052470313659658, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201052470313659658, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23021,11 +23057,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalRotation.z
@@ -23062,11 +23098,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3650640422009172990, guid: 55c3ae494c2de0f4485862dd1d39bf47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.58
+      value: -21.89
       objectReference: {fileID: 0}
     - target: {fileID: 3650640422009172990, guid: 55c3ae494c2de0f4485862dd1d39bf47, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 16.48
       objectReference: {fileID: 0}
     - target: {fileID: 3650640422009172990, guid: 55c3ae494c2de0f4485862dd1d39bf47, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23612,10 +23648,10 @@ SceneRoots:
   - {fileID: 312832907}
   - {fileID: 522995478}
   - {fileID: 1430315446}
-  - {fileID: 5476737534618390561}
   - {fileID: 1278430405}
   - {fileID: 6846296225208907423}
   - {fileID: 4361266387730805369}
   - {fileID: 1975312089}
   - {fileID: 937407907}
   - {fileID: 413899899}
+  - {fileID: 5476737534618390561}

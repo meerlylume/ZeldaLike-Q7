@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Monstaaa
   isAlly: 0
-  maxHP: 5
+  maxHP: 20
   currentHP: 0
   maxMana: 0
   currentMana: 2

@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Data;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyFight : Fight
 {
@@ -87,15 +87,9 @@ public class EnemyFight : Fight
         base.Die();
     }
 
-    public override void OnHPChanged()
-    {
-        // UNIMPLEMENTED
-        return;
-    }
-
     public override void OnManaChanged()
     {
-        // UNIMPLEMENTED
+        // Enemies have no mana bar, and don't use mana at all, at least for now
         return;
     }
 

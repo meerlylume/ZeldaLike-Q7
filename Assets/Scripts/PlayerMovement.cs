@@ -26,15 +26,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb      = GetComponent<Rigidbody2D>();
         canMove = true;
     }
+
+    private void FixedUpdate() { rb.linearVelocity = moveInput.normalized * moveSpeed; }
 
     public void Move(InputAction.CallbackContext context)
     {
         if (!canMove) 
-        { 
-            moveInput = Vector2.zero; 
+        {
+            moveInput         = Vector2.zero;
             rb.linearVelocity = moveInput;
             return;
         }
@@ -43,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = moveInput.normalized * moveSpeed;
     }
-
     private void TakeKnockback()
     {
         throw new NotImplementedException();

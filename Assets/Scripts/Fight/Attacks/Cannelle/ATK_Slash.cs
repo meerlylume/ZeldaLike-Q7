@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ATK_Slash : Attack
 {
+
     public override void PerformAttack(Stats stats, Vector2 attackPos)
     {
         foreach (Fight fighter in hitbox.GetCollidersInHitbox(attackPos))
         {
-            if (fighter.IsAlliedWith(stats)) return;
+            if (fighter.IsAlliedWith(stats)) continue;
 
             fighter.TakeDamage(stats.attack);
         }
