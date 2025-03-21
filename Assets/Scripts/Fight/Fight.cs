@@ -23,6 +23,10 @@ public abstract class Fight : MonoBehaviour, IFight
     protected bool isInCooldown  = false;
     //protected bool isInIFrame   = false; //NOT MVP
 
+    [Space]
+    [Header("TEMPORARY")]
+    [SerializeField] SpriteRenderer spriteRenderer;
+
     #region Getters
     public virtual bool CanTakeDamage()                { return canTakeDamage;                      }
 
@@ -93,9 +97,11 @@ public abstract class Fight : MonoBehaviour, IFight
         if (isInCooldown) yield break;
 
         Attack();
+        spriteRenderer.color = Color.gray;
         isInCooldown = true;
 
-        yield return new WaitForSeconds(attacks[attackIndex].GetCooldown());
+        yield return new WaitForSeconds(attacks[attackIndex].GetCooldown(stats));
+        spriteRenderer.color = Color.white;
 
         isInCooldown = false;
 }

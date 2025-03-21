@@ -27,10 +27,10 @@ public class InteractionDetector : MonoBehaviour
             if (!interactableGameobjectInRange) return;
 
             //NPC
-            interactableGameobjectInRange.TryGetComponent(out NPC npcComponent);
-            if (npcComponent)
+            interactableGameobjectInRange.TryGetComponent(out NPC npc);
+            if (npc)
             {
-                npcComponent.SetPlayerReference(transform.parent.gameObject);
+                npc.SetPlayerReference(transform.parent.gameObject);
                 return;
             }
 

@@ -26,6 +26,7 @@ public class Stats : ScriptableObject
 
     [Header("Hidden Stats")]
     public float movementSpeed;
+    public float cooldownModifier = 1.0f;
     //public int knockbackResistance;
     //public int knockbackStrength;
 }

@@ -21,7 +21,8 @@ public class Inventory : MonoBehaviour
         }
 
         //if item NOT in inventory
-        inventory.items.Add(item);
+        Item newItem = item; //Create a new Item so it doesn't get bound to a GameObject that will get destroyed/pooled
+        inventory.items.Add(newItem);
         inventory.quantities.Add(quantity);
     }
     

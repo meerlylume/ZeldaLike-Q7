@@ -24,8 +24,6 @@ public abstract class Item : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Interacted with " + name);
-
         isPickedUp = true;
 
         spriteRenderer.enabled = false;

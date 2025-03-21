@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Data;
 using UnityEngine;
 
 public class EnemyFight : Fight
@@ -6,28 +7,29 @@ public class EnemyFight : Fight
     protected Stats baseStats;
     [Header("Monster Loot")]
     [SerializeField] LootTable lootTable;
-    [SerializeField] float lootRadius = 4f;
+    [SerializeField] float lootRadius;
     [SerializeField] float timeBetweenDrops = 0.1f;
     private Vector3 deathPos;
 
     public override void Start()
     {
         baseStats = stats;
-        stats = ScriptableObject.CreateInstance<Stats>();
+        stats     = ScriptableObject.CreateInstance<Stats>();
         CopyBaseStats();
 
         base.Start();
     }
     private void CopyBaseStats()
     {
-        stats.name          = baseStats.name;
-        stats.maxHP         = baseStats.maxHP;
-        stats.maxMana       = baseStats.maxMana;
-        stats.attack        = baseStats.attack;
-        stats.defence       = baseStats.defence;
-        stats.creativity    = baseStats.creativity;
-        stats.recovery      = baseStats.recovery;
-        stats.movementSpeed = baseStats.movementSpeed;
+        stats.name             = baseStats.name;
+        stats.maxHP            = baseStats.maxHP;
+        stats.maxMana          = baseStats.maxMana;
+        stats.attack           = baseStats.attack;
+        stats.defence          = baseStats.defence;
+        stats.creativity       = baseStats.creativity;
+        stats.recovery         = baseStats.recovery;
+        stats.movementSpeed    = baseStats.movementSpeed;
+        stats.cooldownModifier = baseStats.cooldownModifier;
 
         FullHealHP();
     }
@@ -43,11 +45,13 @@ public class EnemyFight : Fight
     {
         //Made this into a seperate function so I can reuse it, for example for a mimic enemy that drops money when it is damaged
 
-        deathPos = transform.position;
+        //deathPos = gameObject.transform.position;
 
-        Instantiate(item);
-        item.transform.position = new Vector3(Random.Range(deathPos.x - lootRadius, deathPos.x + lootRadius), 
-                                              Random.Range(deathPos.y - lootRadius, deathPos.y + lootRadius), 0);
+        Item newItem = Instantiate(item);
+
+        //item.transform.position = new Vector3(Random.Range(deathPos.x - lootRadius, deathPos.x + lootRadius),
+                                              //Random.Range(deathPos.y - lootRadius, deathPos.y + lootRadius), 0);
+        item.transform.position = gameObject.transform.position;
     }
 
     IEnumerator DeathRoutine()
@@ -96,5 +100,11 @@ public class EnemyFight : Fight
     {
         // UNIMPLEMENTED
         return;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, lootRadius);
     }
 }

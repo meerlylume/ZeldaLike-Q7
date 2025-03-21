@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    public TextMeshProUGUI quantityText;
-    public Image image;
+    [SerializeField] TextMeshProUGUI quantityText;
+    [SerializeField] Image image;
 
     private PlayerInventory inventory;
     private Item item;
@@ -19,12 +19,13 @@ public class Slot : MonoBehaviour
 
     private void Start()
     {
-        //RefreshSlot();
+        if (item) RefreshSlot();
     }
 
     public void RefreshSlot()
     {
-        if (quantity > 0)    quantityText.text = "x" + quantity;
+        if (quantity > 1)    quantityText.text = "x" + quantity;
+        else                 quantityText.text = "";
         if (image && item.sprite) image.sprite = item.sprite;
     }
 
