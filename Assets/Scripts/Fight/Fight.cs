@@ -1,27 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
-using Unity.Mathematics.Geometry;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public abstract class Fight : MonoBehaviour, IFight
 {
     [Header("Stats")]
+    //[SerializeField] protected Stats baseStats;
     [SerializeField] protected Stats stats;
     [Space]
     protected Rigidbody2D rb;
 
     [Header("Attacks")]
     [SerializeField] protected List<Attack> attacks;
-    protected int attackIndex = 0;
-
+    protected int  attackIndex   = 0;
     protected bool canTakeDamage = true;
     protected bool isAlive       = true;
-    protected bool isAlly;
     protected bool isInCooldown  = false;
+    //protected bool isAlly;
     //protected bool isInIFrame   = false; //NOT MVP
+
+    [Header("UI References")]
+    [SerializeField] Slider healthSlider;
+    [SerializeField] Slider manaSlider;
+    [Space]
 
     [Space]
     [Header("TEMPORARY")]
@@ -42,6 +44,22 @@ public abstract class Fight : MonoBehaviour, IFight
 
         FullHealHP();
     }
+
+    public virtual void CopyStatsInto(Stats baseStats, Stats stats)
+    {
+        stats.name             = baseStats.name;
+        stats.maxHP            = baseStats.maxHP;
+        stats.maxMana          = baseStats.maxMana;
+        stats.attack           = baseStats.attack;
+        stats.defence          = baseStats.defence;
+        stats.creativity       = baseStats.creativity;
+        stats.recovery         = baseStats.recovery;
+        stats.movementSpeed    = baseStats.movementSpeed;
+        stats.cooldownModifier = baseStats.cooldownModifier;
+
+        FullHealHP();
+    }
+
     public virtual void Attack()
     {
         attacks[attackIndex].PerformAttack(stats, transform.position);
@@ -89,9 +107,6 @@ public abstract class Fight : MonoBehaviour, IFight
         OnHPChanged();
     }
 
-    public abstract void OnHPChanged();
-    public abstract void OnManaChanged();
-
     public virtual IEnumerator AttackRoutine()
     {
         if (isInCooldown) yield break;
@@ -104,5 +119,25 @@ public abstract class Fight : MonoBehaviour, IFight
         spriteRenderer.color = Color.white;
 
         isInCooldown = false;
-}
+    }
+
+    #region HealthBar & ManaBar
+    public virtual void OnHPChanged()   { RefreshHealthBar(); }
+
+    public virtual void OnManaChanged() { RefreshManaBar();   }
+
+    public virtual void RefreshHealthBar()
+    {
+        Debug.Log("Refreshed healthbar of " + stats.name);
+        healthSlider.maxValue = stats.maxHP;
+        healthSlider.value    = stats.currentHP;
+    }
+
+    public virtual void RefreshManaBar()
+    {
+        manaSlider.maxValue = stats.maxMana;
+        manaSlider.value    = stats.currentMana;
+    }
+    #endregion
+
 }

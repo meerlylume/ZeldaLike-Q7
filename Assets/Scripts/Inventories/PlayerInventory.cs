@@ -1,11 +1,7 @@
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class PlayerInventory : Inventory
 {
