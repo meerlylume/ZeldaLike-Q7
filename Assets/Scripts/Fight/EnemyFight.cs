@@ -45,13 +45,10 @@ public class EnemyFight : Fight
     {
         //Made this into a seperate function so I can reuse it, for example for a mimic enemy that drops money when it is damaged
 
-        //deathPos = gameObject.transform.position;
-
         Item newItem = Instantiate(item);
 
-        //item.transform.position = new Vector3(Random.Range(deathPos.x - lootRadius, deathPos.x + lootRadius),
-                                              //Random.Range(deathPos.y - lootRadius, deathPos.y + lootRadius), 0);
-        item.transform.position = gameObject.transform.position;
+        newItem.transform.position = new Vector3(Random.Range(transform.position.x - lootRadius, transform.position.x + lootRadius),
+                                                 Random.Range(transform.position.y - lootRadius, transform.position.y + lootRadius), 0);
     }
 
     IEnumerator DeathRoutine()
