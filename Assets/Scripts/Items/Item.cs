@@ -8,6 +8,7 @@ public abstract class Item : MonoBehaviour, IInteractable
     public string description   = "Placeholder Description";
     public string information   = "Placeholder Information";
     public Sprite sprite;
+    [SerializeField] Sprite highlightedSprite;
     [Space]
     [Header("Properties")]
     public int maxStackQuantity = 64;
@@ -28,5 +29,13 @@ public abstract class Item : MonoBehaviour, IInteractable
         isPickedUp = true;
 
         spriteRenderer.enabled = false;
+    }
+
+    public void HighlightSprite(bool highlight)
+    {
+        if (!highlightedSprite) return;
+
+        if (highlight) spriteRenderer.sprite = highlightedSprite;
+        else           spriteRenderer.sprite = sprite;
     }
 }
