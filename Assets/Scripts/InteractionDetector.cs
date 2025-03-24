@@ -80,6 +80,9 @@ public class InteractionDetector : MonoBehaviour
         if (collision.TryGetComponent(out IInteractable interactable) && interactable.CanInteract()) 
             interactableGameobjects.Add(collision.gameObject);
 
+        if (collision.TryGetComponent(out Item item) && item.CanInteract())
+            item.HighlightSprite(true);
+
         CheckInteractionIcon();
     }
 
@@ -95,10 +98,13 @@ public class InteractionDetector : MonoBehaviour
                 {
                     interactableGameobjects.RemoveAt(i);
                     CheckInteractionIcon();
-                    return;
+                    break;
                 }
             }
         }
+
+        if (collision.TryGetComponent(out Item item) && item.CanInteract()) 
+            item.HighlightSprite(false);
 
         CheckInteractionIcon();
     }

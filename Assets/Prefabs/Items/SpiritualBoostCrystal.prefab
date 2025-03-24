@@ -50,6 +50,7 @@ MonoBehaviour:
   description: Crystallised energy that can be absorbed to raise Creativity or Recovery
   information: Raises Creativity or Recovery.
   sprite: {fileID: 21300000, guid: cc6a9c290d096334e91fda2a17ce2428, type: 3}
+  highlightedSprite: {fileID: 21300000, guid: 92ada470c827f0b49a42394a259309a3, type: 3}
   maxStackQuantity: 1
   basePrice: 0
   canBeSold: 0

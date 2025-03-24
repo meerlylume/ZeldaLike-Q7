@@ -50,6 +50,7 @@ MonoBehaviour:
   description: Crystallised energy that can be absorbed to raise Strength or Defence
   information: Raises Attack or Defence.
   sprite: {fileID: 21300000, guid: f244baf326ca8b941a31f4b6ae7c0ba7, type: 3}
+  highlightedSprite: {fileID: 21300000, guid: b05406fa366645641b9c3f8dd9b73d83, type: 3}
   maxStackQuantity: 1
   basePrice: 0
   canBeSold: 0

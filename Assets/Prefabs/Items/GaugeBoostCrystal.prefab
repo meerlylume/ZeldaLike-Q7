@@ -50,6 +50,7 @@ MonoBehaviour:
   description: Crystallised energy that can be absorbed to raise Max HP or Max Mana
   information: Raises HP or Mana.
   sprite: {fileID: 21300000, guid: 09763ca06587e524395ff632612a3365, type: 3}
+  highlightedSprite: {fileID: 21300000, guid: a8463cf535c95034f8a54bb72c116e66, type: 3}
   maxStackQuantity: 1
   basePrice: 0
   canBeSold: 0
