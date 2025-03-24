@@ -4100,6 +4100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionIcon: {fileID: 1344820974355898173}
   playerInventory: {fileID: 1544510492908036348}
+  playerFight: {fileID: 3285378661144251519}
 --- !u!58 &5653801656896547324
 CircleCollider2D:
   m_ObjectHideFlags: 0

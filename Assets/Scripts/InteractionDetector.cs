@@ -6,6 +6,7 @@ public class InteractionDetector : MonoBehaviour
 {
     [SerializeField] GameObject interactionIcon;
     [SerializeField] PlayerInventory playerInventory;
+    [SerializeField] PlayerFight playerFight;
 
     private List <GameObject> interactableGameobjects = new List<GameObject>();
     private bool canInteract = true;
@@ -21,9 +22,9 @@ public class InteractionDetector : MonoBehaviour
 
         if (context.started) 
         {
-            int index = interactableGameobjects.Count - 1;
+            if (interactableGameobjects.Count == 0) return;
 
-            if (interactableGameobjects[index] == null) return;
+            int index = interactableGameobjects.Count - 1;
 
             //NPC
             interactableGameobjects[index].TryGetComponent(out NPC npc);
@@ -37,9 +38,8 @@ public class InteractionDetector : MonoBehaviour
 
             //ITEM
             interactableGameobjects[index].TryGetComponent(out Item item);
-            if (item)
+            if (item && item.CanInteract())
             {
-                if (!item.CanInteract()) return;
                 item.Interact();
                 playerInventory.AddItem(item, 1);
                 interactableGameobjects.RemoveAt(index);
@@ -49,9 +49,8 @@ public class InteractionDetector : MonoBehaviour
 
             //CHEST
             interactableGameobjects[index].TryGetComponent(out Chest chest);
-            if (chest)
+            if (chest && chest.CanInteract())
             {
-                if (!chest.CanInteract()) return;
                 chest.Interact();
                 InventoryData chestInventory = chest.GetInventory();
                 for (int i = 0; chestInventory.items.Count > i; i++)
@@ -62,6 +61,17 @@ public class InteractionDetector : MonoBehaviour
                 CheckInteractionIcon();
                 return;
             }
+
+            //FULL HEALER
+            interactableGameobjects[index].TryGetComponent(out FullHealer fullHealer);
+            if (fullHealer && fullHealer.CanInteract())
+            {
+                playerFight.FullHeal();
+                return;
+            }
+
+            interactableGameobjects[index].TryGetComponent(out IInteractable interactable);
+            interactable?.Interact();
         }
     }
 

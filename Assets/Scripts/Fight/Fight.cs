@@ -110,6 +110,26 @@ public abstract class Fight : MonoBehaviour, IFight
         OnHPChanged();
     }
 
+    public virtual void HealMana(float amount)
+    {
+        if (!isAlive) return;
+        stats.currentMana = Mathf.Clamp(stats.currentMana + amount, 0, stats.maxMana);
+        OnManaChanged();
+    }
+
+    public virtual void FullHealMana()
+    {
+        if (!isAlive) return;
+        stats.currentMana = stats.maxMana;
+        OnManaChanged();
+    }
+
+    public virtual void FullHeal()
+    {
+        FullHealMana();
+        FullHealHP();
+    }
+
     public virtual IEnumerator AttackRoutine()
     {
         if (isInCooldown) yield break;
