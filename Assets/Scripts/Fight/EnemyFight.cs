@@ -10,6 +10,7 @@ public class EnemyFight : Fight
     [SerializeField] float lootRadius;
     [SerializeField] float timeBetweenDrops = 0.1f;
     private Vector3 deathPos;
+    public static int enemyKillCount;
 
     public override void Start()
     {
@@ -37,6 +38,7 @@ public class EnemyFight : Fight
     public override void Die()
     {
         canTakeDamage = false;
+        enemyKillCount++;
 
         StartCoroutine(DeathRoutine());
     }
