@@ -84,6 +84,8 @@ public class PlayerInventory : Inventory
     public void ConsumeItem(Consumable item)
     {
         item.Consume(playerFight.GetStats());
+        RemoveItem(item);
+        RefreshInventory();
     }
 
     public void OnInventoryOpen()
@@ -95,8 +97,10 @@ public class PlayerInventory : Inventory
         }
     }
 
-    private void RefreshInventory() //later replace this with overrides
+    public void RefreshInventory()
     {
+        //This is only temporary, killing all children everytime is a bit- well, overkill.
+
         InventoryGrid_KillAllChildren();
 
         for (int i = 0; i < inventory.items.Count; i++)
@@ -110,6 +114,8 @@ public class PlayerInventory : Inventory
             newScript.SetInventory(this);
             newScript.RefreshSlot();
         }
+
+        OnInventoryOpen();
     }
 
     private void InventoryGrid_KillAllChildren() //i love this function name so much

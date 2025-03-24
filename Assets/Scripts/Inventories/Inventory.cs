@@ -63,6 +63,11 @@ public class Inventory : MonoBehaviour
         Debug.Log("ITEM NOT IN INVENTORY");
     }
 
+    public virtual void RemoveItem(Item item)
+    {
+        RemoveItem(item, 1);
+    }
+
     public virtual void RemoveMoney(int amount)
     {
         if (amount > 0) { return; }
