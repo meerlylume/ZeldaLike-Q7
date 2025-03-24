@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,8 +7,7 @@ public class InteractionDetector : MonoBehaviour
     [SerializeField] GameObject interactionIcon;
     [SerializeField] PlayerInventory playerInventory;
 
-    private IInteractable interactableInRange = null;
-    private GameObject    interactableGameobjectInRange;
+    private List <GameObject> interactableGameobjects = new List<GameObject>();
     private bool canInteract = true;
 
     private void Start()
@@ -20,32 +20,35 @@ public class InteractionDetector : MonoBehaviour
         if (!canInteract) return;
 
         if (context.started) 
-        { 
-            if (!interactableGameobjectInRange) return;
+        {
+            int index = interactableGameobjects.Count - 1;
+
+            if (interactableGameobjects[index] == null) return;
 
             //NPC
-            interactableGameobjectInRange.TryGetComponent(out NPC npc);
+            interactableGameobjects[index].TryGetComponent(out NPC npc);
             if (npc)
             {
                 npc.Interact();
                 npc.SetPlayerReference(transform.parent.gameObject);
-                interactionIcon.SetActive(false);
+                CheckInteractionIcon();
                 return;
             }
 
             //ITEM
-            interactableGameobjectInRange.TryGetComponent(out Item item);
+            interactableGameobjects[index].TryGetComponent(out Item item);
             if (item)
             {
                 if (!item.CanInteract()) return;
                 item.Interact();
                 playerInventory.AddItem(item, 1);
-                interactionIcon.SetActive(false);
+                interactableGameobjects.RemoveAt(index);
+                CheckInteractionIcon();
                 return;
             }
 
             //CHEST
-            interactableGameobjectInRange.TryGetComponent(out Chest chest);
+            interactableGameobjects[index].TryGetComponent(out Chest chest);
             if (chest)
             {
                 if (!chest.CanInteract()) return;
@@ -56,7 +59,7 @@ public class InteractionDetector : MonoBehaviour
                     playerInventory.AddItem(chestInventory.items[i], chestInventory.quantities[i]);
                     playerInventory.AddMoney(chestInventory.money);
                 }
-                interactionIcon.SetActive(false);
+                CheckInteractionIcon();
                 return;
             }
         }
@@ -64,21 +67,34 @@ public class InteractionDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IInteractable interactable) && interactable.CanInteract())
-        {
-            interactableInRange = interactable;
-            interactableGameobjectInRange = collision.gameObject;
-            if (interactableInRange.CanInteract()) interactionIcon.SetActive(true);
-        }
+        if (collision.TryGetComponent(out IInteractable interactable) && interactable.CanInteract()) 
+            interactableGameobjects.Add(collision.gameObject);
+
+        CheckInteractionIcon();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IInteractable interactable) && interactable == interactableInRange)
+        if (collision.TryGetComponent(out IInteractable interactable))
         {
-            interactableInRange = null;
-            interactableGameobjectInRange = null;
-            interactionIcon.SetActive(false);
+            if (!interactable.CanInteract()) return;
+            
+            for (int i = 0; i < interactableGameobjects.Count; i++)
+            {
+                if (interactableGameobjects[i] == collision.gameObject)
+                {
+                    interactableGameobjects.RemoveAt(i);
+                    CheckInteractionIcon();
+                    return;
+                }
+            }
         }
+
+        CheckInteractionIcon();
+    }
+
+    private void CheckInteractionIcon()
+    {
+        interactionIcon.SetActive(!(interactableGameobjects.Count == 0));
     }
 }
