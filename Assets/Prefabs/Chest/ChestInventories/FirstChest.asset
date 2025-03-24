@@ -16,4 +16,4 @@ MonoBehaviour:
   money: 420
   items:
   - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
-  quantities: 02000000
+  quantities: 01000000

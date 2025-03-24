@@ -92,8 +92,6 @@ public abstract class Fight : MonoBehaviour, IFight
 
         if (stats.name == "Cannelle") return;
 
-        Debug.Log("" + stats.name + "Got hit with: " + _totalDamage + " damage.");
-
         if (spriteRenderer.color == Color.red) spriteRenderer.color = Color.yellow;
         else spriteRenderer.color = Color.red;
     }

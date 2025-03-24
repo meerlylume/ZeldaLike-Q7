@@ -16,7 +16,7 @@ public class PhysicalBoostCrystal : Consumable
         Debug.Log("Incomplete Implementation: PhysicalBoostCrystal only raises Attack");
     }
 
-    public void RaiseAttack(Stats userStats, int amount)  { userStats.attack += amount; }
+    public void RaiseAttack(Stats userStats, int amount)  { userStats.attack += amount;  }
 
     public void RaiseDefence(Stats userStats, int amount) { userStats.defence += amount; }
 }

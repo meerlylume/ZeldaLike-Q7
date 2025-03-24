@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -7,6 +8,8 @@ public class Inventory : MonoBehaviour
     public virtual void AddItem(Item item, int quantity)
     {
         //don't forget to HANDLE STACKS for PLAYER ONLY
+
+        //I SAID PLAYER ONLY. PLAYER ONLY. THIS MEANS NOT IN THIS SCRIPT. IN THE PLAYER INVENTORY SCRIPT. NOT THIS ONE. DID YOU GET THAT? ARE YOU SURE?
 
         for (int i = 0; inventory.items.Count > i; i++)
         {
@@ -60,6 +63,11 @@ public class Inventory : MonoBehaviour
         Debug.Log("ITEM NOT IN INVENTORY");
     }
 
+    public virtual void RemoveItem(Item item)
+    {
+        RemoveItem(item, 1);
+    }
+
     public virtual void RemoveMoney(int amount)
     {
         if (amount > 0) { return; }
@@ -92,5 +100,10 @@ public class Inventory : MonoBehaviour
     {
         EmptyItems();
         EmptyMoney();
+    }
+
+    public void ConsumeItem(Item item)
+    {
+        throw new NotImplementedException();
     }
 }
