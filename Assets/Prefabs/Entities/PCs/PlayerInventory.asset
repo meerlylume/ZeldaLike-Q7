@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   name: Cannelle's Inventory
-  money: -1260
+  money: -420
   items: []
   quantities: 
