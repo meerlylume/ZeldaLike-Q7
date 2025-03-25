@@ -149,6 +149,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44baa0f5c7558d44b7098142089e117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rewards: {fileID: 0}
+  name: Kill 5 <name>lyssians</name>!
+  description: <place>Gardlyss</place>'s <name>lyssians</name> have gotten more and
+    more aggressive lately, and they're scaring away the travellers! Could you help
+    us get rid of some of them?
+  rewardsDesc: + 1 Gauge Boost Crystal <line> + 1 Physical Boost Crystal <line> +
+    1 Spiritual Boost Crystal
+  asker: QuestNPC
   isInProgressDialogue: {fileID: 11400000, guid: aed99f97872be6849aaae5bad5fff518, type: 2}
   rewardDialogue: {fileID: 11400000, guid: a9d20a44e8afaa7498f88b528e8080ab, type: 2}
   isCompletedDialogue: {fileID: 11400000, guid: b4929fa6c5bb4af41ad9e04d6e36524c, type: 2}
