@@ -7,30 +7,30 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour, IInteractable
 {
-    [SerializeField] private NPCDialogue rootDialogueData;
-    private NPCDialogue branchDialogueData;
+    [SerializeField] protected NPCDialogue rootDialogueData;
+    protected NPCDialogue branchDialogueData;
 
-    private GameObject   dialoguePanel;
-    private TMP_Text     dialogueText;
-    private GameObject   namePanel;
-    private TMP_Text     nameText;
-    private Image        portraitImage;
-    private GameObject   choicesGrid;
-    private GameObject   choicePrefab;
+    protected GameObject   dialoguePanel;
+    protected TMP_Text     dialogueText;
+    protected GameObject   namePanel;
+    protected TMP_Text     nameText;
+    protected Image        portraitImage;
+    protected GameObject   choicesGrid;
+    protected GameObject   choicePrefab;
     List<GameObject>     choiceButtons = new List<GameObject> { };
 
-    private int          lineIndex;
-    private bool         isTyping;
-    private bool         isDialogueActive;
-    private bool         isWaitingForChoice = false;
-    private string       tagDetector;
+    protected int          lineIndex;
+    protected bool         isTyping;
+    protected bool         isDialogueActive;
+    protected bool         isWaitingForChoice = false;
+    protected string       tagDetector;
 
-    private NPCParent parent;
-    private PlayerMovement playerMovement;
+    protected NPCParent parent;
+    protected PlayerMovement playerMovement;
 
     public void SetIsWaitingForChoice(bool value) { isWaitingForChoice = value; }
 
-    private void Start()
+    protected virtual void Start()
     {
         branchDialogueData = rootDialogueData;
 
@@ -45,13 +45,15 @@ public class NPC : MonoBehaviour, IInteractable
         choicePrefab  = parent.GetChoicesPrefab();
     }
 
-    public void StartNewDialogue(NPCDialogue newData)
+    public virtual void StartNewDialogue(NPCDialogue newData)
     {
+        Debug.Log("StartNewDialogue");
+
         branchDialogueData = newData;
 
         if (choiceButtons == null) return;
 
-        for (int i = 0; i < choiceButtons.Count; i++) { Destroy(choiceButtons[i].gameObject); }
+        for (int i = 0; i < choiceButtons.Count; i++) { Destroy(choiceButtons[i]); }
 
         if (newData.name == "EndOfTree")
         {
@@ -64,7 +66,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     public bool CanInteract() { return !isDialogueActive; }
 
-    public void Interact()
+    public virtual void Interact()
     {
         if (isWaitingForChoice) return;
 
@@ -80,7 +82,7 @@ public class NPC : MonoBehaviour, IInteractable
         else { StartDialogue(); }
     }
 
-    void StartDialogue()
+    public virtual void StartDialogue()
     {
         CheckPortraitPosition();
 
@@ -123,7 +125,7 @@ IEnumerator TypeLine()
         isTyping = false;
     }
 
-    void NextLine()
+    protected void NextLine()
     {
         if (isTyping)
         {
@@ -137,7 +139,7 @@ IEnumerator TypeLine()
         else { EndDialogue(); }
     }
 
-    void DisplayEntireLine()
+    protected void DisplayEntireLine()
     {
         dialogueText.SetText("");
 
@@ -151,7 +153,7 @@ IEnumerator TypeLine()
         }
     }
 
-    string CheckingForTag(char letter)
+    protected string CheckingForTag(char letter)
     {
         string returnedText = "";
 
@@ -203,7 +205,7 @@ IEnumerator TypeLine()
         return returnedText;
     }
 
-    public void EndDialogue()
+    public virtual void EndDialogue()
     {
         if (branchDialogueData.dialogueChoices != null)
         {
@@ -239,7 +241,7 @@ IEnumerator TypeLine()
         }
     }
 
-    string ParseChoiceText(string choiceText)
+    protected string ParseChoiceText(string choiceText)
     {
         string resultText = string.Empty;
         
@@ -255,12 +257,12 @@ IEnumerator TypeLine()
         return resultText;
     }
 
-    public void SetPlayerReference(GameObject _player)
+    public virtual void SetPlayerReference(GameObject _player)
     {
         playerMovement = _player.GetComponent<PlayerMovement>();
     }
 
-    void CheckPortraitPosition()
+    protected void CheckPortraitPosition()
     {
         //if the portrait is to the LEFT of the dialogue box
         if (portraitImage.transform.localPosition.x > 0) 
@@ -279,7 +281,7 @@ IEnumerator TypeLine()
         }
     }
 
-    private void SwapPortraitSide()
+    protected void SwapPortraitSide()
     {
         dialogueText.transform.localPosition  = new Vector3(-dialogueText.transform.localPosition.x, dialogueText.transform.localPosition.y);
         namePanel.transform.localPosition     = new Vector3(-namePanel.transform.localPosition.x, namePanel.transform.localPosition.y);

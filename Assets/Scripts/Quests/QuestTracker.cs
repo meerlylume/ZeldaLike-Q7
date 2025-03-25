@@ -5,13 +5,15 @@ public class QuestTracker : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] GameObject progressGrid;
-    [SerializeField] GameObject inProgressPrefab; 
+    [SerializeField] GameObject isInProgressPrefab; 
     [Space]
     [SerializeField] GameObject completedGrid;
     [SerializeField] GameObject completedPrefab;
 
     private List<Quest> quests = new List<Quest>();
     public List<Quest> GetQuests() { return quests; }
+
+    public void TrackQuest(Quest quest) { quests.Add(quest); }
 
     private void Start()
     {
@@ -37,10 +39,10 @@ public class QuestTracker : MonoBehaviour
         {
             if (!quests[i]) continue;
 
-            if (quests[i].IsDone())
+            if (quests[i].IsCompleted())
             {
                 GameObject completedObject          = Instantiate(completedPrefab);
-                completedPrefab.transform.SetParent(completedGrid.transform);
+                completedObject.transform.SetParent(completedGrid.transform);
 
                 CompletedQuestPanel completedScript = completedObject.GetComponent<CompletedQuestPanel>();
 
@@ -49,8 +51,8 @@ public class QuestTracker : MonoBehaviour
             }
             else
             {
-                GameObject progressObject = Instantiate(inProgressPrefab);
-                completedPrefab.transform.SetParent(progressGrid.transform);
+                GameObject progressObject = Instantiate(isInProgressPrefab);
+                progressObject.transform.SetParent(progressGrid.transform);
 
                 QuestPanel progressScript = progressObject.GetComponent<QuestPanel>();
 

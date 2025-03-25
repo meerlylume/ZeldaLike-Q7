@@ -6,7 +6,7 @@ public class Q_Kill5Monsters : Quest
 
     public override void CheckIfCompleted()
     {
-        if (EnemyFight.enemyKillCount >= startKillcount + 5) CompleteQuest();
+        if (EnemyFight.enemyKillCount >= startKillcount + 5) { CompleteQuest(); }
     }
 
     public override void AcceptQuest()
