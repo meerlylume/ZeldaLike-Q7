@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
-  m_Name: DB1
+  m_Name: QuestDummyDialogue
   m_EditorClassIdentifier: 
-  name: Dummy
+  name: QuestDummy
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 0
-  talkingSpeed: 0.5
+  isPortraitOnTheRight: 1
+  talkingSpeed: 0.75
   dialogueLines:
-  - Yes I can! Talking Speed set to 0.5!
-  - 'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over
-    the lazy dog. The quick brown fox jumps over the lazy dog. '
-  dialogueChoices: {fileID: 0}
-  quest: {fileID: 0}
+  - um. hi
+  - i have.. quest
+  - ..will you.?
+  dialogueChoices: {fileID: 11400000, guid: 05160b9b5c0f9594c94a486bc1f52e93, type: 2}
+  quest: {fileID: -3665216940055050104, guid: 5b7e8fd2a43b62a469314dd0c36fd464, type: 3}

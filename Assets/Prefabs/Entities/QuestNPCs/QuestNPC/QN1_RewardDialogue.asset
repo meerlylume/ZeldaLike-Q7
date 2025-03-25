@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
-  m_Name: DB1
+  m_Name: QN1_RewardDialogue
   m_EditorClassIdentifier: 
-  name: Dummy
+  name: <QuestNPC>
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 0
-  talkingSpeed: 0.5
+  isPortraitOnTheRight: 1
+  talkingSpeed: 0.2
   dialogueLines:
-  - Yes I can! Talking Speed set to 0.5!
-  - 'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over
-    the lazy dog. The quick brown fox jumps over the lazy dog. '
+  - rewardDialogue
   dialogueChoices: {fileID: 0}
-  quest: {fileID: 0}

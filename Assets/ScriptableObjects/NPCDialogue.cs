@@ -15,8 +15,9 @@ public class NPCDialogue : ScriptableObject
     //talking sound & pitch goes here
 
     [Header("Dialogue")]
-    public string[] dialogueLines;
-    public DialogueChoices dialogueChoices;
+    public string[] dialogueLines; [Space]
+    public DialogueChoices dialogueChoices; [Space]
+    public bool questTrigger = false;
 
     //Dialogue flags?
 }
