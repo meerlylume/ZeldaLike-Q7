@@ -19,13 +19,12 @@ public class QuestNPC : NPC
 
     public void CheckQuestDialogue()
     {
-        // Check if rewards should be given
         if (quest.IsInProgress())
         {
             quest.CheckIfCompleted();
+            // Check if rewards should be given
             if (quest.IsCompleted())
             {
-                Debug.Log("reward");
                 rootDialogueData   = quest.GetRewardDialogue();
                 branchDialogueData = rootDialogueData;
                 return;
@@ -41,15 +40,10 @@ public class QuestNPC : NPC
         // Check if the NPC should say the completed dialogue
         if (quest.IsCompleted())
         {
-            Debug.Log("completed");
             rootDialogueData   = quest.GetIsCompletedDialogue();
             branchDialogueData = rootDialogueData;
             return;
         }
-
-        // Else they say the root dialogue
-        //else base.StartDialogue();
-        //Debug.Log("base.StartDialogue()");
     }
 
     //handle reward giving, idfk how ngl...
