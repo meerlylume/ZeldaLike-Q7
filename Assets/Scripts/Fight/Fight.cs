@@ -77,16 +77,40 @@ public abstract class Fight : MonoBehaviour, IFight
         gameObject.SetActive(false);
     }
 
-    public virtual void TakeDamage(float atk)
+    public virtual void TakeDamage(float atk, bool crit)
     {
         //DAMAGE FORKS
-
         if (!isAlive) return;
         if (!canTakeDamage) return;
 
-        float damage       = (Random.Range(atk, atk * 1.5f)) - (Random.Range(stats.defence * 0.5f, stats.defence));
-        float _totalDamage = Mathf.Clamp(damage, 0, 999999);
-        stats.currentHP    = Mathf.Clamp(stats.currentHP - _totalDamage, 0, stats.maxHP);
+        bool parry = stats.RollForLuck();
+        float damage;
+        float totalDamage;
+
+        // If defender parries
+        if (!crit && parry)
+        {
+            Debug.Log("Parry!");
+            totalDamage = 0.0f;
+        }
+
+        // If attacker crits
+        else if (crit && !parry)
+        {
+            Debug.Log("Crit!");
+            damage = atk * 2.5f - Random.Range(stats.defence * 0.5f, stats.defence);
+            totalDamage = Mathf.Clamp(damage, 0, 999999);
+        }
+
+        // If neither crit nor parry, or both do
+        else
+        {
+            damage = Random.Range(atk, atk * 1.5f) - Random.Range(stats.defence * 0.5f, stats.defence);
+            totalDamage = Mathf.Clamp(damage, 0, 999999);
+        }
+
+
+        stats.currentHP    = Mathf.Clamp(stats.currentHP - totalDamage, 0, stats.maxHP);
 
         OnHPChanged();
 

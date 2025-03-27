@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewStats", menuName = "Scriptable Objects/Stats")]
@@ -29,4 +30,13 @@ public class Stats : ScriptableObject
     public float cooldownModifier = 1.0f;
     //public int knockbackResistance;
     //public int knockbackStrength;
+
+    public bool RollForLuck()
+    {
+        //GDD: 50 - attacker.creativity;  min 5, no max
+
+        int odds = Mathf.Clamp(50 - creativity, 5, 999999);
+
+        return Random.Range(0, odds) == 1;
+    }
 }
