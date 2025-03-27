@@ -58,6 +58,7 @@ public class InteractionDetector : MonoBehaviour
                     playerInventory.AddItem(chestInventory.items[i], chestInventory.quantities[i]);
                     playerInventory.AddMoney(chestInventory.money);
                 }
+                interactableGameobjects.RemoveAt(index);
                 CheckInteractionIcon();
                 return;
             }
