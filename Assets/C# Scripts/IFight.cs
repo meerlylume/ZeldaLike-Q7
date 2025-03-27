@@ -3,7 +3,7 @@ public interface IFight
     bool CanTakeDamage();
     //bool CanDealDamage(); //maybe?
 
-    void TakeDamage(float dmg);
+    void TakeDamage(float dmg, bool crit);
 
     void Die();
 
