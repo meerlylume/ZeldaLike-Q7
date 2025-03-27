@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -76,15 +77,16 @@ public abstract class Fight : MonoBehaviour, IFight
         gameObject.SetActive(false);
     }
 
-    public virtual void TakeDamage(float dmg)
+    public virtual void TakeDamage(float atk)
     {
         //DAMAGE FORKS
 
         if (!isAlive) return;
         if (!canTakeDamage) return;
 
-        float _totalDamage = Mathf.Clamp(dmg - stats.defence, 0, 999);
-        stats.currentHP = Mathf.Clamp(stats.currentHP - _totalDamage, 0, stats.maxHP);
+        float damage       = (Random.Range(atk, atk * 1.5f)) - (Random.Range(stats.defence * 0.5f, stats.defence));
+        float _totalDamage = Mathf.Clamp(damage, 0, 999999);
+        stats.currentHP    = Mathf.Clamp(stats.currentHP - _totalDamage, 0, stats.maxHP);
 
         OnHPChanged();
 
