@@ -28,4 +28,9 @@ public class MenuController : MonoBehaviour
         if (isOpen) { Time.timeScale = 0f; }
         else        { Time.timeScale = 1f; }
     }
+
+    public void OnQuit()
+    {
+        Application.Quit();
+    }
 }
