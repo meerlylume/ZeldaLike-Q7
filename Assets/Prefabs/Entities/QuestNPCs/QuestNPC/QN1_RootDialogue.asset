@@ -16,7 +16,7 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.2
+  talkingSpeed: 0.02
   dialogueLines:
   - Careful when talking to me, I'm known to cause stack overflows.
   - Do you think you could kill 5 <name>lyssians</name> for me?

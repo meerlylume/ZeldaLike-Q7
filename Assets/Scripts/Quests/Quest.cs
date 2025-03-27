@@ -2,13 +2,14 @@ using UnityEngine;
 
 public abstract class Quest : MonoBehaviour
 {
-    private bool          isInProgress = false;
-    private bool          isCompleted = false;
-    private InventoryData rewards;
-    private new string    name;
-    private string        description;
-    private string        rewardsDesc;
-    private string        asker;        //Lapsus had me forgetting how you call someone who asks you
+    private bool isInProgress = false;
+    private bool isCompleted = false;
+    [Header("Quest Info")]
+    [SerializeField] private InventoryData rewards;
+    [SerializeField] private new string    name;
+    [SerializeField] private string        description;
+    [SerializeField] private string        rewardsDesc;
+    [SerializeField] private string        asker;        //Lapsus had me forgetting how you call someone who asks you
                                         //something so until my brain gets repaired this is all we get.
 
     [Header("Dialogue SOs")]

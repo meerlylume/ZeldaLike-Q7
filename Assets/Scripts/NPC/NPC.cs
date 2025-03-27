@@ -47,8 +47,6 @@ public class NPC : MonoBehaviour, IInteractable
 
     public virtual void StartNewDialogue(NPCDialogue newData)
     {
-        Debug.Log("StartNewDialogue");
-
         branchDialogueData = newData;
 
         if (choiceButtons == null) return;

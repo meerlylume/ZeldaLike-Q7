@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class QuestTracker : MonoBehaviour
 {
@@ -10,44 +11,45 @@ public class QuestTracker : MonoBehaviour
     [SerializeField] GameObject completedGrid;
     [SerializeField] GameObject completedPrefab;
 
+    private List<GameObject> allPanels = new List<GameObject>();
+
     private List<Quest> quests = new List<Quest>();
     public List<Quest> GetQuests() { return quests; }
 
     public void TrackQuest(Quest quest) { quests.Add(quest); }
 
-    private void Start()
-    {
-        RefreshAllPanels();
-    }
+    private void Start() { OnQuestPanelOpen(); }
 
     public void OnQuestPanelOpen()
     {
-        RefreshAllPanels();
-    }
-
-    public void RefreshAllPanels()
-    {
-        MurderTheirChildren(progressGrid);
-        MurderTheirChildren(completedGrid);
-
         BuildLists();
     }
 
     private void BuildLists()
     {
-        for (int i = 0; i < quests.Count; i++)
-        {
-            if (!quests[i]) continue;
+        if (allPanels.Count == quests.Count) return;
 
+        if (allPanels.Count > quests.Count)
+        {
+            Debug.Log("ERROR: allPanels.Count > quests.Count");
+            return;
+        }
+
+        for (int i = allPanels.Count; i < quests.Count; i++)
+        {
             if (quests[i].IsCompleted())
             {
-                GameObject completedObject          = Instantiate(completedPrefab);
+                GameObject completedObject = Instantiate(completedPrefab);
                 completedObject.transform.SetParent(completedGrid.transform);
 
                 CompletedQuestPanel completedScript = completedObject.GetComponent<CompletedQuestPanel>();
 
                 completedScript.SetQuestDesc(quests[i].GetDescription());
                 completedScript.SetQuestName(quests[i].GetName());
+
+                completedObject.transform.localScale = new Vector3(1, 1, 1);
+
+                allPanels.Add(completedObject);
             }
             else
             {
@@ -59,12 +61,11 @@ public class QuestTracker : MonoBehaviour
                 progressScript.SetQuestDesc(quests[i].GetDescription());
                 progressScript.SetQuestName(quests[i].GetName());
                 progressScript.SetRewardsDesc(quests[i].GetRewardsDesc());
+
+                progressObject.transform.localScale = new Vector3(1, 1, 1);
+
+                allPanels.Add(progressObject);
             }
         }
-    }
-
-    private void MurderTheirChildren(GameObject panel)
-    {
-        for (int i = 0; i < panel.transform.childCount; i++) { Destroy(panel.transform.GetChild(i)); }
     }
 }
