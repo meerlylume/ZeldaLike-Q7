@@ -2,6 +2,7 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -32,5 +33,15 @@ public class MenuController : MonoBehaviour
     public void OnQuit()
     {
         Application.Quit();
+    }
+
+    public void OnMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void OnRestart()
+    {
+        SceneManager.LoadScene("DevTent");
     }
 }
