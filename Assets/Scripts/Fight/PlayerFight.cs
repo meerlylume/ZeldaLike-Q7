@@ -9,8 +9,11 @@ public class PlayerFight : Fight
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private Button restartButton;
 
-    public Stats GetStats()      { return stats; }
-    public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
+    #region Get/Set
+    public Stats GetStats()           { return stats;                                 }
+    public void SetPlayerSpeed()      { playerMovement.SetSpeed(stats.movementSpeed); }
+    public void SetStats(Stats value) { stats = value;                                }
+    #endregion
 
     public override void Start()
     {

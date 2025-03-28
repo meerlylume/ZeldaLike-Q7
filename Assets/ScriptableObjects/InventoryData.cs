@@ -1,12 +1,10 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Inventory", menuName = "Scriptable Objects/Inventory")]
+[CreateAssetMenu(fileName = "InventoryData", menuName = "Scriptable Objects/Inventory")]
 public class InventoryData : ScriptableObject
 {
     [Header("Identifier")]
-    public new string name; //Player, Chest, Shop
     public int money; 
     [Space]
 
