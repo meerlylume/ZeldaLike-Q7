@@ -18,12 +18,16 @@ public abstract class Fight : MonoBehaviour, IFight
     protected bool canTakeDamage = true;
     protected bool isAlive       = true;
     protected bool isInCooldown  = false;
-    //protected bool isAlly;
-    //protected bool isInIFrame   = false; //NOT MVP
+    protected float pushStrength = 2f; //TEMPORARY
+    [SerializeField] protected float textLifetime = 1f; //TEMPORARY
 
     [Header("UI References")]
-    [SerializeField] Slider healthSlider;
-    [SerializeField] Slider manaSlider;
+    [SerializeField] Canvas     worldCanvas;
+    [SerializeField] Slider     healthSlider;
+    [SerializeField] Slider     manaSlider;
+    [SerializeField] GameObject damageTextPrefab;
+    [SerializeField] GameObject critTextPrefab;
+    [SerializeField] GameObject parryTextPrefab;
     [Space]
 
     [Space]
@@ -32,9 +36,7 @@ public abstract class Fight : MonoBehaviour, IFight
 
     #region Getters
     public virtual bool CanTakeDamage()                { return canTakeDamage;                      }
-
     public virtual bool IsAlliedWith(Fight fight)      { return fight.stats.isAlly == stats.isAlly; }
-
     public virtual bool IsAlliedWith(Stats otherStats) { return otherStats.isAlly == stats.isAlly;  }
     #endregion
 
@@ -77,49 +79,74 @@ public abstract class Fight : MonoBehaviour, IFight
         gameObject.SetActive(false);
     }
 
-    public virtual void TakeDamage(float atk, bool crit)
+    private float CalculateDamage(float atk, bool crit, bool parry)
     {
-        //DAMAGE FORKS
-        if (!isAlive) return;
-        if (!canTakeDamage) return;
-
-        bool parry = stats.RollForLuck();
         float damage;
-        float totalDamage;
 
         // If defender parries
         if (!crit && parry)
         {
-            Debug.Log("Parry!");
-            totalDamage = 0.0f;
+            return 0.0f;
         }
 
         // If attacker crits
         else if (crit && !parry)
         {
-            Debug.Log("Crit!");
             damage = atk * 2.5f - Random.Range(stats.defence * 0.5f, stats.defence);
-            totalDamage = Mathf.Clamp(damage, 0, 999999);
+            return Mathf.Clamp(damage, 0, 999999);
         }
 
         // If neither crit nor parry, or both do
         else
         {
             damage = Random.Range(atk, atk * 1.5f) - Random.Range(stats.defence * 0.5f, stats.defence);
-            totalDamage = Mathf.Clamp(damage, 0, 999999);
+            return Mathf.Clamp(damage, 0, 999999);
         }
+    }
+
+    public virtual void TakeDamage(float atk, bool crit, Vector2 attackPos)
+    {
+        if (!isAlive) return;
+        if (!canTakeDamage) return;
 
 
-        stats.currentHP    = Mathf.Clamp(stats.currentHP - totalDamage, 0, stats.maxHP);
+        bool parry = stats.RollForLuck();
 
+        float totalDamage = CalculateDamage(atk, crit, parry);
+
+        stats.currentHP = Mathf.Clamp(stats.currentHP - totalDamage, 0, stats.maxHP);
+
+        DamageDisplay(totalDamage, crit, parry, attackPos);
         OnHPChanged();
 
         if (stats.currentHP <= 0) { Die(); }
+    }
 
-        if (stats.name == "Cannelle") return;
+    private void DamageDisplay(float totalDamage, bool crit, bool parry, Vector2 attackPos)
+    {
+        if (!worldCanvas) return;
+        
+        GameObject newText = null;
 
-        if (spriteRenderer.color == Color.red) spriteRenderer.color = Color.yellow;
-        else spriteRenderer.color = Color.red;
+        // if neither crit nor parry or both crit and parry
+        if (!(crit ^ parry)) { newText = Instantiate(damageTextPrefab); }
+        // if crit only
+        else if (crit)       { newText = Instantiate(critTextPrefab);   }
+        // if parry only
+        else if (parry)      { newText = Instantiate(parryTextPrefab);  }
+
+        if (!newText) return;
+
+        // set up the new text
+        newText.transform.position = transform.position;
+        newText.transform.SetParent(worldCanvas.transform);
+        newText.transform.localScale = Vector3.one;
+
+        // call its function
+        DamageText damageText = newText.GetComponent<DamageText>();
+        Vector2 pushDir       = new Vector2(transform.position.x, transform.position.y) - attackPos;
+        int intTotalDamage    = (int)totalDamage;
+        damageText.Push(pushDir, textLifetime, pushStrength, intTotalDamage.ToString());
     }
 
     public virtual void HealHP(float amount)

@@ -238,8 +238,14 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 257bc35e0d44a2f4488858443c236ddf, type: 2}
   attacks:
   - {fileID: 5508319690698197638, guid: d34df89d9ed3c854392d374a2999626e, type: 3}
+  pushStrength: 1
+  textLifetime: 1
+  worldCanvas: {fileID: 5305816674192066646}
   healthSlider: {fileID: 4654979592163870730}
   manaSlider: {fileID: 0}
+  damageTextPrefab: {fileID: 3889677253225551517, guid: 5af4fc47820721d44b18d8f803ef9d2a, type: 3}
+  critTextPrefab: {fileID: 5102333147670426686, guid: 2672e5c4ea0fd3e4b852de99375a3e96, type: 3}
+  parryTextPrefab: {fileID: 1620739463268232583, guid: 843a45d3e3f007a43b323c16850aff6c, type: 3}
   spriteRenderer: {fileID: 9027351696297036905}
   lootTable: {fileID: 11400000, guid: 4b3f933283eb3df43a0cc15721a2dc92, type: 2}
   lootRadius: 2.5

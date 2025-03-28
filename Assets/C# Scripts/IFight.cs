@@ -1,15 +1,10 @@
 public interface IFight
 {
     bool CanTakeDamage();
-    //bool CanDealDamage(); //maybe?
 
-    void TakeDamage(float dmg, bool crit);
+    void TakeDamage(float atk, bool crit, UnityEngine.Vector2 attackPos);
 
     void Die();
 
     void HealHP(float amount);
-
-    //To do:
-    //Handle drain HP (not necessarily on this interface though)
-    //Handle drain Mana (not necessarily on this interface though)
 }

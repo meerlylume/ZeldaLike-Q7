@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
   m_Name: QN1_InProgressDialogue
   m_EditorClassIdentifier: 
-  name: <QuestNPC>
+  name: Mooncake
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
   talkingSpeed: 0.02
   dialogueLines:
-  - inProgress
+  - So you're actually going to try?
+  - Don't be reckless. I don't want anyone to blame me if you get hurt.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
