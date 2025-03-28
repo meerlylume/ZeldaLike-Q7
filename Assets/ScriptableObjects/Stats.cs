@@ -21,9 +21,7 @@ public class Stats : ScriptableObject
     public int defence; 
     public int creativity; 
     public int recovery;
-    //[Space]
-
-    //hitboxes
+    [Space]
 
     [Header("Hidden Stats")]
     public float movementSpeed;
@@ -33,8 +31,6 @@ public class Stats : ScriptableObject
 
     public bool RollForLuck()
     {
-        //GDD: 50 - attacker.creativity;  min 5, no max
-
         int odds = Mathf.Clamp(50 - creativity, 5, 999999);
 
         return Random.Range(0, odds) == 1;

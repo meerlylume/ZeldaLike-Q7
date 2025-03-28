@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
   m_Name: C2_QN1_Root_B1
   m_EditorClassIdentifier: 
-  name: <QuestNPC>
+  name: Mooncake
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
   talkingSpeed: 0.02
   dialogueLines:
-  - Too bad. Maybe another time?
+  - Haha yeah... he's probably coming with an escort anyway.
+  - Still, I wish our <name>Good Knights</name> would do something about it... it's
+    driving me nuts!
   dialogueChoices: {fileID: 0}
   questTrigger: 0

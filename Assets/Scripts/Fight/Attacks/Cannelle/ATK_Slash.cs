@@ -11,7 +11,7 @@ public class ATK_Slash : Attack
         {
             if (fighter.IsAlliedWith(stats)) continue;
 
-            fighter.TakeDamage(stats.attack, stats.RollForLuck());
+            fighter.TakeDamage(stats.attack, stats.RollForLuck(), attackPos);
         }
     }
 
