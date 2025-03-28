@@ -1,8 +1,13 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerFight : Fight
 {
     PlayerMovement playerMovement;
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private Button restartButton;
 
     public Stats GetStats()      { return stats; }
     public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
@@ -15,6 +20,8 @@ public class PlayerFight : Fight
 
         RefreshHealthBar();
         RefreshManaBar();
+
+        gameOverUI.SetActive(false);
     }
 
     public void PlayerAttack(InputAction.CallbackContext context)
@@ -28,6 +35,9 @@ public class PlayerFight : Fight
         //Gameover Coroutine
 
         playerMovement.DisablePlayerMovement();
-        base.Die();
+        GetComponent<SpriteRenderer>().enabled = false;
+        gameOverUI.SetActive(true);
+        restartButton.Select();
+        canTakeDamage = false;
     }
 }
