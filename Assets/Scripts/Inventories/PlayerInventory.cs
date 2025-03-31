@@ -12,17 +12,14 @@ public class PlayerInventory : Inventory
     [Header("References")]
     [SerializeField] PlayerFight playerFight;
     [SerializeField] EventSystem eventSystem;
+
+    [Header("UI")]
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private GameObject inventoryGrid;
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private TextMeshProUGUI descText;
     List<GameObject> slotList;
 
-    /* TO DO:
-     * Handle Item Descriptions
-     * Handle UI Navigation
-     * Take a break and have some tea
-     */
     public InventoryData GetInventoryData() { return inventory; }
     public void SetInventoryData(InventoryData value) { inventory = value; }
     public void WipeInventory()
@@ -61,7 +58,7 @@ public class PlayerInventory : Inventory
         if (quantity <= item.maxStackQuantity) //..then if the remaining quantity is smaller or equal to the max stack quantity
         {
             //..add these two and be on your merry way..
-            inventory.items.Add(item);
+            inventory.items.Add(FindInLibrary(item));
             inventory.quantities.Add(quantity);
         }
 
@@ -69,7 +66,7 @@ public class PlayerInventory : Inventory
         {
             for (int i = 0; quantity / item.maxStackQuantity < i; i++) //..then for as many times as you can fit maxQuantities in quantity..
             {
-                inventory.items.Add(item);                             //..add an item..
+                inventory.items.Add(FindInLibrary(item));                             //..add an item..
                 if (quantity >= item.maxStackQuantity)                 //..and if the quantity is bigger or equal to its max quantity..
                 {
                     inventory.quantities.Add(item.maxStackQuantity);   //..then set its quantity to the max quantity..

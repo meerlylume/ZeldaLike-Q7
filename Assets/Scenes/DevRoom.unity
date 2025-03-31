@@ -21517,6 +21517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44704deab7388b947bb7982846c61673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cannelleFirstStats: {fileID: 11400000, guid: 61d17051acbae8342bb84b64226d7e9a, type: 2}
 --- !u!4 &1414072406
 Transform:
   m_ObjectHideFlags: 0

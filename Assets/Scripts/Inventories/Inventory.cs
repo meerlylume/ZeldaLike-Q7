@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] InventoryData itemLibrary;
     [SerializeField] protected InventoryData inventory;
 
     public virtual void AddItem(Item item, int quantity)
@@ -24,11 +25,18 @@ public class Inventory : MonoBehaviour
         }
 
         //if item NOT in inventory
-        Item newItem = item; //Create a new Item so it doesn't get bound to a GameObject that will get destroyed/pooled
-        inventory.items.Add(newItem);
+        inventory.items.Add(item);
         inventory.quantities.Add(quantity);
     }
     
+    protected virtual Item FindInLibrary(Item searchFor)
+    {
+        foreach (Item item in itemLibrary.items) { if (item.GetType() == searchFor.GetType()) return item; }
+
+        Debug.Log("ITEM NOT IN ITEM LIBRARY");
+        return null;
+    }
+
     public virtual void AddMoney(int amount)
     {
         if (amount < 0) { return; }

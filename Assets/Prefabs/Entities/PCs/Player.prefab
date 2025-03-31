@@ -3071,6 +3071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a51358345effd4469e81d7a79cce228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemLibrary: {fileID: 11400000, guid: 1b014caab4e87d442ac25ff302643e7b, type: 2}
   inventory: {fileID: 11400000, guid: dc9cd9075459b5043a6de77b0a463c8a, type: 2}
   maxInventorySize: 10
   playerFight: {fileID: 3285378661144251519}
