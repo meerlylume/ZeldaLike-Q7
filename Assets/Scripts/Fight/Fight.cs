@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public abstract class Fight : MonoBehaviour, IFight
 {
     [Header("Stats")]
-    //[SerializeField] protected Stats baseStats;
     [SerializeField] protected Stats stats;
     [Space]
     protected Rigidbody2D rb;
@@ -93,14 +92,14 @@ public abstract class Fight : MonoBehaviour, IFight
         else if (crit && !parry)
         {
             damage = atk * 2.5f - Random.Range(stats.defence * 0.5f, stats.defence);
-            return Mathf.Clamp(damage, 0, 999999);
+            return Mathf.Clamp(damage, 0, Mathf.Infinity);
         }
 
         // If neither crit nor parry, or both do
         else
         {
             damage = Random.Range(atk, atk * 1.5f) - Random.Range(stats.defence * 0.5f, stats.defence);
-            return Mathf.Clamp(damage, 0, 999999);
+            return Mathf.Clamp(damage, 0, Mathf.Infinity);
         }
     }
 

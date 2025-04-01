@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     [SerializeField] GameObject menuCanvas;
-    [SerializeField] GameObject defaultSelection;
+    [SerializeField] GameObject menuDefaultSelection;
+    [SerializeField] GameObject settingsDefaultSelection;
     [SerializeField] EventSystem eventSystem;
     void Start()
     {
@@ -16,11 +17,7 @@ public class MenuController : MonoBehaviour
 
     public void ToggleMenu(InputAction.CallbackContext context)
     {
-        if (context.started) 
-        {
-            OnOpenCloseMenu(!menuCanvas.activeSelf);
-            if (menuCanvas.activeSelf) eventSystem.SetSelectedGameObject(defaultSelection);
-        }
+        if (context.started) OpenSelected(menuDefaultSelection);
     }
     private void OnOpenCloseMenu(bool isOpen)
     {
@@ -28,6 +25,21 @@ public class MenuController : MonoBehaviour
 
         if (isOpen) { Time.timeScale = 0f; }
         else        { Time.timeScale = 1f; }
+    }
+
+    public void ToggleSettings(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OpenSelected(menuDefaultSelection);
+            OpenSelected(settingsDefaultSelection);
+        }
+    }
+
+    private void OpenSelected(GameObject selected)
+    {
+        OnOpenCloseMenu(!menuCanvas.activeSelf);
+        if (menuCanvas.activeSelf) eventSystem.SetSelectedGameObject(selected);
     }
 
     public void OnQuit()

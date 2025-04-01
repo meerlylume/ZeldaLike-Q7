@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] InventoryData itemLibrary;
     [SerializeField] protected InventoryData inventory;
 
     public virtual void AddItem(Item item, int quantity)
@@ -13,7 +14,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; inventory.items.Count > i; i++)
         {
-            if (inventory.items[i] == item) //if item ALREADY in inventory
+            if (!inventory.items[i] == item) //if item ALREADY in inventory
             {
                 if (inventory.quantities.Count - 1 >= i)  //if I didn't fuck up in the inspector
                 {
@@ -24,11 +25,18 @@ public class Inventory : MonoBehaviour
         }
 
         //if item NOT in inventory
-        Item newItem = item; //Create a new Item so it doesn't get bound to a GameObject that will get destroyed/pooled
-        inventory.items.Add(newItem);
+        inventory.items.Add(item);
         inventory.quantities.Add(quantity);
     }
     
+    protected virtual Item FindInLibrary(Item searchFor)
+    {
+        foreach (Item item in itemLibrary.items) { if (item.GetType() == searchFor.GetType()) return item; }
+
+        Debug.Log("ITEM NOT IN ITEM LIBRARY");
+        return null;
+    }
+
     public virtual void AddMoney(int amount)
     {
         if (amount < 0) { return; }
@@ -42,25 +50,23 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; inventory.items.Count > i; i++)
         {
-            if (inventory.items[i] == item) //if item in inventory
+            //check if item in inventory
+            if (!inventory.items[i] == item) 
+                continue;
+
+            //check if I didn't fuck up in the inspector
+            if (!(inventory.quantities.Count - 1 >= i))  
+                continue;
+
+            inventory.quantities[i] -= quantity;
+            if (inventory.quantities[i] <= 0)
             {
-                if (inventory.quantities.Count - 1 >= i)  //if I didn't fuck up in the inspector
-                {
-                    inventory.quantities[i] -= quantity;
-                    if (inventory.quantities[i] <= 0)
-                    {
-                        inventory.quantities.RemoveAt(i);
-                        inventory.items.RemoveAt(i);
-                    }
-                    return;
-                }
+                inventory.quantities.RemoveAt(i);
+                inventory.items.RemoveAt(i);
             }
 
-            
+            return;
         }
-
-         //if item NOT in inventory
-        Debug.Log("ITEM NOT IN INVENTORY");
     }
 
     public virtual void RemoveItem(Item item)

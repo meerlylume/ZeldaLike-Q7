@@ -54,8 +54,8 @@ MonoBehaviour:
   maxStackQuantity: 1
   basePrice: 0
   canBeSold: 0
-  minRandomRange: 5
-  maxRandomRange: 10
+  minRandomRange: 3
+  maxRandomRange: 5
 --- !u!212 &8964735247898518524
 SpriteRenderer:
   m_ObjectHideFlags: 0

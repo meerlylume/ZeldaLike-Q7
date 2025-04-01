@@ -7,6 +7,8 @@ public class StatGrid : MonoBehaviour
     [SerializeField] List<TextMeshProUGUI> texts;
     [SerializeField] Stats stats;
 
+    private void Start() { RefreshStats(); }
+
     public void RefreshStats()
     {
         texts[0].text = stats.maxHP.ToString();

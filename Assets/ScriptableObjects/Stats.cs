@@ -26,13 +26,9 @@ public class Stats : ScriptableObject
     [Header("Hidden Stats")]
     public float movementSpeed;
     public float cooldownModifier = 1.0f;
-    //public int knockbackResistance;
-    //public int knockbackStrength;
+    //NOT MVP:
+    //public float knockbackResistance;
+    //public float knockbackStrength;
 
-    public bool RollForLuck()
-    {
-        int odds = Mathf.Clamp(50 - creativity, 5, 999999);
-
-        return Random.Range(0, odds) == 1;
-    }
+    public bool RollForLuck() { return Random.Range(0, Mathf.Clamp(50 - creativity, 5, Mathf.Infinity)) == 1; }
 }

@@ -49,7 +49,6 @@ public class Slot : MonoBehaviour
 
     public void RefreshThrowAway()
     {
-        inventory.RemoveItem(item, quantity);
         ThrowAwayInventoryButton throwAway = parent.GetThrowAway();
         throwAway.SetInventory(inventory);
         throwAway.SetItem(item);
