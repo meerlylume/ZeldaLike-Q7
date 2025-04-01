@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenSettings",
+                    "type": "Button",
+                    "id": "ea1a1134-9fd8-4263-92c2-b76ecd150f75",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -219,8 +228,8 @@
                 },
                 {
                     "name": "",
-                    "id": "ca96c61d-d7e0-4bed-9c9d-a591985dd294",
-                    "path": "",
+                    "id": "a659d33f-eb1b-449e-a3d5-17f9a92142cd",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -230,12 +239,12 @@
                 },
                 {
                     "name": "",
-                    "id": "a659d33f-eb1b-449e-a3d5-17f9a92142cd",
+                    "id": "a2140751-8703-4837-ae33-e684365b7170",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CloseMenu",
+                    "action": "OpenSettings",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

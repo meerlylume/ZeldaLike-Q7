@@ -1,8 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class SaveData
 {
-    public Vector2       playerPosition;
-    public Stats         playerStats;
+    // Player
+    public Vector2 playerPosition;
+    public Stats   playerStats;
+
+    // Chests
+    public List<ChestData> chests = new List<ChestData>();
 }

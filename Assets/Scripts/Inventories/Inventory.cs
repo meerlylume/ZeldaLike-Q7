@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; inventory.items.Count > i; i++)
         {
-            if (inventory.items[i] == item) //if item ALREADY in inventory
+            if (!inventory.items[i] == item) //if item ALREADY in inventory
             {
                 if (inventory.quantities.Count - 1 >= i)  //if I didn't fuck up in the inspector
                 {
@@ -50,25 +50,23 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; inventory.items.Count > i; i++)
         {
-            if (inventory.items[i] == item) //if item in inventory
+            //check if item in inventory
+            if (!inventory.items[i] == item) 
+                continue;
+
+            //check if I didn't fuck up in the inspector
+            if (!(inventory.quantities.Count - 1 >= i))  
+                continue;
+
+            inventory.quantities[i] -= quantity;
+            if (inventory.quantities[i] <= 0)
             {
-                if (inventory.quantities.Count - 1 >= i)  //if I didn't fuck up in the inspector
-                {
-                    inventory.quantities[i] -= quantity;
-                    if (inventory.quantities[i] <= 0)
-                    {
-                        inventory.quantities.RemoveAt(i);
-                        inventory.items.RemoveAt(i);
-                    }
-                    return;
-                }
+                inventory.quantities.RemoveAt(i);
+                inventory.items.RemoveAt(i);
             }
 
-            
+            return;
         }
-
-         //if item NOT in inventory
-        Debug.Log("ITEM NOT IN INVENTORY");
     }
 
     public virtual void RemoveItem(Item item)
