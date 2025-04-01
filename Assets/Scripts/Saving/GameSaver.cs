@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.Overlays;
 using UnityEngine;
 
 public class GameSaver : MonoBehaviour
@@ -70,29 +69,29 @@ public class GameSaver : MonoBehaviour
     private void OnApplicationQuit()
     {
         //SaveGame();
-        Debug.Log("OnApplicationQuit()");
     }
 
     private void CopyStats(Stats from, Stats to)
     {
         to.isAlly           = from.isAlly;
         to.name             = from.name;
+
         to.maxHP            = from.maxHP;
         to.currentHP        = from.currentHP;
         to.maxMana          = from.maxMana;
         to.currentMana      = from.currentMana;
+
         to.attack           = from.attack;
         to.defence          = from.defence;
         to.creativity       = from.creativity;
         to.recovery         = from.recovery;
+
         to.movementSpeed    = from.movementSpeed;
         to.cooldownModifier = from.cooldownModifier;
     }
 
     private void SaveChests(SaveData saveData)
     {
-        Debug.Log("SaveChests()");
-
         saveData.chests = new List<ChestData>();
         Chest[] chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
 
