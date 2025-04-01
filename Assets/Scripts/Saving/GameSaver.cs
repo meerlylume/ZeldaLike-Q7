@@ -8,6 +8,7 @@ public class GameSaver : MonoBehaviour
     private string saveLocation;
     [Header("Defaults")]
     [SerializeField] private Stats cannelleFirstStats;
+    [SerializeField] private Stats cannelleCurrentStats;
 
     private void Start()
     {
@@ -46,8 +47,6 @@ public class GameSaver : MonoBehaviour
             Chest[] chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
             foreach (Chest chest in chests) 
             {
-                Debug.Log(saveData.chests.Count);
-
                 for (int i = 0; saveData.chests.Count > i; i++)
                 {
                     if (!(saveData.chests[i].ID == chest.GetID())) continue;
@@ -62,7 +61,8 @@ public class GameSaver : MonoBehaviour
     public void DeleteSave()
     {
         SaveData saveData    = new() { };
-        saveData.playerStats = CopyStats(cannelleFirstStats, saveData.playerStats);
+        CopyStats(cannelleFirstStats, cannelleCurrentStats);
+        saveData.playerStats = cannelleCurrentStats;
 
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
     }
@@ -73,10 +73,10 @@ public class GameSaver : MonoBehaviour
         Debug.Log("OnApplicationQuit()");
     }
 
-    private Stats CopyStats(Stats from, Stats to)
+    private void CopyStats(Stats from, Stats to)
     {
-        to.name             = from.name;
         to.isAlly           = from.isAlly;
+        to.name             = from.name;
         to.maxHP            = from.maxHP;
         to.currentHP        = from.currentHP;
         to.maxMana          = from.maxMana;
@@ -87,8 +87,6 @@ public class GameSaver : MonoBehaviour
         to.recovery         = from.recovery;
         to.movementSpeed    = from.movementSpeed;
         to.cooldownModifier = from.cooldownModifier;
-
-        return to;
     }
 
     private void SaveChests(SaveData saveData)
