@@ -92,8 +92,6 @@ public class GameSaver : MonoBehaviour
 
     private void SaveChests(SaveData saveData)
     {
-        Debug.Log("SaveChests()");
-
         saveData.chests = new List<ChestData>();
         Chest[] chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
 
