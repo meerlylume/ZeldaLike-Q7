@@ -41,9 +41,9 @@ public class Inventory : MonoBehaviour
 
     public virtual void AddMoney(int amount)
     {
-        if (amount < 0) { return; }
+        if (amount <= 0) return;
 
-        else { inventory.money += amount; }
+        inventory.money += amount;
     }
 
     public virtual void RemoveItem(Item item, int quantity)

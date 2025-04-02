@@ -4,8 +4,9 @@ public abstract class Quest : MonoBehaviour
 {
     private bool isInProgress = false;
     private bool isCompleted = false;
+    [Header("Quest Rewards")]
+    [SerializeField] private InventoryData rewards; [Space]
     [Header("Quest Info")]
-    [SerializeField] private InventoryData rewards;
     [SerializeField] private new string    name;
     [SerializeField] private string        description;
     [SerializeField] private string        rewardsDesc;
@@ -42,9 +43,6 @@ public abstract class Quest : MonoBehaviour
 
     public virtual void GiveQuestRewards(Inventory inventory)
     {
-        Debug.Log("GiveQuestRewards() called from Quest.cs");
-        Debug.Log("rewards.items.Count: " + rewards.items.Count);
-
         if (rewards == null)
         {
             Debug.Log("Quest rewards null");
@@ -53,8 +51,6 @@ public abstract class Quest : MonoBehaviour
 
         for (int i = 0; i < rewards.items.Count ; i++)
         {
-            Debug.Log("Entered for loop: " + i);
-
             // If the quantities list does not match the rewards list
             if (rewards.quantities.Count != rewards.items.Count)
             {
