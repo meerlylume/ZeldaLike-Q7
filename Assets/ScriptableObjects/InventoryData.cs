@@ -13,4 +13,11 @@ public class InventoryData : ScriptableObject
     //I am so pissed that dictionaries aren't serializable istg
     public List<Item> items;
     public List<int> quantities;
+
+    public void WipeInventory()
+    {
+        items.Clear();
+        quantities.Clear();
+        money = 0;
+    }
 }

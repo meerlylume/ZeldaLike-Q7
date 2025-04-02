@@ -8,6 +8,7 @@ public class GameSaver : MonoBehaviour
     [Header("Defaults")]
     [SerializeField] private Stats cannelleFirstStats;
     [SerializeField] private Stats cannelleCurrentStats;
+    [SerializeField] private InventoryData cannelleInventoryData;
 
     private void Start()
     {
@@ -18,12 +19,13 @@ public class GameSaver : MonoBehaviour
 
     public void SaveGame()
     {
-        GameObject player  = GameObject.FindGameObjectWithTag("Player");
+        GameObject player   = GameObject.FindGameObjectWithTag("Player");
 
-        SaveData saveData  = new()
+        SaveData saveData   = new()
         {
-            playerPosition = player.transform.position,
-            playerStats    = player.GetComponent<PlayerFight>().GetStats(),
+            playerPosition  = player.transform.position,
+            playerStats     = player.GetComponent<PlayerFight>().GetStats(),
+            playerInventory = player.gameObject.GetComponent<PlayerInventory>().GetInventoryData(),
         };
 
         SaveChests(saveData);
@@ -41,6 +43,7 @@ public class GameSaver : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.transform.position = saveData.playerPosition;
             player.GetComponent<PlayerFight>().SetStats(saveData.playerStats);
+            player.GetComponent<PlayerInventory>().SetInventoryData(saveData.playerInventory);
 
             // Chest
             Chest[] chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
@@ -60,9 +63,16 @@ public class GameSaver : MonoBehaviour
     public void DeleteSave()
     {
         SaveData saveData    = new() { };
+        
+        saveData.playerInventory = cannelleInventoryData;
+        
+        // Player Stats
         CopyStats(cannelleFirstStats, cannelleCurrentStats);
         saveData.playerStats = cannelleCurrentStats;
+        // Inventory
+        saveData.playerInventory.WipeInventory();
 
+        // Write
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
     }
 
