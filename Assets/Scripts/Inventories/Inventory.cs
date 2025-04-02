@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
 
     public virtual void AddItem(Item item, int quantity)
     {
+        Debug.Log("Inventory.AddItem(" + item.name + ", " + quantity + ")");
+
         //don't forget to HANDLE STACKS for PLAYER ONLY
 
         //I SAID PLAYER ONLY. PLAYER ONLY. THIS MEANS NOT IN THIS SCRIPT. IN THE PLAYER INVENTORY SCRIPT. NOT THIS ONE. DID YOU GET THAT? ARE YOU SURE?

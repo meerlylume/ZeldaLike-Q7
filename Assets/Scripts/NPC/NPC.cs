@@ -190,6 +190,11 @@ IEnumerator TypeLine()
                         returnedText += "</color>";
                         break;
 
+                    case "<reward>":
+                    case "<rewards>":
+                        GiveQuestRewards();
+                        break;
+
                     // NO VALID TAG FOUND
                     default:
                         returnedText += tagDetector;
@@ -201,6 +206,11 @@ IEnumerator TypeLine()
         }
 
         return returnedText;
+    }
+
+    public virtual void GiveQuestRewards()
+    {
+        Debug.Log("NO REWARDS CAN BE GIVEN. NOT A QUEST NPC");
     }
 
     public virtual void EndDialogue()

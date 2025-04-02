@@ -149,8 +149,10 @@ public abstract class Fight : MonoBehaviour, IFight
 
     public virtual void HealHP(float amount)
     {
-        if (!isAlive) return;
-        stats.currentHP = Mathf.Clamp(stats.currentHP + amount, 0, stats.maxHP);
+        Debug.Log("HealHP(" + amount + ")");
+        if (!isAlive || amount <= 0) return;
+        stats.currentHP = Mathf.Clamp(stats.currentHP + amount /** stats.HealingModifier()*/, stats.currentHP, stats.maxHP);
+        Debug.Log("Current HP: " + stats.currentHP);
         OnHPChanged();
     }
 
@@ -164,7 +166,7 @@ public abstract class Fight : MonoBehaviour, IFight
     public virtual void HealMana(float amount)
     {
         if (!isAlive) return;
-        stats.currentMana = Mathf.Clamp(stats.currentMana + amount, 0, stats.maxMana);
+        stats.currentMana = Mathf.Clamp(stats.currentMana + amount * stats.HealingModifier(), 0, stats.maxMana);
         OnManaChanged();
     }
 
@@ -215,4 +217,20 @@ public abstract class Fight : MonoBehaviour, IFight
     }
     #endregion
 
+    #region Stat Raising (item usage)
+    public void RaiseMaxHP(float amount)    
+    { 
+        stats.maxHP     += amount; 
+        stats.currentHP += amount;
+    }
+    public void RaiseMaxMana(float amount)  
+    { 
+        stats.maxMana     += amount; 
+        stats.currentMana += amount;
+    }
+    public void RaiseAttack(int amount)     { stats.attack     += amount; }
+    public void RaiseDefence(int amount)    { stats.defence    += amount; }
+    public void RaiseCreativity(int amount) { stats.creativity += amount; }
+    public void RaiseRecovery(int amount)   { stats.recovery   += amount; }
+    #endregion
 }

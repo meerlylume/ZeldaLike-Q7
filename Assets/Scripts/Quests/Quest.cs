@@ -38,11 +38,33 @@ public abstract class Quest : MonoBehaviour
     {
         isInProgress = false;
         isCompleted = true;
-        GiveQuestRewards();
     }
 
-    public virtual void GiveQuestRewards()
+    public virtual void GiveQuestRewards(Inventory inventory)
     {
-        //probably will need a ref to the player inventory
+        Debug.Log("GiveQuestRewards() called from Quest.cs");
+        Debug.Log("rewards.items.Count: " + rewards.items.Count);
+
+        if (rewards == null)
+        {
+            Debug.Log("Quest rewards null");
+            return;
+        }
+
+        for (int i = 0; i < rewards.items.Count ; i++)
+        {
+            Debug.Log("Entered for loop: " + i);
+
+            // If the quantities list does not match the rewards list
+            if (rewards.quantities.Count != rewards.items.Count)
+            {
+                Debug.Log("Quest reward quantities does not match the amount of items. Distributing each item once");
+                inventory.AddItem(rewards.items[i], 1);
+                inventory.AddMoney(rewards.money);
+                continue;
+            }
+
+            inventory.AddItem(rewards.items[i], rewards.quantities[i]);
+        }
     }
 }

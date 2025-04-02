@@ -5,7 +5,7 @@ public class QuestNPC : NPC
     [SerializeField] private Quest quest;
     protected NPCDialogue trueRootDialogue;
     protected QuestTracker questTracker;
-
+    protected PlayerInventory playerInventory;
     public Quest GetQuest() { return quest; }
     public void SetQuest(Quest value) { quest = value; }
 
@@ -70,6 +70,9 @@ public class QuestNPC : NPC
     public override void SetPlayerReference(GameObject _player)
     {
         base.SetPlayerReference(_player);
-        questTracker = _player.GetComponent<QuestTracker>();
+        questTracker    = _player.GetComponent<QuestTracker>();
+        playerInventory = _player.GetComponent<PlayerInventory>();
     }
+
+    public override void GiveQuestRewards() { quest.GiveQuestRewards(playerInventory); }
 }

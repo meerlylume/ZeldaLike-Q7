@@ -8,7 +8,7 @@ public abstract class Item : MonoBehaviour, IInteractable
     public string description   = "Placeholder Description";
     public string information   = "Placeholder Information";
     public Sprite sprite;
-    [SerializeField] Sprite highlightedSprite;
+    [SerializeField] protected Sprite highlightedSprite;
     [Space]
     [Header("Properties")]
     public int maxStackQuantity = 64;

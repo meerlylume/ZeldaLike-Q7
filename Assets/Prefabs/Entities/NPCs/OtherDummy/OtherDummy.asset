@@ -12,18 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
   m_Name: OtherDummy
   m_EditorClassIdentifier: 
-  name: OtherDummy
+  name: Beans
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
   talkingSpeed: 0.05
-  endOfTree: 1
   dialogueLines:
-  - Hi! My name is <name>OtherDummy</name>!
-  - Welcome to <place>The Devroom</place>!
-  - This is where all sorts of new game mechanics are tested out, such as <item>items</item>,
-    <name>color tags</name>, or even text wrapping, or even text wrapping, or even
-    text wrapping, or even text wrapping, or even text wrapping, or even text wrapping,
-    or even text wrapping, or even text wrapping, or even text wrapping!
-  - Enjoy your time here, and take it easy!
+  - Oh hi <name>Cannelle</name>, didn't see you there.
+  - So... <name>General Arsh</name> is visiting from <place>Blaumond Kingdom</place>,
+    huh?
+  - It must be a difficult journey, what with all the angry <name>lyssians</name>
+    runnning around.
+  - I mean, I'm not worried about him, he's a General and all... but it's ought to
+    be a stressful and unpleasant journey.
+  - We need to be good hosts to him, make a good impression, if we want <place>Blaumond</place>'s
+    help.
+  - ...
+  - Don't go harassing him to take you to <place>The Moon</place>. Okay?
   dialogueChoices: {fileID: 0}
+  questTrigger: 0
