@@ -7,7 +7,6 @@ public class PlayerInventory : Inventory
 {
     [Header("Inventory Size")]
     [SerializeField] private int maxInventorySize;
-    private int inventorySize;
 
     [Header("References")]
     [SerializeField] PlayerFight playerFight;
@@ -23,61 +22,42 @@ public class PlayerInventory : Inventory
     public InventoryData GetInventoryData() { return inventory; }
     public void SetInventoryData(InventoryData value) { inventory = value; }
     public void WipeInventory() { inventory.WipeInventory(); }
+
+    private void Start() { RefreshInventory(); }
+
     public override void AddItem(Item item, int quantity)
     {
-        //check max size
         if (quantity <= 0) return;
 
-        for (int i = 0; inventory.items.Count > i; i++) //Parse through the inventory
-        {
-            for (int j = 0; quantity > j; j++)          //Once every quantity..
-            {
-                if (inventory.items[i] == item)         //..if the parsed item is the same as the added item..
-                {
-                    //..then if it doesn't go over the maxStackQuantity, add 1 to the inventory quantity and remove 1 from the added quantity
-                    if (inventory.quantities[i] + 1 <= inventory.items[i].maxStackQuantity)
-                    {
-                        inventory.quantities[i]++;
-                        quantity--;
-                    }
-                }
-            }
-        }
-
-        //..and at the end, if there's any quantity left or the item wasn't found in the parse inventory..
-        if (quantity == 0)
-        {
-            RefreshInventory();
-            return;
-        }
-
-        if (quantity <= item.maxStackQuantity) //..then if the remaining quantity is smaller or equal to the max stack quantity
-        {
-            //..add these two and be on your merry way..
-            inventory.items.Add(FindInLibrary(item));
-            inventory.quantities.Add(quantity);
-        }
-
-        else //..but if it's bigger instead
-        {
-            for (int i = 0; quantity / item.maxStackQuantity < i; i++) //..then for as many times as you can fit maxQuantities in quantity..
-            {
-                inventory.items.Add(FindInLibrary(item));                             //..add an item..
-                if (quantity >= item.maxStackQuantity)                 //..and if the quantity is bigger or equal to its max quantity..
-                {
-                    inventory.quantities.Add(item.maxStackQuantity);   //..then set its quantity to the max quantity..
-                    quantity -= item.maxStackQuantity;                 //..and substract quantity by maxQuantity
-                }
-                else inventory.quantities.Add(quantity); //..if instead quantity is smaller than maxQuantity, set its quantity to this value.
-            }
-        }
-
+        for (int i = 0; i < quantity; i++) { AddUnit(FindInLibrary(item)); }
+        
         RefreshInventory();
     }
 
-    private void Start()
+    private void AddUnit(Item item)
     {
-        RefreshInventory();
+        for (int i = 0; i < inventory.items.Count; i++)
+        {
+            // Check if items match
+            if (FindInLibrary(inventory.items[i]) != item) continue;
+
+            // Check if found item match's quantity is smaller than that item's max quantity
+            if (inventory.quantities[i] >= item.maxStackQuantity) { continue; }
+            else 
+            { 
+                inventory.quantities[i]++;
+                return;
+            }
+        }
+
+        if (inventory.items.Count >= maxInventorySize)
+        {
+            Debug.Log("Inventory maximum size (" + maxInventorySize + ") reached, but there is no implementation for this case yet. Added item is void.");
+            return;
+        }
+
+        inventory.items.Add(item);
+        inventory.quantities.Add(1);
     }
 
     public void ConsumeItem(Consumable item)

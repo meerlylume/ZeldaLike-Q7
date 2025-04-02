@@ -52,7 +52,7 @@ MonoBehaviour:
   information: +4 HP
   sprite: {fileID: 2950869812727453837, guid: e580b4c962bdc7d409b070a3146172e5, type: 3}
   highlightedSprite: {fileID: -4234038972002543540, guid: 873995fb6d0ad2148b9e04654cf3a2f8, type: 3}
-  maxStackQuantity: 64
+  maxStackQuantity: 99
   basePrice: 20
   canBeSold: 1
   hpHealed: 4
