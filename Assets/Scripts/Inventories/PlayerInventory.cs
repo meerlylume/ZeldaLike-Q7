@@ -86,7 +86,7 @@ public class PlayerInventory : Inventory
 
     public void ConsumeItem(Consumable item)
     {
-        item.Consume(playerFight.GetStats());
+        item.Consume(playerFight);
         RemoveItem(item);
         RefreshInventory();
     }

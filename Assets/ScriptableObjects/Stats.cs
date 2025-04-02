@@ -30,4 +30,10 @@ public class Stats : ScriptableObject
     //public float knockbackStrength;
 
     public bool RollForLuck() { return Random.Range(0, Mathf.Clamp(50 - creativity, 5, Mathf.Infinity)) == 1; }
+
+    public float HealingModifier()
+    {
+        return Mathf.Clamp(recovery / 10, 1, 2); //TEMPORARY CALCULATION
+        //Left a scope because this formula might get more complicated, for example with a status effect that buffs or nerfs healing
+    }
 }

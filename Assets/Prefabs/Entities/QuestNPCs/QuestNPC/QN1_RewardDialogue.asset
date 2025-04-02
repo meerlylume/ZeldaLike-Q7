@@ -18,7 +18,11 @@ MonoBehaviour:
   isPortraitOnTheRight: 1
   talkingSpeed: 0.02
   dialogueLines:
-  - To be entirely honest, I didn't think you could actually do it.
-  - '[REWARD UNIMPLEMENTED]'
+  - To be entirely honest, I didn't think you could actually do it. You're stronger
+    than I thought.
+  - Don't get me wrong, I still don't think <name>The Managarm</name> can be killed.
+  - But I guess you deserve a chance at getting back to <place>Moon Sanctuary</place>,
+    for your wife's sake.
+  - Here, have this. I hope it'll help you getting <name>Merry</name> back. <reward>
   dialogueChoices: {fileID: 0}
   questTrigger: 0
