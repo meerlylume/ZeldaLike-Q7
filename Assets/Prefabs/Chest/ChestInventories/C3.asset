@@ -9,14 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98893c423e86374ca74059369a07d3b, type: 3}
-  m_Name: MonsterLoot
+  m_Script: {fileID: 11500000, guid: d3f0997bc6e8b4a4e81476434d4b16ab, type: 3}
+  m_Name: C3
   m_EditorClassIdentifier: 
-  money: 69
+  money: 420
   items:
   - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
   - {fileID: 2501275518386469735, guid: dda72e2efd26cb449a55a4fcabc86e4f, type: 3}
   quantities: 0100000002000000
-  odds:
-  - 0.01
-  - 0.5

@@ -22,11 +22,7 @@ public class PlayerInventory : Inventory
 
     public InventoryData GetInventoryData() { return inventory; }
     public void SetInventoryData(InventoryData value) { inventory = value; }
-    public void WipeInventory()
-    {
-        inventory.items.Clear();
-        inventory.quantities.Clear();
-    }
+    public void WipeInventory() { inventory.WipeInventory(); }
     public override void AddItem(Item item, int quantity)
     {
         //check max size
