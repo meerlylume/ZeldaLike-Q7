@@ -1,26 +1,54 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class IC_GaugeBoostCrystal : Consumable
+public class IC_GaugeBoostCrystal : BoostCrystal
 {
     [Header("HP/Mana Boost Ranges")]
     public int minRandomRange = 5;
     public int maxRandomRange = 10;
 
-    public override void Consume(Fight user)
-    {
-        //Prompt HP or Mana
-        //Prompt which char to put it on
+    protected PlayerInventory playerInventory;
 
-        int amount = Random.Range(minRandomRange, maxRandomRange);
-        user.RaiseMaxHP(amount);
-        //user.RaiseMaxMana(amount);
-        Debug.Log("Incomplete Implementation: GaugeBoostCrystal only raises HP");
+
+    public override void OnInventoryUse(PlayerInventory inventory)
+    {
+        playerInventory = inventory;
+
+        //Prompt which stat to use
+        base.OnInventoryUse(inventory);
+
+        // Handle HP choice
+        GameObject hpOption = Instantiate(inventoryGrid.GetChoicePrefab());
+        hpOption.transform.SetParent(inventoryGrid.GetChoicesGrid().transform);
+        hpOption.transform.localScale = Vector3.one;
+        hpOption.TryGetComponent(out MenuOption hpButton);
+        hpButton.SetText("HP");
+        hpButton.Submit.AddListener(RaiseMaxHP);
+
+        // Handle Mana choice
+        GameObject manaOption = Instantiate(inventoryGrid.GetChoicePrefab());
+        manaOption.transform.SetParent(inventoryGrid.GetChoicesGrid().transform);
+        manaOption.transform.localScale = Vector3.one;
+        manaOption.TryGetComponent(out MenuOption manaButton);
+        manaButton.SetText("Mana");
+        manaButton.Submit.AddListener(RaiseMaxMana);
     }
 
-    public override void UseItem(Inventory inventory)
+    public void RaiseMaxHP()
     {
-        //Prompt which stat to use
-        base.UseItem(inventory);
+        int amount = Random.Range(minRandomRange, maxRandomRange);
+        playerInventory.GetFight().RaiseMaxHP(amount);
+        playerInventory.RemoveItem(this);
+        inventoryGrid.GetPromptPanel().SetActive(false);
+    }
+
+    public void RaiseMaxMana()
+    {
+        int amount = Random.Range(minRandomRange, maxRandomRange);
+        playerInventory.GetFight().RaiseMaxMana(amount);
+        playerInventory.RemoveItem(this);
+        inventoryGrid.GetPromptPanel().SetActive(false);
     }
 }
 

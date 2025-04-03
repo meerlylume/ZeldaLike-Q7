@@ -19,9 +19,11 @@ public class PlayerInventory : Inventory
     [SerializeField] private TextMeshProUGUI descText;
     List<GameObject> slotList;
 
-    public InventoryData GetInventoryData() { return inventory; }
-    public void SetInventoryData(InventoryData value) { inventory = value; }
-    public void WipeInventory() { inventory.WipeInventory(); }
+    #region Get/Set
+    public InventoryData GetInventoryData()           { return inventory;          }
+    public Fight GetFight()                           { return playerFight;        }
+    public void SetInventoryData(InventoryData value) { inventory = value;         }
+    #endregion
 
     private void Start() { RefreshInventory(); }
 
@@ -60,10 +62,9 @@ public class PlayerInventory : Inventory
         inventory.quantities.Add(1);
     }
 
-    public override void ConsumeItem(Consumable item)
+    public override void RemoveItem(Item item, int quantity)
     {
-        item.Consume(playerFight);
-        RemoveItem(item);
+        base.RemoveItem(item, quantity);
         RefreshInventory();
     }
 

@@ -4,5 +4,9 @@ public abstract class Consumable : Item
 {
     public abstract void Consume(Fight user);
 
-    public virtual void UseItem(Inventory inventory) { inventory.ConsumeItem(this); }
+    public virtual void OnInventoryUse(PlayerInventory inventory) 
+    { 
+        Consume(inventory.GetFight());
+        inventory.RemoveItem(this);
+    }
 }

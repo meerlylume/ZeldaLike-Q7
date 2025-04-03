@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   money: 0
-  items: []
-  quantities: 
+  items:
+  - {fileID: 2501275518386469735, guid: dda72e2efd26cb449a55a4fcabc86e4f, type: 3}
+  - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
+  - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
+  - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
+  - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
+  - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
+  - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
+  quantities: 01000000010000000100000001000000010000000100000001000000

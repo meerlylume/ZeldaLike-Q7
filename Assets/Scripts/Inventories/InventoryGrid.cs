@@ -12,12 +12,24 @@ public class InventoryGrid : MonoBehaviour
     [SerializeField] UseInventoryButton       use;
     [SerializeField] SwapInventoryButton      swap;
     [SerializeField] ThrowAwayInventoryButton throwAway;
+    [Header("Inventory Page Dialogue Text")]
+    [SerializeField] GameObject promptPanel;
+    [SerializeField] TextMeshProUGUI promptText;
+    [SerializeField] GameObject choicesGrid;
+    [SerializeField] GameObject choicePrefab;
 
-    public void SetInfoText(string value)          { infoText.text = value;     }
-    public void SetDescText(string value)          { descText.text = value;     }
-    public GameObject GetItemGrid()                { return itemGrid;           }
-    public UseInventoryButton GetUse()             { return use;                }
-    public SwapInventoryButton GetSwap()           { return swap;               }
-    public ThrowAwayInventoryButton GetThrowAway() { return throwAway;          }
-    public void SetActiveItemGrid(bool value)      { itemGrid.SetActive(value); }
+    // SET
+    public void SetInfoText(string value)     { infoText.text = value;       }
+    public void SetDescText(string value)     { descText.text = value;       }
+    public void SetActiveItemGrid(bool value) { itemGrid.SetActive(value);   }
+
+    // GET
+    public UseInventoryButton       GetUse()          { return use;          }
+    public SwapInventoryButton      GetSwap()         { return swap;         }
+    public GameObject               GetItemGrid()     { return itemGrid;     }
+    public ThrowAwayInventoryButton GetThrowAway()    { return throwAway;    }
+    public TextMeshProUGUI          GetPromptText()   { return promptText;   }
+    public GameObject               GetChoicesGrid()  { return choicesGrid;  }
+    public GameObject               GetPromptPanel()  { return promptPanel;  }
+    public GameObject               GetChoicePrefab() { return choicePrefab; }
 }

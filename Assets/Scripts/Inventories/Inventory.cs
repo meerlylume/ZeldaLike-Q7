@@ -46,8 +46,6 @@ public class Inventory : MonoBehaviour
 
     public virtual void RemoveItem(Item item, int quantity)
     {
-        //handle stacks
-
         for (int i = 0; inventory.items.Count > i; i++)
         {
             //check if item in inventory
@@ -73,7 +71,7 @@ public class Inventory : MonoBehaviour
 
     public virtual void RemoveItem(Item item)
     {
-        RemoveItem(item, 1); // this is an override
+        RemoveItem(item, 1); // this is an override, not recursive, don't panic
     }
 
     public virtual void RemoveMoney(int amount)
@@ -103,15 +101,5 @@ public class Inventory : MonoBehaviour
     {
         inventory.money = 0;
     }
-
-    public void EmptyEverything()
-    {
-        EmptyItems();
-        EmptyMoney();
-    }
-
-    public virtual void ConsumeItem(Consumable item)
-    {
-        throw new NotImplementedException();
-    }
+    public void WipeInventory() { inventory.WipeInventory(); }
 }

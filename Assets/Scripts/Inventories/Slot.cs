@@ -77,6 +77,7 @@ public class Slot : MonoBehaviour
             use.gameObject.SetActive(true);
             use.SetInventory(playerInventory);
             use.SetItemIndex(itemIndex);
+            use.SetInventoryGrid(parent);
         }
     }
 }
