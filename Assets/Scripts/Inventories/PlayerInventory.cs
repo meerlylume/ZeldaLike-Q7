@@ -60,7 +60,7 @@ public class PlayerInventory : Inventory
         inventory.quantities.Add(1);
     }
 
-    public void ConsumeItem(Consumable item)
+    public override void ConsumeItem(Consumable item)
     {
         item.Consume(playerFight);
         RemoveItem(item);
@@ -88,9 +88,9 @@ public class PlayerInventory : Inventory
             newSlot.transform.SetParent(inventoryGrid.transform, false);
             Slot newScript              = newSlot.GetComponent<Slot>();
 
-            newScript.SetItem(inventory.items[i]);
-            newScript.SetQuantity(inventory.quantities[i]);
+            newScript.SetItemIndex(i);
             newScript.SetInventory(this);
+            newScript.SetInventoryData(inventory);
             newScript.RefreshSlot();
         }
 

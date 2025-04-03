@@ -16,5 +16,11 @@ public class IC_GaugeBoostCrystal : Consumable
         //user.RaiseMaxMana(amount);
         Debug.Log("Incomplete Implementation: GaugeBoostCrystal only raises HP");
     }
+
+    public override void UseItem(Inventory inventory)
+    {
+        //Prompt which stat to use
+        base.UseItem(inventory);
+    }
 }
 

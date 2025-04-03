@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class UseInventoryButton : InventoryButton
 {
-    public void ConsumeItem()
+    public void UseItem()
     {
-        Consumable consumable = item.GetComponent<Consumable>();
-        if (consumable) inventory.ConsumeItem(consumable);
+        Consumable consumable = inventory.GetInventoryData().items[itemIndex].GetComponent<Consumable>();
+        if (consumable) consumable.UseItem(inventory);
     }
 }
