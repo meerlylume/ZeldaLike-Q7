@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class UseInventoryButton : InventoryButton
 {
-    public void ConsumeItem()
+    [SerializeField] private InventoryGrid inventoryGrid; //for menu dialogue
+    public void SetInventoryGrid(InventoryGrid value) { inventoryGrid = value; }
+    public void UseItem()
     {
-        Consumable consumable = item.GetComponent<Consumable>();
-        if (consumable) inventory.ConsumeItem(consumable);
+        Consumable consumable = inventory.GetInventoryData().items[itemIndex].GetComponent<Consumable>();
+
+        consumable.TryGetComponent(out BoostCrystal boostCrystal);
+        if (boostCrystal) boostCrystal.SetInventoryGrid(inventoryGrid);
+
+        if (consumable) consumable.OnInventoryUse(inventory);
     }
 }

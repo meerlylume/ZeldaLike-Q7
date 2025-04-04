@@ -8,8 +8,6 @@ public class Inventory : MonoBehaviour
 
     public virtual void AddItem(Item item, int quantity)
     {
-        Debug.Log("Inventory.AddItem(" + item.name + ", " + quantity + ")");
-
         //don't forget to HANDLE STACKS for PLAYER ONLY
 
         //I SAID PLAYER ONLY. PLAYER ONLY. THIS MEANS NOT IN THIS SCRIPT. IN THE PLAYER INVENTORY SCRIPT. NOT THIS ONE. DID YOU GET THAT? ARE YOU SURE?
@@ -48,32 +46,40 @@ public class Inventory : MonoBehaviour
 
     public virtual void RemoveItem(Item item, int quantity)
     {
-        //handle stacks
-
-        for (int i = 0; inventory.items.Count > i; i++)
+        for (int i = 0; i < quantity; i++)
         {
-            //check if item in inventory
-            if (!inventory.items[i] == item) 
-                continue;
-
-            //check if I didn't fuck up in the inspector
-            if (!(inventory.quantities.Count - 1 >= i))  
-                continue;
-
-            inventory.quantities[i] -= quantity;
-            if (inventory.quantities[i] <= 0)
-            {
-                inventory.quantities.RemoveAt(i);
-                inventory.items.RemoveAt(i);
-            }
-
-            return;
+            RemoveUnit(FindInLibrary(item));
         }
     }
 
     public virtual void RemoveItem(Item item)
     {
-        RemoveItem(item, 1);
+        RemoveItem(item, 1); // this is an override, not recursive, don't panic
+    }
+
+    private void RemoveUnit(Item item)
+    {
+        //Note: the given item has already been found in the library
+
+        if (inventory.quantities.Count != inventory.items.Count)
+        {
+            Debug.LogWarning("Inventory Quantities and Item Count do not match. ITEM NOT REMOVED.");
+            return;
+        }
+
+        for (int i = 0; i < inventory.items.Count; i++)
+        {
+            if (inventory.items[i] != item) continue;
+
+            if (inventory.quantities[i] <= 1)
+            {
+                inventory.quantities.RemoveAt(i);
+                inventory.items.RemoveAt(i);
+                return;
+            }
+
+            inventory.quantities[i]--;
+        }
     }
 
     public virtual void RemoveMoney(int amount)
@@ -103,15 +109,5 @@ public class Inventory : MonoBehaviour
     {
         inventory.money = 0;
     }
-
-    public void EmptyEverything()
-    {
-        EmptyItems();
-        EmptyMoney();
-    }
-
-    public void ConsumeItem(Item item)
-    {
-        throw new NotImplementedException();
-    }
+    public void WipeInventory() { inventory.WipeInventory(); }
 }

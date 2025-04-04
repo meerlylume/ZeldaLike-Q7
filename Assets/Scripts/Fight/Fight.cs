@@ -149,10 +149,8 @@ public abstract class Fight : MonoBehaviour, IFight
 
     public virtual void HealHP(float amount)
     {
-        Debug.Log("HealHP(" + amount + ")");
         if (!isAlive || amount <= 0) return;
         stats.currentHP = Mathf.Clamp(stats.currentHP + amount /** stats.HealingModifier()*/, stats.currentHP, stats.maxHP);
-        Debug.Log("Current HP: " + stats.currentHP);
         OnHPChanged();
     }
 
