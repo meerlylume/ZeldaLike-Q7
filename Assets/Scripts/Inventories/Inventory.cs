@@ -46,32 +46,40 @@ public class Inventory : MonoBehaviour
 
     public virtual void RemoveItem(Item item, int quantity)
     {
-        for (int i = 0; inventory.items.Count > i; i++)
+        for (int i = 0; i < quantity; i++)
         {
-            //check if item in inventory
-            if (!inventory.items[i] == item) 
-                continue;
-
-            //check if I didn't fuck up in the inspector
-            if (!(inventory.quantities.Count - 1 >= i))  
-                continue;
-
-            inventory.quantities[i] -= quantity;
-            if (inventory.quantities[i] <= 0)
-            {
-                inventory.quantities.RemoveAt(i);
-                inventory.items.RemoveAt(i);
-            }
-
-            return;
+            RemoveUnit(FindInLibrary(item));
         }
-
-        return;
     }
 
     public virtual void RemoveItem(Item item)
     {
         RemoveItem(item, 1); // this is an override, not recursive, don't panic
+    }
+
+    private void RemoveUnit(Item item)
+    {
+        //Note: the given item has already been found in the library
+
+        if (inventory.quantities.Count != inventory.items.Count)
+        {
+            Debug.LogWarning("Inventory Quantities and Item Count do not match. ITEM NOT REMOVED.");
+            return;
+        }
+
+        for (int i = 0; i < inventory.items.Count; i++)
+        {
+            if (inventory.items[i] != item) continue;
+
+            if (inventory.quantities[i] <= 1)
+            {
+                inventory.quantities.RemoveAt(i);
+                inventory.items.RemoveAt(i);
+                return;
+            }
+
+            inventory.quantities[i]--;
+        }
     }
 
     public virtual void RemoveMoney(int amount)
