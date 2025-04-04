@@ -27546,7 +27546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannelleFirstStats: {fileID: 11400000, guid: 61d17051acbae8342bb84b64226d7e9a, type: 2}
   cannelleCurrentStats: {fileID: 11400000, guid: 0f7cfd10ce820da44a3fc7b4999db17f, type: 2}
-  cannelleInventoryData: {fileID: 0}
+  cannelleInventoryData: {fileID: 11400000, guid: dc9cd9075459b5043a6de77b0a463c8a, type: 2}
 --- !u!4 &1414072406
 Transform:
   m_ObjectHideFlags: 0

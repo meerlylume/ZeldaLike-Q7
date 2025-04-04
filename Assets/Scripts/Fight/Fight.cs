@@ -82,24 +82,24 @@ public abstract class Fight : MonoBehaviour, IFight
         float damage;
 
         // If defender parries
-        if (!crit && parry)
-        {
-            return 0.0f;
-        }
+        if (!crit && parry) { return 0.0f; }
 
         // If attacker crits
         else if (crit && !parry)
         {
             damage = atk * 2.5f - Random.Range(stats.defence * 0.5f, stats.defence);
-            return Mathf.Clamp(damage, 0, Mathf.Infinity);
+            damage = Mathf.Clamp(damage, 0, Mathf.Infinity);
         }
 
         // If neither crit nor parry, or both do
         else
         {
             damage = Random.Range(atk, atk * 1.5f) - Random.Range(stats.defence * 0.5f, stats.defence);
-            return Mathf.Clamp(damage, 0, Mathf.Infinity);
+            damage = Mathf.Clamp(damage, 0, Mathf.Infinity);
         }
+
+        if (0.0f < damage && damage < 1.0f) { damage = 1.0f; }
+        return damage;
     }
 
     public virtual void TakeDamage(float atk, bool crit, Vector2 attackPos)
