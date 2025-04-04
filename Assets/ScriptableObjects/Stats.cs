@@ -36,4 +36,9 @@ public class Stats : ScriptableObject
         return Mathf.Clamp(recovery / 10, 1, 2); //TEMPORARY CALCULATION
         //Left a scope because this formula might get more complicated, for example with a status effect that buffs or nerfs healing
     }
+
+    public float KnockbackModifier()
+    {
+        return attack / 2;
+    }
 }

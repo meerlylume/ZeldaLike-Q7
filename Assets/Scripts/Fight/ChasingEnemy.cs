@@ -3,6 +3,7 @@ using UnityEngine;
 public class ChasingEnemy : EnemyFight
 {
     [SerializeField] PlayerDetection playerDetection;
+    private float speed;
 
     #region Because I was tired of writing "playerDetection." everytime
     private PlayerFight GetPlayerFight()  { return playerDetection.GetPlayerFight(); }
@@ -14,6 +15,7 @@ public class ChasingEnemy : EnemyFight
     {
         base.Start();
 
+        speed = stats.movementSpeed;
         SetIsChasing(false);
     }
 
@@ -22,10 +24,16 @@ public class ChasingEnemy : EnemyFight
         if (!(GetIsChasing() && GetPlayerFight())) return;
 
         Vector2 direction = GetPlayerFight().transform.position - transform.position;
-        rb.linearVelocity = direction.normalized * stats.movementSpeed;
+        rb.AddForce(direction.normalized * speed);
 
-        if (!(attacks[attackIndex].CheckIfInRange(stats, transform.position))) return;
-
-        StartCoroutine(AttackRoutine());
+        if ((attacks[attackIndex].CheckIfInRange(stats, transform.position)))
+        {
+            speed = 0f;
+            StartCoroutine(AttackRoutine());
+        }
+        else
+        {
+            speed = stats.movementSpeed;
+        }
     }
 }

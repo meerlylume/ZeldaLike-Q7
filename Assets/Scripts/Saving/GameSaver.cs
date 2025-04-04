@@ -73,7 +73,7 @@ public class GameSaver : MonoBehaviour
         if (saveData.playerInventory) saveData.playerInventory.WipeInventory();
         else
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player        = GameObject.FindGameObjectWithTag("Player");
             saveData.playerInventory = player.GetComponent<PlayerInventory>().GetInventoryData();
             saveData.playerInventory.WipeInventory();
         }

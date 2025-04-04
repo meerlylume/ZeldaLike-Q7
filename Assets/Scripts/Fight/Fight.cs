@@ -147,6 +147,15 @@ public abstract class Fight : MonoBehaviour, IFight
         damageText.Push(pushDir, textLifetime, pushStrength, intTotalDamage.ToString());
     }
 
+    public void TakeKnockback(float knockback, Vector2 attackPos)
+    {
+        Vector2 pushDir = new Vector2(transform.position.x, transform.position.y) - attackPos;
+
+        //handle knockback res
+        rb.AddForce(pushDir * knockback, ForceMode2D.Impulse);
+        if (stats.name == "Cannelle") Debug.Log("Cannelle pushed back");
+    }
+
     public virtual void HealHP(float amount)
     {
         if (!isAlive || amount <= 0) return;
