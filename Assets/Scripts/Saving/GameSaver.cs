@@ -70,7 +70,13 @@ public class GameSaver : MonoBehaviour
         CopyStats(cannelleFirstStats, cannelleCurrentStats);
         saveData.playerStats = cannelleCurrentStats;
         // Inventory
-        saveData.playerInventory.WipeInventory();
+        if (saveData.playerInventory) saveData.playerInventory.WipeInventory();
+        else
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            saveData.playerInventory = player.GetComponent<PlayerInventory>().GetInventoryData();
+            saveData.playerInventory.WipeInventory();
+        }
 
         // Write
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
