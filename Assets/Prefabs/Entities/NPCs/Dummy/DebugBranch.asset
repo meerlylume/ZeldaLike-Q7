@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d80a39c2ef24248902b4997c63c3a2, type: 3}
+  m_Name: DebugBranch
+  m_EditorClassIdentifier: 
+  choices:
+  - Can you talk slower?
+  - Can you talk faster?
+  - <name>Look!</name> <place>Colors!</place>
+  - (instant leave)
+  - (leave with dialogue)
+  outcomes:
+  - {fileID: 11400000, guid: 667559c8d84250e479b82b59798c8870, type: 2}
+  - {fileID: 11400000, guid: 84a1f22d7dfb1ed4c9896ebd7fd02c28, type: 2}
+  - {fileID: 11400000, guid: 443e6633c1e983843966ebddbaf38fee, type: 2}
+  - {fileID: 11400000, guid: 6b202a6702804084daa55dd73e63d1d1, type: 2}
+  - {fileID: 11400000, guid: 3d3002c07e321fa4ebcdf03fa6b6a237, type: 2}
