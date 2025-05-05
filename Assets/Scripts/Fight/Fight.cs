@@ -158,7 +158,7 @@ public abstract class Fight : MonoBehaviour, IFight
     public virtual void HealHP(float amount)
     {
         if (!isAlive || amount <= 0) return;
-        stats.currentHP = Mathf.Clamp(stats.currentHP + amount /** stats.HealingModifier()*/, stats.currentHP, stats.maxHP);
+        stats.currentHP = Mathf.Clamp(stats.currentHP + amount * stats.HealingModifier(), stats.currentHP, stats.maxHP);
         OnHPChanged();
     }
 
@@ -173,6 +173,13 @@ public abstract class Fight : MonoBehaviour, IFight
     {
         if (!isAlive) return;
         stats.currentMana = Mathf.Clamp(stats.currentMana + amount * stats.HealingModifier(), 0, stats.maxMana);
+        OnManaChanged();
+    }
+
+    public virtual void RemoveMana(float amount)
+    {
+        if (!isAlive) return;
+        stats.currentMana = Mathf.Clamp(stats.currentMana - amount, 0, stats.maxMana);
         OnManaChanged();
     }
 

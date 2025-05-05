@@ -41,4 +41,9 @@ public class Stats : ScriptableObject
     {
         return attack / 2;
     }
+
+    public float ManaAutoRegenTime()
+    {
+        return 2 - recovery * 0.1f; //TEMPORARY CALCULATION
+    }
 }
