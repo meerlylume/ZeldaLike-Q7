@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitbox: {fileID: 8456097486384409711}
   cooldown: 0.5
-  knockback: 5
+  knockback: 1
 --- !u!114 &8456097486384409711
 MonoBehaviour:
   m_ObjectHideFlags: 0

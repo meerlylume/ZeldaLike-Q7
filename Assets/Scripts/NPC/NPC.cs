@@ -100,7 +100,7 @@ IEnumerator TypeLine()
     {
         //Stop player movement
         yield return new WaitForEndOfFrame();
-        if (playerMovement) playerMovement.DisablePlayerMovement();
+        if (playerMovement) playerMovement.FreezePlayerMovement();
 
         //Clear the dialogue text and start typing
         isTyping = true;
@@ -221,7 +221,7 @@ IEnumerator TypeLine()
             isWaitingForChoice = true;
         }
 
-        else { if (playerMovement) playerMovement.EnablePlayerMovement(); }
+        else { if (playerMovement) playerMovement.UnfreezePlayerMovement(); }
 
         StopAllCoroutines();
         isDialogueActive = false;

@@ -147,13 +147,12 @@ public abstract class Fight : MonoBehaviour, IFight
         damageText.Push(pushDir, textLifetime, pushStrength, intTotalDamage.ToString());
     }
 
-    public void TakeKnockback(float knockback, Vector2 attackPos)
+    public virtual void TakeKnockback(float knockback, Vector2 attackPos)
     {
         Vector2 pushDir = new Vector2(transform.position.x, transform.position.y) - attackPos;
 
         //handle knockback res
         rb.AddForce(pushDir * knockback, ForceMode2D.Impulse);
-        if (stats.name == "Cannelle") Debug.Log("Cannelle pushed back");
     }
 
     public virtual void HealHP(float amount)
@@ -196,12 +195,12 @@ public abstract class Fight : MonoBehaviour, IFight
 
         // Attack
         Attack();
-        if (stats.name == "Cannelle") spriteRenderer.color = Color.gray;
+        if (stats.name == "Cannelle") spriteRenderer.color = Color.gray; //temporary
         
         //Cooldown
         isInCooldown = true;
         yield return new WaitForSeconds(attacks[attackIndex].GetCooldown(stats));
-        if (stats.name == "Cannelle") spriteRenderer.color = Color.white;
+        if (stats.name == "Cannelle") spriteRenderer.color = Color.white; //temporary
 
         isInCooldown = false;
     }
