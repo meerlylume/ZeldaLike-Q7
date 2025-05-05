@@ -115,7 +115,7 @@ public abstract class Fight : MonoBehaviour, IFight
         stats.currentHP = Mathf.Clamp(stats.currentHP - totalDamage, 0, stats.maxHP);
 
         DamageDisplay(totalDamage, crit, parry, attackPos);
-        OnHPChanged();
+        RefreshHP();
 
         if (stats.currentHP <= 0) { Die(); }
     }
@@ -158,29 +158,36 @@ public abstract class Fight : MonoBehaviour, IFight
     public virtual void HealHP(float amount)
     {
         if (!isAlive || amount <= 0) return;
-        stats.currentHP = Mathf.Clamp(stats.currentHP + amount /** stats.HealingModifier()*/, stats.currentHP, stats.maxHP);
-        OnHPChanged();
+        stats.currentHP = Mathf.Clamp(stats.currentHP + amount * stats.HealingModifier(), stats.currentHP, stats.maxHP);
+        RefreshHP();
     }
 
     public virtual void FullHealHP()
     {
         if (!isAlive) return;
         stats.currentHP = stats.maxHP;
-        OnHPChanged();
+        RefreshHP();
     }
 
     public virtual void HealMana(float amount)
     {
         if (!isAlive) return;
         stats.currentMana = Mathf.Clamp(stats.currentMana + amount * stats.HealingModifier(), 0, stats.maxMana);
-        OnManaChanged();
+        RefreshMana();
+    }
+
+    public virtual void RemoveMana(float amount)
+    {
+        if (!isAlive) return;
+        stats.currentMana = Mathf.Clamp(stats.currentMana - amount, 0, stats.maxMana);
+        RefreshMana();
     }
 
     public virtual void FullHealMana()
     {
         if (!isAlive) return;
         stats.currentMana = stats.maxMana;
-        OnManaChanged();
+        RefreshMana();
     }
 
     public virtual void FullHeal()
@@ -206,9 +213,9 @@ public abstract class Fight : MonoBehaviour, IFight
     }
 
     #region HealthBar & ManaBar
-    public virtual void OnHPChanged()   { RefreshHealthBar(); }
+    public virtual void RefreshHP()   { RefreshHealthBar(); }
 
-    public virtual void OnManaChanged() { RefreshManaBar();   }
+    public virtual void RefreshMana() { RefreshManaBar();   }
 
     public virtual void RefreshHealthBar()
     {

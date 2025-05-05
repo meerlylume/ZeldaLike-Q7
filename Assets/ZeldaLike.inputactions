@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "FocusMana",
+                    "type": "Button",
+                    "id": "aaabebbe-3a20-441c-891b-8de090a8e575",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Fight",
                     "type": "Button",
                     "id": "ad18284a-8518-44e6-8ab9-c4fa29168c23",
@@ -223,6 +232,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd93e767-758b-4cb9-9f0f-3d2d3f2cba84",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "FocusMana",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -3319,6 +3319,7 @@ MonoBehaviour:
   critTextPrefab: {fileID: 5102333147670426686, guid: 2672e5c4ea0fd3e4b852de99375a3e96, type: 3}
   parryTextPrefab: {fileID: 1620739463268232583, guid: 843a45d3e3f007a43b323c16850aff6c, type: 3}
   spriteRenderer: {fileID: 6366090582225010525}
+  manaParticles: {fileID: 0}
   gameOverUI: {fileID: 3882431482498711872}
   restartButton: {fileID: 6575124642929225720}
 --- !u!114 &5378168281552671222
@@ -3515,6 +3516,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ea1a1134-9fd8-4263-92c2-b76ecd150f75
     m_ActionName: 'Player/OpenSettings[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3285378661144251519}
+        m_TargetAssemblyTypeName: PlayerFight, Assembly-CSharp
+        m_MethodName: FocusMana
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: aaabebbe-3a20-441c-891b-8de090a8e575
+    m_ActionName: 'Player/FocusMana[/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -6794,7 +6811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuCanvas: {fileID: 2628881801827872158}
-  menuDefaultSelection: {fileID: 1925715746631149597}
+  menuDefaultSelection: {fileID: 3993527916569445242}
   settingsDefaultSelection: {fileID: 3575407091776147520}
   eventSystem: {fileID: 5114548232388249325}
 --- !u!223 &6625778529826451602

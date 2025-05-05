@@ -89,7 +89,7 @@ public class EnemyFight : Fight
         base.Die();
     }
 
-    public override void OnManaChanged()
+    public override void RefreshMana()
     {
         // Enemies have no mana bar, and don't use mana at all, at least for now
         return;
