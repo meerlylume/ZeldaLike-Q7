@@ -18,9 +18,9 @@ MonoBehaviour:
   currentHP: 0
   maxMana: 0
   currentMana: 2
-  attack: 3
+  attack: 5
   defence: 0
   creativity: 1
   recovery: 1
   movementSpeed: 2
-  cooldownModifier: 2
+  cooldownModifier: 3

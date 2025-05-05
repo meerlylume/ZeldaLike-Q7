@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Cannelle
   isAlly: 1
-  maxHP: 20
-  currentHP: 6
+  maxHP: 99999
+  currentHP: 99963.81
   maxMana: 20
   currentMana: 20
   attack: 6
