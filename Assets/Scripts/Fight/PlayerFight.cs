@@ -59,7 +59,6 @@ public class PlayerFight : Fight
     {
         Vector2 pushDir = new Vector2(transform.position.x, transform.position.y) - attackPos;
 
-        Debug.Log("Player took knockback. A feedback is necessary because oh my god.");
         StartCoroutine(KnockbackRoutine(knockback, pushDir * knockback));
     }
 

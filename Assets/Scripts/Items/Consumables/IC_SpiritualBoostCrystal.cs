@@ -3,18 +3,7 @@ using UnityEngine;
 public class IC_SpiritualBoostCrystal : BoostCrystal
 {
     [Header("Creativity/Recovery Boost Ranges")]
-    public int minRandomRange = 1;
-    public int maxRandomRange = 3;
-    /*
-    public override void Consume(Fight user)
-    {
-        //Prompt Attack or Defence
-
-        int amount = Random.Range(minRandomRange, maxRandomRange);
-        user.RaiseCreativity(amount);
-        //user.RaiseRecovery(amount);
-        Debug.Log("Incomplete Implementation: SpiritualBoostCrystal only raises Creativity");
-    }*/
+    public int boostAmount;
 
     protected PlayerInventory playerInventory;
     MenuOption creativityButton;
@@ -48,17 +37,13 @@ public class IC_SpiritualBoostCrystal : BoostCrystal
 
     public void RaiseCreativity()
     {
-        int amount = Random.Range(minRandomRange, maxRandomRange);
-        playerInventory.GetFight().RaiseCreativity(amount);
-        playerInventory.RemoveItem(this);
+        playerInventory.GetFight().RaiseCreativity(boostAmount);
         EndChoose();
     }
 
     public void RaiseRecovery()
     {
-        int amount = Random.Range(minRandomRange, maxRandomRange);
-        playerInventory.GetFight().RaiseRecovery(amount);
-        playerInventory.RemoveItem(this);
+        playerInventory.GetFight().RaiseRecovery(boostAmount);
         EndChoose();
     }
 
@@ -66,6 +51,8 @@ public class IC_SpiritualBoostCrystal : BoostCrystal
     public override void EndChoose()
     {
         base.EndChoose();
+
+        playerInventory.RemoveItem(this);
 
         if (creativityButton) Destroy(creativityButton.gameObject);
         if (recoveryButton) Destroy(recoveryButton.gameObject);
