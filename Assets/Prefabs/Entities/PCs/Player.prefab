@@ -3319,9 +3319,9 @@ MonoBehaviour:
   critTextPrefab: {fileID: 5102333147670426686, guid: 2672e5c4ea0fd3e4b852de99375a3e96, type: 3}
   parryTextPrefab: {fileID: 1620739463268232583, guid: 843a45d3e3f007a43b323c16850aff6c, type: 3}
   spriteRenderer: {fileID: 6366090582225010525}
+  manaParticles: {fileID: 0}
   gameOverUI: {fileID: 3882431482498711872}
   restartButton: {fileID: 6575124642929225720}
-  manaParticles: {fileID: 0}
 --- !u!114 &5378168281552671222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6811,7 +6811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuCanvas: {fileID: 2628881801827872158}
-  menuDefaultSelection: {fileID: 1925715746631149597}
+  menuDefaultSelection: {fileID: 3993527916569445242}
   settingsDefaultSelection: {fileID: 3575407091776147520}
   eventSystem: {fileID: 5114548232388249325}
 --- !u!223 &6625778529826451602

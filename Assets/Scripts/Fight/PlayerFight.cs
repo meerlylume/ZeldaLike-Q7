@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections.Editor.Data;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,7 +17,8 @@ public class PlayerFight : Fight
 
     private bool isFocusingMana         = false;
     private bool isAutoRegeneratingMana = false;
-    private bool canAutoRegenMana       = true;
+    private bool inCombatZone           = false;
+    private bool inBreatherZone         = false;
 
     #region Get/Set
     public Stats GetStats()           { return stats;                                 }
@@ -82,7 +84,7 @@ public class PlayerFight : Fight
         if (context.canceled)
         {
             isFocusingMana = false;
-            OnManaChanged();
+            RefreshMana();
             //stop mana focusing animation
         }
     }
@@ -100,19 +102,17 @@ public class PlayerFight : Fight
 
         manaParticles.Stop();
         isFocusingMana = false;
-        Debug.Log("End of Routine");
     }
 
-    public override void OnManaChanged()
+    public override void RefreshMana()
     {
-        base.OnManaChanged();
-        if (stats.currentMana != stats.maxMana && !isFocusingMana && !isAutoRegeneratingMana) 
+        base.RefreshMana();
+        if ((inBreatherZone || !inCombatZone) && !isFocusingMana && !isAutoRegeneratingMana && stats.currentMana != stats.maxMana) 
             StartCoroutine(AutoRegenManaRoutine(stats.ManaAutoRegenTime(), 1f));
     }
 
     public IEnumerator AutoRegenManaRoutine(float time, float amount)
     {
-        if (!canAutoRegenMana) yield break;
         isAutoRegeneratingMana = true;
 
         yield return new WaitForSeconds(time);
@@ -120,6 +120,31 @@ public class PlayerFight : Fight
         isAutoRegeneratingMana = false;
         HealMana(amount);
     }
-    private void OnTriggerEnter2D(Collider2D collision) { if (collision.tag == "NoManaRegen") canAutoRegenMana = false; }
-    private void OnTriggerExit2D(Collider2D collision) { if (collision.tag == "NoManaRegen") canAutoRegenMana = true; }
+
+    private void OnTriggerEnter2D(Collider2D collision) 
+    { 
+        if      (collision.tag == "NoManaRegenZone") inCombatZone   = true;
+
+        else if (collision.tag == "BreatherZone")    inBreatherZone = true;
+
+        RefreshMana(); //in case the player enters a zone that lets them regen
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) 
+    {
+        if      (collision.tag == "NoManaRegenZone") inCombatZone   = false;
+
+        else if (collision.tag == "BreatherZone")    inBreatherZone = false;
+    }
+
+    public override void HealHP(float amount)
+    {
+        if (!isAlive || amount <= 0) return;
+
+        float breatherModifier = 1f;
+        if (inBreatherZone) breatherModifier = 2f;
+
+        stats.currentHP = Mathf.Clamp(stats.currentHP + amount * stats.HealingModifier() * breatherModifier, stats.currentHP, stats.maxHP);
+        RefreshHP();
+    }
 }
