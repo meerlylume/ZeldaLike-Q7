@@ -25,7 +25,6 @@ public abstract class Fight : MonoBehaviour, IFight
     [SerializeField] Slider     manaSlider;
     [SerializeField] GameObject damageTextPrefab;
     [SerializeField] GameObject critTextPrefab;
-    [SerializeField] GameObject parryTextPrefab;
     [Space]
 
     [Space]
@@ -77,21 +76,17 @@ public abstract class Fight : MonoBehaviour, IFight
         gameObject.SetActive(false);
     }
 
-    private float CalculateDamage(float atk, bool crit, bool parry)
+    private float CalculateDamage(float atk, bool crit)
     {
         float damage;
 
-        // If defender parries
-        if (!crit && parry) { return 0.0f; }
-
         // If attacker crits
-        else if (crit && !parry)
+        if (crit)
         {
             damage = atk * 2.5f - Random.Range(stats.defence * 0.5f, stats.defence);
             damage = Mathf.Clamp(damage, 0, Mathf.Infinity);
         }
 
-        // If neither crit nor parry, or both do
         else
         {
             damage = Random.Range(atk, atk * 1.5f) - Random.Range(stats.defence * 0.5f, stats.defence);
@@ -107,31 +102,24 @@ public abstract class Fight : MonoBehaviour, IFight
         if (!isAlive) return;
         if (!canTakeDamage) return;
 
-
-        bool parry = stats.RollForLuck();
-
-        float totalDamage = CalculateDamage(atk, crit, parry);
+        float totalDamage = CalculateDamage(atk, crit);
 
         stats.currentHP = Mathf.Clamp(stats.currentHP - totalDamage, 0, stats.maxHP);
 
-        DamageDisplay(totalDamage, crit, parry, attackPos);
+        DamageDisplay(totalDamage, crit, attackPos);
         RefreshHP();
 
         if (stats.currentHP <= 0) { Die(); }
     }
 
-    private void DamageDisplay(float totalDamage, bool crit, bool parry, Vector2 attackPos)
+    private void DamageDisplay(float totalDamage, bool crit, Vector2 attackPos)
     {
         if (!worldCanvas) return;
         
         GameObject newText = null;
 
-        // if neither crit nor parry or both crit and parry
-        if (!(crit ^ parry)) { newText = Instantiate(damageTextPrefab); }
-        // if crit only
-        else if (crit)       { newText = Instantiate(critTextPrefab);   }
-        // if parry only
-        else if (parry)      { newText = Instantiate(parryTextPrefab);  }
+        if (crit) newText = Instantiate(critTextPrefab);   
+        else      newText = Instantiate(damageTextPrefab); 
 
         if (!newText) return;
 

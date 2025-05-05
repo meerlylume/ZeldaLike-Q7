@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class IC_GaugeBoostCrystal : BoostCrystal
 {
     [Header("HP/Mana Boost Ranges")]
-    public int minRandomRange = 5;
-    public int maxRandomRange = 10;
+    public int boostAmount;
 
     protected PlayerInventory playerInventory;
     MenuOption hpButton;
@@ -41,17 +40,13 @@ public class IC_GaugeBoostCrystal : BoostCrystal
 
     public void RaiseMaxHP()
     {
-        int amount = Random.Range(minRandomRange, maxRandomRange);
-        playerInventory.GetFight().RaiseMaxHP(amount);
-        playerInventory.RemoveItem(this);
+        playerInventory.GetFight().RaiseMaxHP(boostAmount);
         EndChoose();
     }
 
     public void RaiseMaxMana()
     {
-        int amount = Random.Range(minRandomRange, maxRandomRange);
-        playerInventory.GetFight().RaiseMaxMana(amount);
-        playerInventory.RemoveItem(this);
+        playerInventory.GetFight().RaiseMaxMana(boostAmount);
         EndChoose();
     }
 
@@ -59,6 +54,8 @@ public class IC_GaugeBoostCrystal : BoostCrystal
     public override void EndChoose()
     {
         base.EndChoose();
+
+        playerInventory.RemoveItem(this);
 
         if (hpButton)     Destroy(hpButton.gameObject);
         if (manaButton)   Destroy(manaButton.gameObject);
