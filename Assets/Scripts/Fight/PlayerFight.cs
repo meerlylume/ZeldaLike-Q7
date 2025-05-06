@@ -8,6 +8,11 @@ public class PlayerFight : Fight
 {
     PlayerMovement playerMovement;
 
+    [Header("HealthBar Shake")]
+    [SerializeField] private Animator healthBarnimator;
+    [SerializeField] private float    healthBarShakeTime;
+    [SerializeField] private Animator manAnimator; [Space]
+
     [Header("Particles")]
     [SerializeField] private ParticleSystem manaParticles; [Space]
 
@@ -15,7 +20,9 @@ public class PlayerFight : Fight
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private Button restartButton;
 
-    private bool isFocusingMana         = false;
+    private bool canChargeMana          = true;
+    private bool isChargingMana         = false;
+    private bool isDroppingMana         = false;
     private bool isAutoRegeneratingMana = false;
     private bool inCombatZone           = false;
     private bool inBreatherZone         = false;
@@ -30,10 +37,11 @@ public class PlayerFight : Fight
     {
         base.Start();
         playerMovement    = GetComponent<PlayerMovement>();
+        playerMovement.SetSpeed(stats.movementSpeed);
         stats.currentMana = stats.maxMana;
 
-        RefreshHealthBar();
-        RefreshManaBar();
+        RefreshHP();
+        RefreshMana();
 
         gameOverUI.SetActive(false);
     }
@@ -72,46 +80,57 @@ public class PlayerFight : Fight
         GetComponent<SpriteRenderer>().color = Color.white;
     }
 
-    public void FocusMana(InputAction.CallbackContext context)
+    public void ChargeMana(InputAction.CallbackContext context)
     {
+        if (!canChargeMana) return;
+
         if (context.started)
         {
-            if (!isFocusingMana) StartCoroutine(AutoDropManaRoutine(1f, 1f));
+            if (!isChargingMana) StartCoroutine(AutoDropManaRoutine(1f, 1f));
+            isChargingMana = true;
+            playerMovement.InManaChargingSpeed(true);
             //start mana focusing animation
         }
 
         if (context.canceled)
         {
-            isFocusingMana = false;
+            isChargingMana = false;
+            isDroppingMana = false;
             RefreshMana();
+            playerMovement.InManaChargingSpeed(false);
             //stop mana focusing animation
         }
     }
 
     public IEnumerator AutoDropManaRoutine(float time, float amount)
     {
-        isFocusingMana = true;
+        isDroppingMana = true;
+        manAnimator.SetBool("isShaking", true);
 
-        while (stats.currentMana > 0f && isFocusingMana)
+        while (stats.currentMana > 0f && isDroppingMana)
         {
             RemoveMana(amount);
+            //if (isChargingMana) manaCharged += amount;
             if (!manaParticles.isPlaying) manaParticles.Play();
             yield return new WaitForSeconds(time);
         }
 
         manaParticles.Stop();
-        isFocusingMana = false;
+        manAnimator.SetBool("isShaking", false);
+        isDroppingMana = false;
     }
 
     public override void RefreshMana()
     {
         base.RefreshMana();
-        if ((inBreatherZone || !inCombatZone) && !isFocusingMana && !isAutoRegeneratingMana && stats.currentMana != stats.maxMana) 
+        if ((inBreatherZone || !inCombatZone) && !isChargingMana && !isAutoRegeneratingMana && stats.currentMana != stats.maxMana) 
             StartCoroutine(AutoRegenManaRoutine(stats.ManaAutoRegenTime(), 1f));
     }
 
     public IEnumerator AutoRegenManaRoutine(float time, float amount)
     {
+        if (isDroppingMana) yield break;
+        
         isAutoRegeneratingMana = true;
 
         yield return new WaitForSeconds(time);
@@ -145,5 +164,19 @@ public class PlayerFight : Fight
 
         stats.currentHP = Mathf.Clamp(stats.currentHP + amount * stats.HealingModifier() * breatherModifier, stats.currentHP, stats.maxHP);
         RefreshHP();
+    }
+
+    public override void TakeDamage(float atk, bool crit, Vector2 attackPos)
+    {
+        base.TakeDamage(atk, crit, attackPos);
+
+        StartCoroutine(HealthBarShakeRoutine(healthBarShakeTime));
+    }
+
+    public IEnumerator HealthBarShakeRoutine(float time)
+    {
+        healthBarnimator.SetBool("isShaking", true);
+        yield return new WaitForSeconds(time);
+        healthBarnimator.SetBool("isShaking", false);
     }
 }

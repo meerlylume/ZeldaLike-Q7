@@ -16,5 +16,5 @@ public abstract class Attack : MonoBehaviour
 
     public abstract bool CheckIfInRange(Stats stats, Vector2 attackPos);
 
-    public virtual float GetCooldown(Stats stats) { return cooldown * stats.cooldownModifier; }
+    public virtual float GetCooldown(Stats stats) { return cooldown * stats.attackCooldownModifier; }
 }

@@ -3,14 +3,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float moveSpeed = 5f; //Only if PlayerFight failed to set this value
+    private float moveSpeed;
+    private float speedModifier;
     private Vector2 moveInput;
     private bool canMove;
     private Rigidbody2D rb;
     private Vector2 knockbackForce;
 
     #region Get/Set
-    public void SetSpeed(float value) { moveSpeed = value; }
+    public void    SetSpeed(float value)            { moveSpeed      = value; }
+    public void    InManaChargingSpeed(bool value)    { 
+        if (value) speedModifier = 0.5f;
+        else       speedModifier = 1f;
+    }
     public void    SetKnockbackForce(Vector2 value) { knockbackForce = value; }
     public Vector2 GetKnockbackForce()              { return knockbackForce;  }
     #endregion
@@ -49,17 +54,18 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb      = GetComponent<Rigidbody2D>();
+        speedModifier = 1f;
         canMove = true;
     }
 
     private void FixedUpdate() 
     { 
-        if (canMove) rb.linearVelocity = moveInput.normalized * moveSpeed;
+        if (canMove) rb.linearVelocity = moveInput.normalized * moveSpeed * speedModifier;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        rb.linearVelocity = moveInput.normalized * moveSpeed;
+        rb.linearVelocity = moveInput.normalized * moveSpeed * speedModifier;
     }
 }
