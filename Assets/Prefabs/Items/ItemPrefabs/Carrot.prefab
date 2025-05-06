@@ -50,8 +50,8 @@ MonoBehaviour:
   description: It's a shame we don't have these in the Moon Sanctuary, they taste
     great!
   information: +4 HP
-  sprite: {fileID: 2950869812727453837, guid: e580b4c962bdc7d409b070a3146172e5, type: 3}
-  highlightedSprite: {fileID: -4234038972002543540, guid: 873995fb6d0ad2148b9e04654cf3a2f8, type: 3}
+  sprite: {fileID: -5859083586626064994, guid: f68fce9f05312d84eaba4b110aa01b8d, type: 3}
+  highlightedSprite: {fileID: 9182848010994354940, guid: 0de1ec74eba856f41ab3322d83f7605a, type: 3}
   maxStackQuantity: 99
   basePrice: 20
   canBeSold: 1
@@ -100,7 +100,7 @@ SpriteRenderer:
   m_SortingLayerID: 1441307203
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2950869812727453837, guid: e580b4c962bdc7d409b070a3146172e5, type: 3}
+  m_Sprite: {fileID: -5859083586626064994, guid: f68fce9f05312d84eaba4b110aa01b8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
