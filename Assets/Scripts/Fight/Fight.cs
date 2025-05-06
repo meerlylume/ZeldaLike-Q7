@@ -21,8 +21,8 @@ public abstract class Fight : MonoBehaviour, IFight
 
     [Header("UI References")]
     [SerializeField] Canvas           worldCanvas;
-    [SerializeField] protected Slider healthSlider;
-    [SerializeField] protected Slider manaSlider;
+    [SerializeField] private GUIStatBar healthBar;
+    [SerializeField] private GUIStatBar manaBar;
     [SerializeField] GameObject       damageTextPrefab;
     [SerializeField] GameObject       critTextPrefab;
     [Space]
@@ -55,7 +55,7 @@ public abstract class Fight : MonoBehaviour, IFight
         stats.creativity       = baseStats.creativity;
         stats.recovery         = baseStats.recovery;
         stats.movementSpeed    = baseStats.movementSpeed;
-        stats.cooldownModifier = baseStats.cooldownModifier;
+        stats.attackCooldownModifier = baseStats.attackCooldownModifier;
 
         FullHealHP();
     }
@@ -201,21 +201,8 @@ public abstract class Fight : MonoBehaviour, IFight
     }
 
     #region HealthBar & ManaBar
-    public virtual void RefreshHP()   { RefreshHealthBar(); }
-
-    public virtual void RefreshMana() { RefreshManaBar();   }
-
-    public virtual void RefreshHealthBar()
-    {
-        healthSlider.maxValue = stats.maxHP;
-        healthSlider.value    = stats.currentHP;
-    }
-
-    public virtual void RefreshManaBar()
-    {
-        manaSlider.maxValue = stats.maxMana;
-        manaSlider.value    = stats.currentMana;
-    }
+    public virtual void RefreshHP()   { healthBar.RefreshBar(stats.maxHP, stats.currentHP);   }
+    public virtual void RefreshMana() { manaBar.RefreshBar(stats.maxMana, stats.currentMana); }
     #endregion
 
     #region Stat Raising (item usage)

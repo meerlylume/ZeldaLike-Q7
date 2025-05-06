@@ -31,9 +31,6 @@ public class ChasingEnemy : EnemyFight
             speed = 0f;
             StartCoroutine(AttackRoutine());
         }
-        else
-        {
-            speed = stats.movementSpeed;
-        }
+        else { speed = stats.movementSpeed; }
     }
 }

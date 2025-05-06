@@ -103,7 +103,7 @@ public class GameSaver : MonoBehaviour
         to.recovery         = from.recovery;
 
         to.movementSpeed    = from.movementSpeed;
-        to.cooldownModifier = from.cooldownModifier;
+        to.attackCooldownModifier = from.attackCooldownModifier;
     }
 
     private void SaveChests(SaveData saveData)

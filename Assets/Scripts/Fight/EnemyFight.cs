@@ -30,7 +30,7 @@ public class EnemyFight : Fight
         stats.creativity       = baseStats.creativity;
         stats.recovery         = baseStats.recovery;
         stats.movementSpeed    = baseStats.movementSpeed;
-        stats.cooldownModifier = baseStats.cooldownModifier;
+        stats.attackCooldownModifier = baseStats.attackCooldownModifier;
 
         FullHealHP();
     }
