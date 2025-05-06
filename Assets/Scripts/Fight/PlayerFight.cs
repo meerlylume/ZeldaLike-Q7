@@ -8,6 +8,11 @@ public class PlayerFight : Fight
 {
     PlayerMovement playerMovement;
 
+    [Header("HealthBar Shake")]
+    [SerializeField] private Animator healthBarnimator;
+    [SerializeField] private float    healthBarShakeTime;
+    [SerializeField] private Animator manAnimator; [Space]
+
     [Header("Particles")]
     [SerializeField] private ParticleSystem manaParticles; [Space]
 
@@ -91,6 +96,7 @@ public class PlayerFight : Fight
     public IEnumerator AutoDropManaRoutine(float time, float amount)
     {
         isFocusingMana = true;
+        manAnimator.SetBool("isShaking", true);
 
         while (stats.currentMana > 0f && isFocusingMana)
         {
@@ -100,6 +106,7 @@ public class PlayerFight : Fight
         }
 
         manaParticles.Stop();
+        manAnimator.SetBool("isShaking", false);
         isFocusingMana = false;
     }
 
@@ -145,5 +152,19 @@ public class PlayerFight : Fight
 
         stats.currentHP = Mathf.Clamp(stats.currentHP + amount * stats.HealingModifier() * breatherModifier, stats.currentHP, stats.maxHP);
         RefreshHP();
+    }
+
+    public override void TakeDamage(float atk, bool crit, Vector2 attackPos)
+    {
+        base.TakeDamage(atk, crit, attackPos);
+
+        StartCoroutine(HealthBarShakeRoutine(healthBarShakeTime));
+    }
+
+    public IEnumerator HealthBarShakeRoutine(float time)
+    {
+        healthBarnimator.SetBool("isShaking", true);
+        yield return new WaitForSeconds(time);
+        healthBarnimator.SetBool("isShaking", false);
     }
 }

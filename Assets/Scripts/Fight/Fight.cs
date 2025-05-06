@@ -20,11 +20,11 @@ public abstract class Fight : MonoBehaviour, IFight
     [SerializeField] protected float textLifetime = 1f; //TEMPORARY
 
     [Header("UI References")]
-    [SerializeField] Canvas     worldCanvas;
-    [SerializeField] Slider     healthSlider;
-    [SerializeField] Slider     manaSlider;
-    [SerializeField] GameObject damageTextPrefab;
-    [SerializeField] GameObject critTextPrefab;
+    [SerializeField] Canvas           worldCanvas;
+    [SerializeField] protected Slider healthSlider;
+    [SerializeField] protected Slider manaSlider;
+    [SerializeField] GameObject       damageTextPrefab;
+    [SerializeField] GameObject       critTextPrefab;
     [Space]
 
     [Space]
