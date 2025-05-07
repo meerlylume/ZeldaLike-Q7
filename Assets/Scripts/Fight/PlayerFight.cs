@@ -141,18 +141,18 @@ public class PlayerFight : Fight
 
     private void OnTriggerEnter2D(Collider2D collision) 
     { 
-        if      (collision.tag == "NoManaRegenZone") inCombatZone   = true;
+        if (collision.tag == "NoManaRegenZone") inCombatZone   = true;
 
-        else if (collision.tag == "BreatherZone")    inBreatherZone = true;
+        if (collision.tag == "BreatherZone")    inBreatherZone = true;
 
         RefreshMana(); //in case the player enters a zone that lets them regen
     }
 
     private void OnTriggerExit2D(Collider2D collision) 
     {
-        if      (collision.tag == "NoManaRegenZone") inCombatZone   = false;
+        if (collision.tag == "NoManaRegenZone") inCombatZone   = false;
 
-        else if (collision.tag == "BreatherZone")    inBreatherZone = false;
+        if (collision.tag == "BreatherZone")    inBreatherZone = false;
     }
 
     public override void HealHP(float amount)
@@ -166,9 +166,9 @@ public class PlayerFight : Fight
         RefreshHP();
     }
 
-    public override void TakeDamage(float atk, bool crit, Vector2 attackPos)
+    public override void TakeDamage(float atk, bool crit, Vector2 attackPos, Stats attacker)
     {
-        base.TakeDamage(atk, crit, attackPos);
+        base.TakeDamage(atk, crit, attackPos, attacker);
 
         StartCoroutine(HealthBarShakeRoutine(healthBarShakeTime));
     }

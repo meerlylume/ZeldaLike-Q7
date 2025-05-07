@@ -14,6 +14,7 @@ public class QuestTracker : MonoBehaviour
     private List<GameObject> allPanels = new List<GameObject>();
 
     private List<Quest> quests = new List<Quest>();
+
     public  List<Quest> GetQuests() { return quests; }
 
     public void TrackQuest(Quest quest) { quests.Add(quest); }
@@ -24,13 +25,22 @@ public class QuestTracker : MonoBehaviour
 
     private void BuildLists()
     {
-        if (allPanels.Count == quests.Count) return;
-
         if (allPanels.Count > quests.Count)
         {
             Debug.LogError("Error Building Quest List: allPanels.Count > quests.Count");
             return;
         }
+
+        for (int i = 0; i < allPanels.Count; i++)
+        {
+            if (quests[i].IsCompleted())
+            {
+                allPanels[i].transform.SetParent(completedGrid.transform);
+                allPanels[i].transform.localScale = Vector3.one;
+            }
+        }
+
+        if (allPanels.Count == quests.Count) return;
 
         for (int i = allPanels.Count; i < quests.Count; i++)
         {
@@ -44,7 +54,7 @@ public class QuestTracker : MonoBehaviour
                 completedScript.SetQuestDesc(quests[i].GetDescription());
                 completedScript.SetQuestName(quests[i].GetName());
 
-                completedObject.transform.localScale = new Vector3(1, 1, 1);
+                completedObject.transform.localScale = Vector3.one;
 
                 allPanels.Add(completedObject);
             }
@@ -59,7 +69,7 @@ public class QuestTracker : MonoBehaviour
                 progressScript.SetQuestName(quests[i].GetName());
                 progressScript.SetRewardsDesc(quests[i].GetRewardsDesc());
 
-                progressObject.transform.localScale = new Vector3(1, 1, 1);
+                progressObject.transform.localScale = Vector3.one;
 
                 allPanels.Add(progressObject);
             }

@@ -43,14 +43,15 @@ public class Slot : MonoBehaviour
         // Sprite
         if (image && inventoryData.items[itemIndex].sprite) image.sprite = inventoryData.items[itemIndex].sprite;
 
-        RefreshDescAndInfo();
+        RefreshItemPreview();
     }
 
-    public void RefreshDescAndInfo()
+    public void RefreshItemPreview()
     {
         if (!parent) return;
         parent.SetDescText(inventoryData.items[itemIndex].description);
         parent.SetInfoText(inventoryData.items[itemIndex].information);
+        parent.SetItemSprite(inventoryData.items[itemIndex].sprite);
     }
 
     public void RefreshThrowAway()

@@ -35,12 +35,12 @@ public class EnemyFight : Fight
         FullHealHP();
     }
 
-    public override void Die()
+    public override void Die(Stats killer)
     {
         canTakeDamage = false;
         enemyKillCount++;
 
-        StartCoroutine(DeathRoutine());
+        StartCoroutine(DeathRoutine(killer));
     }
 
     public void DropItem(Item item) 
@@ -53,14 +53,15 @@ public class EnemyFight : Fight
                                                  Random.Range(transform.position.y - lootRadius, transform.position.y + lootRadius), 0);
     }
 
-    IEnumerator DeathRoutine()
+    IEnumerator DeathRoutine(Stats killer)
     {
         if (!lootTable) yield break;
 
-        //If quantities or odds list is wrong, drop every item once regardless of rarity
+        //FAILSAFE: 
+            //If quantities or odds list is wrong, drop every item once regardless of rarity
         if (!((lootTable.items.Count == lootTable.quantities.Count) == (lootTable.items.Count == lootTable.odds.Count)))
         {
-            Debug.Log("Error with the LootTable, dropping every item once.");
+            Debug.LogError("Wrong LootTable. Dropping every item once.");
             for (int i = 0; lootTable.items.Count > 0; i++)
             {
                 DropItem(lootTable.items[i]);
@@ -68,16 +69,19 @@ public class EnemyFight : Fight
             }
         }
 
-        //Else proceed as expected
+        //Regular behaviour
         else
         {
             for (int i = 0; lootTable.items.Count > i; i++)
             {
                 for (int j = 0; lootTable.quantities[i] > j; j++)
-                { 
-                    //Find a random between 0 and 1, if it is smaller than this item's dropping odds, drop it.
-                    if (Random.Range(0.0f, 1.0f) <= lootTable.odds[i])
+                {
+                    //Find a random between 0 and 1 - LootModifier, if it is smaller than this item's dropping odds, drop it.
+                    if (Random.Range(0.0f, 1.0f - killer.LootModifier()) <= lootTable.odds[i])
                     {
+                        // If Loot Modifier is maxxed out, player has a 50% chance of dropping twice the loot
+                        if (killer.IsLootMaxxedOut() && Random.Range(0.0f, 1.0f) >= 0.5f) DropItem(lootTable.items[i]);
+                        
                         DropItem(lootTable.items[i]);
                         yield return new WaitForSeconds(timeBetweenDrops);
                     }
