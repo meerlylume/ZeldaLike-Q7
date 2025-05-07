@@ -94,7 +94,6 @@ public class PlayerFight : Fight
 
         if (context.canceled)
         {
-            isChargingMana = false;
             isDroppingMana = false;
             RefreshMana();
             playerMovement.InManaChargingSpeed(false);
@@ -118,6 +117,7 @@ public class PlayerFight : Fight
         manaParticles.Stop();
         manAnimator.SetBool("isShaking", false);
         isDroppingMana = false;
+        isChargingMana = false;
     }
 
     public override void RefreshMana()

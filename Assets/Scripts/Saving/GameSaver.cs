@@ -62,10 +62,11 @@ public class GameSaver : MonoBehaviour
 
     public void DeleteSave()
     {
-        SaveData saveData    = new() { };
-        
-        saveData.playerInventory = cannelleInventoryData;
-        
+        SaveData saveData = new()
+        {
+            playerInventory = cannelleInventoryData
+        };
+
         // Player Stats
         CopyStats(cannelleFirstStats, cannelleCurrentStats);
         saveData.playerStats = cannelleCurrentStats;

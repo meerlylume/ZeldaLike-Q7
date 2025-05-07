@@ -19,6 +19,8 @@ public class QuestNPC : NPC
 
     public void CheckQuestDialogue()
     {
+        if (!quest.IsInProgress() && !quest.IsCompleted()) return;
+
         if (quest.IsInProgress())
         {
             quest.CheckIfCompleted();

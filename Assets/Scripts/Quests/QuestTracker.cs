@@ -14,16 +14,13 @@ public class QuestTracker : MonoBehaviour
     private List<GameObject> allPanels = new List<GameObject>();
 
     private List<Quest> quests = new List<Quest>();
-    public List<Quest> GetQuests() { return quests; }
+    public  List<Quest> GetQuests() { return quests; }
 
     public void TrackQuest(Quest quest) { quests.Add(quest); }
 
     private void Start() { OnQuestPanelOpen(); }
 
-    public void OnQuestPanelOpen()
-    {
-        BuildLists();
-    }
+    public void OnQuestPanelOpen() { BuildLists(); }
 
     private void BuildLists()
     {
@@ -31,7 +28,7 @@ public class QuestTracker : MonoBehaviour
 
         if (allPanels.Count > quests.Count)
         {
-            Debug.Log("ERROR: allPanels.Count > quests.Count");
+            Debug.LogError("Error Building Quest List: allPanels.Count > quests.Count");
             return;
         }
 
