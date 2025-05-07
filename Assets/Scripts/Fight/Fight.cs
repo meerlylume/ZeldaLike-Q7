@@ -49,14 +49,14 @@ public abstract class Fight : MonoBehaviour, IFight
 
     public virtual void CopyStatsInto(Stats baseStats, Stats stats)
     {
-        stats.name             = baseStats.name;
-        stats.maxHP            = baseStats.maxHP;
-        stats.maxMana          = baseStats.maxMana;
-        stats.attack           = baseStats.attack;
-        stats.defence          = baseStats.defence;
-        stats.creativity       = baseStats.creativity;
-        stats.recovery         = baseStats.recovery;
-        stats.movementSpeed    = baseStats.movementSpeed;
+        stats.name                   = baseStats.name;
+        stats.maxHP                  = baseStats.maxHP;
+        stats.maxMana                = baseStats.maxMana;
+        stats.attack                 = baseStats.attack;
+        stats.defence                = baseStats.defence;
+        stats.creativity             = baseStats.creativity;
+        stats.recovery               = baseStats.recovery;
+        stats.movementSpeed          = baseStats.movementSpeed;
         stats.attackCooldownModifier = baseStats.attackCooldownModifier;
 
         FullHealHP();
@@ -77,6 +77,8 @@ public abstract class Fight : MonoBehaviour, IFight
         // /!\ THIS IS ONLY TEMPORARY /!\
         gameObject.SetActive(false);
     }
+
+    public virtual void Die(Stats killer) { Die(); }
 
     private float CalculateDamage(float atk, bool crit)
     {
@@ -99,7 +101,7 @@ public abstract class Fight : MonoBehaviour, IFight
         return damage;
     }
 
-    public virtual void TakeDamage(float atk, bool crit, Vector2 attackPos)
+    public virtual void TakeDamage(float atk, bool crit, Vector2 attackPos, Stats attacker)
     {
         if (!isAlive) return;
         if (!canTakeDamage) return;
@@ -111,7 +113,7 @@ public abstract class Fight : MonoBehaviour, IFight
         DamageDisplay(totalDamage, crit, attackPos);
         RefreshHP();
 
-        if (stats.currentHP <= 0) { Die(); }
+        if (stats.currentHP <= 0) { Die(attacker); }
     }
 
     private void DamageDisplay(float totalDamage, bool crit, Vector2 attackPos)

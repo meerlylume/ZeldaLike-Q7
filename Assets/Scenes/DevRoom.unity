@@ -36222,6 +36222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2871297306824503340, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1414072405}
     - target: {fileID: 4321034358969078404, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

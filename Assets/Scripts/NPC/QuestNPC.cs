@@ -48,8 +48,6 @@ public class QuestNPC : NPC
         }
     }
 
-    //handle reward giving, idfk how ngl...
-
     public override void StartDialogue()
     {
         CheckQuestDialogue();

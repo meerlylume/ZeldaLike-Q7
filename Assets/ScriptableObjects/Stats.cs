@@ -22,7 +22,7 @@ public class Stats : ScriptableObject
     public int recovery;
     [Space]
 
-    [Header("Hidden Stats")]
+    [Header("Hidden Stats")] //!\\ WHEN ADDING A STAT, DON'T FORGET TO CHANGE GAMESAVER'S COPY FUNCTION //!\\
     public float movementSpeed;
     public float attackCooldownModifier = 1.0f;
 
@@ -42,5 +42,17 @@ public class Stats : ScriptableObject
     public float ManaAutoRegenTime()
     {
         return 2 - recovery * 0.1f; //TEMPORARY CALCULATION
+    }
+
+    public float LootModifier()
+    {
+        return Mathf.Clamp(creativity / 50, 0f, 1f);
+    }
+
+    public bool IsLootMaxxedOut()
+    {
+        if (LootModifier() == 1f) return true;
+
+        return false;
     }
 }
