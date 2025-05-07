@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,7 @@ public class InteractionDetector : MonoBehaviour
     [SerializeField] GameObject interactionIcon;
     [SerializeField] PlayerInventory playerInventory;
     [SerializeField] PlayerFight playerFight;
+    [SerializeField] GameObject currentCamera;
 
     private List <GameObject> interactableGameobjects = new List<GameObject>();
     private bool canInteract = true;
@@ -69,6 +71,16 @@ public class InteractionDetector : MonoBehaviour
             {
                 playerFight.FullHeal();
                 return;
+            }
+
+            interactableGameobjects[index].TryGetComponent(out Teleporter teleporter);
+            if (teleporter && teleporter.CanInteract())
+            {
+                playerFight.transform.position  = teleporter.GetDestination();
+
+                currentCamera.SetActive(false);
+                currentCamera = teleporter.GetNewCamera();
+                currentCamera.SetActive(true);
             }
 
             interactableGameobjects[index].TryGetComponent(out IInteractable interactable);

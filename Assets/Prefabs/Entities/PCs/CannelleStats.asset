@@ -15,12 +15,12 @@ MonoBehaviour:
   name: Cannelle
   isAlly: 1
   maxHP: 20
-  currentHP: 0
+  currentHP: 20
   maxMana: 20
   currentMana: 20
-  attack: 6
-  defence: 6
+  attack: 2147483647
+  defence: 2147483647
   creativity: 6
   recovery: 6
-  movementSpeed: 5
+  movementSpeed: 20
   attackCooldownModifier: 1
