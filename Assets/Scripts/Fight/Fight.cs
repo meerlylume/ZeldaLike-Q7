@@ -25,8 +25,6 @@ public abstract class Fight : MonoBehaviour, IFight
     [SerializeField] private GUIStatBar manaBar;
     [SerializeField] GameObject       damageTextPrefab;
     [SerializeField] GameObject       critTextPrefab;
-    [SerializeField] GameObject       healTextPrefab;
-    [SerializeField] GameObject       boostedHealTextPrefab;
     [Space]
 
     [Space]
