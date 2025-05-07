@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1712330668669714529}
   - component: {fileID: 2501275518386469735}
+  - component: {fileID: 7493178212183213635}
   - component: {fileID: 604276342344381669}
   - component: {fileID: 7932715063593661338}
   m_Layer: 0
-  m_Name: Carrot
+  m_Name: Lettuce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,6 +56,18 @@ MonoBehaviour:
   basePrice: 20
   canBeSold: 1
   hpHealed: 4
+--- !u!114 &7493178212183213635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357275959380366645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ddb11e880fd2114281eeeac8a3de606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &604276342344381669
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,7 +113,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -5859083586626064994, guid: f68fce9f05312d84eaba4b110aa01b8d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4864033, g: 0.94716984, b: 0.09114274, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

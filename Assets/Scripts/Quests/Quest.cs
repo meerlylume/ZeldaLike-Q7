@@ -4,15 +4,14 @@ public abstract class Quest : MonoBehaviour
 {
     private bool isInProgress = false;
     private bool isCompleted = false;
+
     [Header("Quest Rewards")]
     [SerializeField] private InventoryData rewards; [Space]
     [Header("Quest Info")]
-    [SerializeField] private new string    name;
-    [SerializeField] private string        description;
-    [SerializeField] private string        rewardsDesc;
-    [SerializeField] private string        asker;        //Lapsus had me forgetting how you call someone who asks you
-                                        //something so until my brain gets repaired this is all we get.
-
+    [SerializeField] private new string name;
+    [SerializeField] private string     description;
+    [SerializeField] private string     rewardsDesc;
+    [SerializeField] private string     asker;
     [Header("Dialogue SOs")]
     [SerializeField] NPCDialogue isInProgressDialogue; 
     [SerializeField] NPCDialogue rewardDialogue;
