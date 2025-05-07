@@ -20,9 +20,9 @@ public class PlayerInventory : Inventory
     List<GameObject> slotList;
 
     #region Get/Set
-    public InventoryData GetInventoryData()           { return inventory;          }
-    public Fight GetFight()                           { return playerFight;        }
-    public void SetInventoryData(InventoryData value) { inventory = value;         }
+    public InventoryData GetInventoryData()           { return inventory;   }
+    public Fight GetFight()                           { return playerFight; }
+    public void SetInventoryData(InventoryData value) { inventory = value;  }
     #endregion
 
     private void Start() { RefreshInventory(); }
@@ -85,9 +85,9 @@ public class PlayerInventory : Inventory
 
         for (int i = 0; i < inventory.items.Count; i++)
         {
-            GameObject newSlot          = Instantiate(slotPrefab);
+            GameObject newSlot = Instantiate(slotPrefab);
             newSlot.transform.SetParent(inventoryGrid.transform, false);
-            Slot newScript              = newSlot.GetComponent<Slot>();
+            Slot newScript     = newSlot.GetComponent<Slot>();
 
             newScript.SetItemIndex(i);
             newScript.SetInventory(this);
@@ -104,5 +104,20 @@ public class PlayerInventory : Inventory
         {
             Destroy(inventoryGrid.transform.GetChild(i).gameObject);
         }
+    }
+
+    public bool CheckIfInInventory(Item item, int quantity)
+    {
+        for (int i = 0; i < inventory.items.Count; i++)
+            if (inventory.items[i] == item && inventory.quantities[i] >= quantity) return true;
+
+        return false;
+    }
+
+    public bool CheckIfInInventory(Item item)
+    {
+        for (int i = 0; i < inventory.items.Count; i++) if (inventory.items[i] == item) return true;
+
+        return false;
     }
 }

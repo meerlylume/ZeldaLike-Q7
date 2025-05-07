@@ -61,7 +61,7 @@ public class QuestNPC : NPC
         {
             quest.AcceptQuest();
             questTracker.TrackQuest(quest);
-            CheckQuestDialogue();
+            //CheckQuestDialogue();
         }
 
         base.EndDialogue();
