@@ -169,7 +169,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 8202874714338888472}
           m_TargetAssemblyTypeName: Slot, Assembly-CSharp
-          m_MethodName: RefreshDescAndInfo
+          m_MethodName: RefreshItemPreview
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
