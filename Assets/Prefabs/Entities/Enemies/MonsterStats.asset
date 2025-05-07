@@ -22,5 +22,5 @@ MonoBehaviour:
   defence: 2
   creativity: 1
   recovery: 1
-  movementSpeed: 3
-  attackCooldownModifier: 1.5
+  movementSpeed: 4
+  attackCooldownModifier: 2
