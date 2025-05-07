@@ -244,6 +244,8 @@ MonoBehaviour:
   manaBar: {fileID: 0}
   damageTextPrefab: {fileID: 3889677253225551517, guid: 5af4fc47820721d44b18d8f803ef9d2a, type: 3}
   critTextPrefab: {fileID: 5102333147670426686, guid: 2672e5c4ea0fd3e4b852de99375a3e96, type: 3}
+  healTextPrefab: {fileID: 0}
+  boostedHealTextPrefab: {fileID: 0}
   spriteRenderer: {fileID: 9027351696297036905}
   lootTable: {fileID: 11400000, guid: 4b3f933283eb3df43a0cc15721a2dc92, type: 2}
   lootRadius: 2.5
@@ -654,11 +656,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreHalfFill: 0
-  fill: {fileID: 3652240801221170186}
+  fillGameobject: {fileID: 1438134701204290897}
   background: {fileID: 4658626240249205459}
-  baseFill: {r: 0.40000004, g: 0.8196079, b: 0.043137256, a: 1}
-  baseBackground: {r: 0.9019608, g: 1, b: 0.76862746, a: 1}
-  halfFill: {r: 0.9607843, g: 0.84705883, b: 0.15686275, a: 1}
-  halfBackground: {r: 1, g: 0.9764706, b: 0.83137256, a: 1}
-  fourthFill: {r: 0.85490197, g: 0.061705876, b: 0.0470588, a: 1}
-  fourthBackground: {r: 1, g: 0.76862746, b: 0.7882353, a: 1}
+  c_fullFill: {r: 0.2784314, g: 0.7647059, b: 0.050980393, a: 1}
+  c_baseFill: {r: 0.4, g: 0.81960785, b: 0.043137256, a: 1}
+  c_baseBackground: {r: 0.9019608, g: 1, b: 0.76862746, a: 1}
+  c_halfFill: {r: 0.9607843, g: 0.84705883, b: 0.15686275, a: 1}
+  c_halfBackground: {r: 1, g: 0.9764706, b: 0.83137256, a: 1}
+  c_fourthFill: {r: 0.85490197, g: 0.0627451, b: 0.047058824, a: 1}
+  c_fourthBackground: {r: 1, g: 0.76862746, b: 0.7882353, a: 1}
