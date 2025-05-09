@@ -19,5 +19,9 @@ public class NPCDialogue : ScriptableObject
     public DialogueChoices dialogueChoices; [Space]
     public bool questTrigger = false;
 
+    [Header("Items")]
+    public bool giveItems = false;
+    public InventoryData itemsToGive;
+
     //Dialogue flags?
 }

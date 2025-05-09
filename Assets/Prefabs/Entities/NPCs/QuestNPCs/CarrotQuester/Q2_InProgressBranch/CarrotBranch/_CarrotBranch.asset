@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d80a39c2ef24248902b4997c63c3a2, type: 3}
+  m_Name: _CarrotBranch
+  m_EditorClassIdentifier: 
+  choices:
+  - No they don't.
+  - Well at least they're orange.
+  - The texture's nice, but not the taste.
+  - Only cooked.
+  - I prefer lettuce.
+  - They are literally the worst vegetable ever.
+  outcomes:
+  - {fileID: 11400000, guid: e0eaaf774f7aea741a1601df0d8d539f, type: 2}
+  - {fileID: 11400000, guid: 44b239d61566b1141ba28ba022d4c62a, type: 2}
+  - {fileID: 11400000, guid: 5898aede78596924c88a2d5f42c0aa2d, type: 2}
+  - {fileID: 11400000, guid: ff328f6dfa2545e48b0d5712f16713d3, type: 2}
+  - {fileID: 11400000, guid: 67e61d3461cedfa46b6912cd9250ad2b, type: 2}
+  - {fileID: 11400000, guid: e6d4d6b379781b748a636a061401e4a5, type: 2}

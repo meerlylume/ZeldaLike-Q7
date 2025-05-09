@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
-  m_Name: Q2_RewardDialogue
+  m_Name: C2
   m_EditorClassIdentifier: 
   name: Carol
   npcSprite: {fileID: 0}
@@ -18,8 +18,8 @@ MonoBehaviour:
   isPortraitOnTheRight: 1
   talkingSpeed: 0.02
   dialogueLines:
-  - Thanks a bunch <name>Cannelle</name>! I really owe you one!
-  - 
+  - For someone who used to be an inn-keeper, you have the weirdest food standards.
+  - Though yeah, orange is a factor.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
   giveItems: 0

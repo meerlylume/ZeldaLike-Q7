@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
-  m_Name: Q2_RewardDialogue
+  m_Name: C1
   m_EditorClassIdentifier: 
   name: Carol
   npcSprite: {fileID: 0}
@@ -18,8 +18,9 @@ MonoBehaviour:
   isPortraitOnTheRight: 1
   talkingSpeed: 0.02
   dialogueLines:
-  - Thanks a bunch <name>Cannelle</name>! I really owe you one!
-  - 
+  - Well, not until I get my <item>carrots</item>...
+  - I'm not being greedy, I just want to make sure it doesn't go to waste.
+  - Wouldn't want another coward like me using one up only to chicken out, right?
   dialogueChoices: {fileID: 0}
   questTrigger: 0
   giveItems: 0
