@@ -3759,8 +3759,6 @@ MonoBehaviour:
   manaBar: {fileID: 7082705226707610290}
   damageTextPrefab: {fileID: 3889677253225551517, guid: 5af4fc47820721d44b18d8f803ef9d2a, type: 3}
   critTextPrefab: {fileID: 5102333147670426686, guid: 2672e5c4ea0fd3e4b852de99375a3e96, type: 3}
-  healTextPrefab: {fileID: 0}
-  boostedHealTextPrefab: {fileID: 0}
   spriteRenderer: {fileID: 6366090582225010525}
   healthBarnimator: {fileID: 7255011324944682989}
   healthBarShakeTime: 0.25
@@ -6981,6 +6979,7 @@ MonoBehaviour:
   interactionIcon: {fileID: 1344820974355898173}
   playerInventory: {fileID: 1544510492908036348}
   playerFight: {fileID: 3285378661144251519}
+  currentCamera: {fileID: 0}
 --- !u!58 &5653801656896547324
 CircleCollider2D:
   m_ObjectHideFlags: 0

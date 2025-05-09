@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c08017cf27625e409b9981144fc01d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewards: {fileID: 11400000, guid: 6e94327f670bd854695ea09e324ff3f8, type: 2}
+  rewards: {fileID: 11400000, guid: 7bf616a3dbeaf6a418d1e189d5392076, type: 2}
   name: Give 5 carrots
   description: Get 5 carrots and deliver them to The Carrot Quester.
   rewardsDesc: You get something really good that's not implemented yet but trust

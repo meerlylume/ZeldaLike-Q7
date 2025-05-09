@@ -50,7 +50,7 @@ public class QuestNPC : NPC
 
     public override void StartDialogue()
     {
-        CheckQuestDialogue();
+        if (rootDialogueData != quest.GetIsInProgressDialogue()) CheckQuestDialogue();
 
         base.StartDialogue();
     }
