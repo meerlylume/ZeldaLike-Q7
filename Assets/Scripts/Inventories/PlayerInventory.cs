@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class PlayerInventory : Inventory
@@ -13,6 +14,7 @@ public class PlayerInventory : Inventory
     [SerializeField] EventSystem eventSystem;
 
     [Header("UI")]
+    [SerializeField] private MenuController menuController;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private GameObject inventoryGrid;
     [SerializeField] private TextMeshProUGUI infoText;
@@ -25,7 +27,7 @@ public class PlayerInventory : Inventory
     public void SetInventoryData(InventoryData value) { inventory = value;  }
     #endregion
 
-    private void Start() { RefreshInventory(); }
+    private void Start() { RefreshInventory();  }
 
     public override void AddItem(Item item, int quantity)
     {
