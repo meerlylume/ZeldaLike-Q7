@@ -54698,6 +54698,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a51358345effd4469e81d7a79cce228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1818167671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3285378661144251519, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
+  m_PrefabInstance: {fileID: 6846296225208907423}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adfa2d66783dcda46851f2d1c859ae50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1828380740 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5753628572347031557, guid: d2cb1348c855e28408e2b39c691e8cda, type: 3}
@@ -64140,6 +64151,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4902355890821683597, guid: afdc7e416786d6741ae431c8cbcbf5dd, type: 3}
+      propertyPath: m_Size.x
+      value: 62.746338
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902355890821683597, guid: afdc7e416786d6741ae431c8cbcbf5dd, type: 3}
+      propertyPath: m_Size.y
+      value: 61.66824
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902355890821683597, guid: afdc7e416786d6741ae431c8cbcbf5dd, type: 3}
+      propertyPath: m_Offset.x
+      value: -5.192833
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902355890821683597, guid: afdc7e416786d6741ae431c8cbcbf5dd, type: 3}
+      propertyPath: m_Offset.y
+      value: -18.813189
+      objectReference: {fileID: 0}
     - target: {fileID: 5259967997894083868, guid: afdc7e416786d6741ae431c8cbcbf5dd, type: 3}
       propertyPath: m_Name
       value: NoManaRegenZone
@@ -64696,6 +64723,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 167051143}
     m_Modifications:
+    - target: {fileID: 2759150594968193564, guid: fb01a073f6275a24fb272a8845735967, type: 3}
+      propertyPath: playerFight
+      value: 
+      objectReference: {fileID: 1818167671}
     - target: {fileID: 2759150594968193564, guid: fb01a073f6275a24fb272a8845735967, type: 3}
       propertyPath: playerInventory
       value: 
