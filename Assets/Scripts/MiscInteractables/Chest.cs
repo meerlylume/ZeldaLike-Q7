@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Chest : Inventory, IInteractable
 {
+    [Header("Sprites")]
+    [SerializeField] private Sprite openSprite;
+    [SerializeField] private Sprite closedSprite;
+    
     private bool isOpen = false;
     private SpriteRenderer spriteRenderer;
 
@@ -9,8 +13,8 @@ public class Chest : Inventory, IInteractable
     public static int lastID;
 
     #region Get/Set
-    public int  GetID()               { return ID;      }
-    public bool GetIsOpen()           { return isOpen;  }
+    public int  GetID()     { return ID;     }
+    public bool GetIsOpen() { return isOpen; }
     #endregion
 
     private void Start()
@@ -19,11 +23,14 @@ public class Chest : Inventory, IInteractable
 
         lastID++;
         ID = lastID;
+
+        CheckIfOpen();
     }
 
     public void CheckIfOpen()
     {
-        if (isOpen) spriteRenderer.color = Color.red;
+        if (isOpen) spriteRenderer.sprite = openSprite;
+        else        spriteRenderer.sprite = closedSprite;
     }
 
     public bool CanInteract() { return !isOpen; }
@@ -32,7 +39,7 @@ public class Chest : Inventory, IInteractable
     {
         if (!CanInteract()) return;
         isOpen = true;
-        spriteRenderer.color = Color.red;
+        CheckIfOpen();
     }
 
     public InventoryData GetInventory() { return inventory; }

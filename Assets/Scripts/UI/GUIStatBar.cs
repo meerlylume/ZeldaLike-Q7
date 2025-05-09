@@ -31,6 +31,8 @@ public class GUIStatBar : MonoBehaviour
 
     public void RefreshBar(float newMax, float currentValue)
     {
+        if (!slider) slider = GetComponent<Slider>();
+
         slider.maxValue = newMax;
         slider.value    = currentValue;
 
@@ -42,6 +44,8 @@ public class GUIStatBar : MonoBehaviour
 
     private void CheckColor()
     {
+        if (!slider) slider = GetComponent<Slider>();
+
         if (slider.value == slider.maxValue)
         {
             fill.color = c_fullFill;
