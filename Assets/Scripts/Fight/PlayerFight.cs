@@ -1,6 +1,6 @@
-using AYellowpaper.SerializedCollections.Editor.Data;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -20,17 +20,22 @@ public class PlayerFight : Fight
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private Button restartButton;
 
+    public UnityEvent ManaRanOutEvent;
+
+    #region Booleans
     private bool canChargeMana          = true;
     private bool isChargingMana         = false;
     private bool isDroppingMana         = false;
     private bool isAutoRegeneratingMana = false;
     private bool inCombatZone           = false;
     private bool inBreatherZone         = false;
+    #endregion
 
     #region Get/Set
-    public Stats GetStats()           { return stats;                                 }
-    public void SetPlayerSpeed()      { playerMovement.SetSpeed(stats.movementSpeed); }
-    public void SetStats(Stats value) { stats = value;                                }
+    public Stats GetStats()           { return stats;  }
+    public void SetStats(Stats value) { stats = value; }
+    public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
+    public bool HasMana() { return stats.currentMana > 0; }
     #endregion
 
     public override void Start()
@@ -86,7 +91,7 @@ public class PlayerFight : Fight
 
         if (context.started)
         {
-            if (!isChargingMana) StartCoroutine(AutoDropManaRoutine(1f, 1f));
+            if (!isChargingMana) StartCoroutine(AutoDropManaRoutine(1f, 1f, true));
             isChargingMana = true;
             playerMovement.InManaChargingSpeed(true);
             //start mana focusing animation
@@ -101,7 +106,7 @@ public class PlayerFight : Fight
         }
     }
 
-    public IEnumerator AutoDropManaRoutine(float time, float amount)
+    public IEnumerator AutoDropManaRoutine(float time, float amount, bool doParticles)
     {
         isDroppingMana = true;
         manAnimator.SetBool("isShaking", true);
@@ -110,9 +115,11 @@ public class PlayerFight : Fight
         {
             RemoveMana(amount);
             //if (isChargingMana) manaCharged += amount;
-            if (!manaParticles.isPlaying) manaParticles.Play();
-            yield return new WaitForSeconds(time);
+            if (doParticles && !manaParticles.isPlaying) manaParticles.Play();
+            yield return new WaitForSecondsRealtime(time);
         }
+
+        if (stats.currentMana == 0f) ManaRanOutEvent.Invoke();
 
         manaParticles.Stop();
         manAnimator.SetBool("isShaking", false);
@@ -133,7 +140,7 @@ public class PlayerFight : Fight
         
         isAutoRegeneratingMana = true;
 
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
 
         isAutoRegeneratingMana = false;
         HealMana(amount);
@@ -178,7 +185,21 @@ public class PlayerFight : Fight
     public IEnumerator HealthBarShakeRoutine(float time)
     {
         healthBarnimator.SetBool("isShaking", true);
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         healthBarnimator.SetBool("isShaking", false);
+    }
+
+    public bool DoDefaultMenu() { return (!inCombatZone || inBreatherZone); }
+
+    public void OnMenuOpen()
+    {
+        StartCoroutine(AutoDropManaRoutine(1f, 1f, false));
+        isChargingMana = false;
+    }
+
+    public void OnMenuClose()
+    {
+        isDroppingMana = false;
+        isChargingMana = false;
     }
 }

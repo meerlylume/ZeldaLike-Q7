@@ -3766,6 +3766,9 @@ MonoBehaviour:
   manaParticles: {fileID: 6115094079600257847}
   gameOverUI: {fileID: 3882431482498711872}
   restartButton: {fileID: 6575124642929225720}
+  ManaRanOutEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5378168281552671222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3795,6 +3798,7 @@ MonoBehaviour:
   maxInventorySize: 10
   playerFight: {fileID: 3285378661144251519}
   eventSystem: {fileID: 5114548232388249325}
+  menuController: {fileID: 1713854914504305076}
   slotPrefab: {fileID: 882659200092753265, guid: 1a34e24621a7392408ea8da60807f48d, type: 3}
   inventoryGrid: {fileID: 1966524320492791982}
   infoText: {fileID: 6381098076807410818}
@@ -7077,6 +7081,7 @@ MonoBehaviour:
   menuDefaultSelection: {fileID: 3993527916569445242}
   settingsDefaultSelection: {fileID: 3575407091776147520}
   eventSystem: {fileID: 5114548232388249325}
+  playerFight: {fileID: 3285378661144251519}
 --- !u!223 &6625778529826451602
 Canvas:
   m_ObjectHideFlags: 0
