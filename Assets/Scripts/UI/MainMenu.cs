@@ -10,6 +10,6 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlay()
     {
-        SceneManager.LoadScene("DevTent");
+        SceneManager.LoadScene("DevRoom");
     }
 }

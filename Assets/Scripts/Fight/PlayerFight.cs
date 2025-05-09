@@ -23,7 +23,7 @@ public class PlayerFight : Fight
     [HideInInspector] public UnityEvent ManaRanOutEvent;
 
     #region Booleans
-    private bool canChargeMana          = true;
+    private bool canChargeMana          = false;
     private bool isChargingMana         = false;
     private bool isDroppingMana         = false;
     private bool isAutoRegeneratingMana = false;
@@ -35,6 +35,8 @@ public class PlayerFight : Fight
     public Stats GetStats()           { return stats;  }
     public void SetStats(Stats value) { stats = value; }
     public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
+    public bool GetCanChargeMana()           { return canChargeMana;   }
+    public void SetCanChargeMana(bool value) {  canChargeMana = value; }
     public bool HasMana() { return stats.currentMana > 0; }
     #endregion
 
@@ -117,7 +119,7 @@ public class PlayerFight : Fight
         while (stats.currentMana > 0f && isDroppingMana)
         {
             RemoveMana(amount);
-            if (isChargingMana) manaCharged += amount;
+            if (isChargingMana) manaCharged += amount * 2;
             if (doParticles && !manaParticles.isPlaying) manaParticles.Play();
             yield return new WaitForSecondsRealtime(time);
         }

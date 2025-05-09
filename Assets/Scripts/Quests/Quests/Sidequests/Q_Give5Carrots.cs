@@ -4,7 +4,8 @@ public class Q_Give5Carrots : Quest
 {
     [Header("Item References")]
     [SerializeField] private PlayerInventory playerInventory;
-    [SerializeField] private InventoryData requiredItems;
+    [SerializeField] private PlayerFight     playerFight;
+    [SerializeField] private InventoryData   requiredItems;
 
     public override void CheckIfCompleted()
     {
@@ -24,5 +25,7 @@ public class Q_Give5Carrots : Quest
 
         for (int i = 0; i < requiredItems.items.Count; i++)
             playerInventory.RemoveItem(requiredItems.items[i], requiredItems.quantities[i]);
+
+        playerFight.SetCanChargeMana(true);
     }
 }

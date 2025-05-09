@@ -19,13 +19,16 @@ public class GameSaver : MonoBehaviour
 
     public void SaveGame()
     {
-        GameObject player   = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        SaveData saveData   = new()
+        PlayerFight playerFight = player.GetComponent<PlayerFight>();
+
+        SaveData saveData = new()
         {
-            playerPosition  = player.transform.position,
-            playerStats     = player.GetComponent<PlayerFight>().GetStats(),
-            playerInventory = player.gameObject.GetComponent<PlayerInventory>().GetInventoryData(),
+            playerPosition     = player.transform.position,
+            playerStats        = playerFight.GetStats(),
+            manaChargeUnlocked = playerFight.GetCanChargeMana(),
+            playerInventory    = player.gameObject.GetComponent<PlayerInventory>().GetInventoryData()
         };
 
         SaveChests(saveData);
@@ -42,7 +45,9 @@ public class GameSaver : MonoBehaviour
             // Player
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.transform.position = saveData.playerPosition;
-            player.GetComponent<PlayerFight>().SetStats(saveData.playerStats);
+            PlayerFight playerFight = player.GetComponent<PlayerFight>();
+            playerFight.SetStats(saveData.playerStats);
+            playerFight.SetCanChargeMana(saveData.manaChargeUnlocked);
             player.GetComponent<PlayerInventory>().SetInventoryData(saveData.playerInventory);
 
             // Chest
@@ -57,19 +62,17 @@ public class GameSaver : MonoBehaviour
                 }
             }
         }
-        else { SaveGame(); }
+        else SaveGame();
     }
 
     public void DeleteSave()
     {
-        SaveData saveData = new()
-        {
-            playerInventory = cannelleInventoryData
-        };
+        SaveData saveData = new() { playerInventory = cannelleInventoryData };
 
         // Player Stats
         CopyStats(cannelleFirstStats, cannelleCurrentStats);
         saveData.playerStats = cannelleCurrentStats;
+        saveData.manaChargeUnlocked = false;
         // Inventory
         if (saveData.playerInventory) saveData.playerInventory.WipeInventory();
         else
@@ -86,6 +89,7 @@ public class GameSaver : MonoBehaviour
     private void OnApplicationQuit()
     {
         //SaveGame();
+        Debug.Log("OnApplicationQuit()");
     }
 
     private void CopyStats(Stats from, Stats to)
@@ -98,10 +102,10 @@ public class GameSaver : MonoBehaviour
         to.maxMana          = from.maxMana;
         to.currentMana      = from.currentMana;
 
-        to.currentATK           = from.currentATK;
-        to.currentDEF          = from.currentDEF;
-        to.currentCRE       = from.currentCRE;
-        to.currentRCV         = from.currentRCV;
+        to.attack           = from.attack;
+        to.defence          = from.defence;
+        to.creativity       = from.creativity;
+        to.recovery         = from.recovery;
 
         to.movementSpeed    = from.movementSpeed;
         to.attackCooldownModifier = from.attackCooldownModifier;
@@ -110,13 +114,13 @@ public class GameSaver : MonoBehaviour
     private void SaveChests(SaveData saveData)
     {
         saveData.chests = new List<ChestData>();
-        Chest[] chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
+        Chest[] chests  = FindObjectsByType<Chest>(FindObjectsSortMode.None);
 
         foreach (Chest chest in chests) 
         { 
             ChestData newChest = new ChestData();
-            newChest.ID = chest.GetID();
-            newChest.IsOpen = chest.GetIsOpen();
+            newChest.ID        = chest.GetID();
+            newChest.IsOpen    = chest.GetIsOpen();
             saveData.chests.Add(newChest);
         }
     }
