@@ -12,7 +12,7 @@ public abstract class Attack : MonoBehaviour
     [SerializeField] protected float knockback;
     protected bool isInCooldown;
 
-    public abstract void PerformAttack(Stats stats, Vector2 attackPos);
+    public abstract void PerformAttack(Stats stats, Vector2 attackPos, float manaDamage);
 
     public abstract bool CheckIfInRange(Stats stats, Vector2 attackPos);
 

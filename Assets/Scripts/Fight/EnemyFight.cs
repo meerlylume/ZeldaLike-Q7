@@ -25,10 +25,10 @@ public class EnemyFight : Fight
         stats.name             = baseStats.name;
         stats.maxHP            = baseStats.maxHP;
         stats.maxMana          = baseStats.maxMana;
-        stats.attack           = baseStats.attack;
-        stats.defence          = baseStats.defence;
-        stats.creativity       = baseStats.creativity;
-        stats.recovery         = baseStats.recovery;
+        stats.currentATK           = baseStats.currentATK;
+        stats.currentDEF          = baseStats.currentDEF;
+        stats.currentCRE       = baseStats.currentCRE;
+        stats.currentRCV         = baseStats.currentRCV;
         stats.movementSpeed    = baseStats.movementSpeed;
         stats.attackCooldownModifier = baseStats.attackCooldownModifier;
 

@@ -5,13 +5,13 @@ using UnityEngine;
 public class ATK_Slash : Attack
 {
 
-    public override void PerformAttack(Stats stats, Vector2 attackPos)
+    public override void PerformAttack(Stats stats, Vector2 attackPos, float manaDamage)
     {
         foreach (Fight fighter in hitbox.GetCollidersInHitbox(attackPos))
         {
             if (fighter.IsAlliedWith(stats)) continue;
 
-            fighter.TakeDamage(stats.attack, stats.RollForLuck(), attackPos, stats);
+            fighter.TakeDamage(stats.currentATK + manaDamage, stats.RollForLuck(), attackPos, stats);
             fighter.TakeKnockback(knockback /** stats.KnockbackModifier()*/, attackPos);
         }
     }
