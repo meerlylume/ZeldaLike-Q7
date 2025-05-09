@@ -20,20 +20,7 @@ public class EnemyFight : Fight
 
         base.Start();
     }
-    private void CopyBaseStats()
-    {
-        stats.name             = baseStats.name;
-        stats.maxHP            = baseStats.maxHP;
-        stats.maxMana          = baseStats.maxMana;
-        stats.currentATK           = baseStats.currentATK;
-        stats.currentDEF          = baseStats.currentDEF;
-        stats.currentCRE       = baseStats.currentCRE;
-        stats.currentRCV         = baseStats.currentRCV;
-        stats.movementSpeed    = baseStats.movementSpeed;
-        stats.attackCooldownModifier = baseStats.attackCooldownModifier;
-
-        FullHealHP();
-    }
+    private void CopyBaseStats() { CopyStatsInto(baseStats, stats); }
 
     public override void Die(Stats killer)
     {

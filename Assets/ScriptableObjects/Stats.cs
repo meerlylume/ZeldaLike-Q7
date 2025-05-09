@@ -33,12 +33,14 @@ public class Stats : ScriptableObject
     public float movementSpeed;
     public float attackCooldownModifier = 1.0f;
 
-    public bool RollForLuck() { return Random.Range(0, Mathf.Clamp(50 - currentCRE, 5, Mathf.Infinity)) == 1; }
+    public bool RollForCrit() 
+    { 
+        return Random.Range(0, Mathf.Clamp(50 - currentCRE, 0, Mathf.Infinity)) <= 1;
+    }
 
     public float HealingModifier()
     {
-        return Mathf.Clamp(currentRCV / 10, 1, 2); //TEMPORARY CALCULATION
-        //Left a scope because this formula might get more complicated, for example with a status effect that buffs or nerfs healing
+        return Mathf.Clamp(currentRCV / 10, 1, 2);
     }
 
     public float KnockbackModifier()

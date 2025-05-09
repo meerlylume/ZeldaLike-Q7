@@ -10,21 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dbb1bac0db690345afaa748d7fd47e5, type: 3}
-  m_Name: CannelleStats
+  m_Name: DummonsterStats
   m_EditorClassIdentifier: 
-  name: Cannelle
-  isAlly: 1
+  name: Lyssian
+  isAlly: 0
   maxHP: 20
-  currentHP: 20
-  maxMana: 10
-  currentMana: 10
-  attack: 6
-  currentATK: 6
-  defence: 6
-  currentDEF: 6
-  creativity: 6
-  currentCRE: 6
-  recovery: 6
-  currentRCV: 6
-  movementSpeed: 5
-  attackCooldownModifier: 1
+  currentHP: 0
+  maxMana: 0
+  currentMana: 2
+  attack: 5
+  defence: 2
+  creativity: 1
+  recovery: 1
+  movementSpeed: 4
+  attackCooldownModifier: 2

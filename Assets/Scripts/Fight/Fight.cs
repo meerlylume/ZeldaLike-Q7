@@ -97,7 +97,7 @@ public abstract class Fight : MonoBehaviour, IFight
 
     public virtual void Die(Stats killer) { Die(); }
 
-    private float CalculateDamage(float atk, bool crit)
+    protected float CalculateDamage(float atk, bool crit)
     {
         float damage;
 
@@ -133,7 +133,7 @@ public abstract class Fight : MonoBehaviour, IFight
         if (stats.currentHP <= 0) { Die(attacker); }
     }
 
-    private void DamageDisplay(float totalDamage, bool crit, Vector2 attackPos)
+    protected void DamageDisplay(float totalDamage, bool crit, Vector2 attackPos)
     {
         if (!worldCanvas) return;
         
