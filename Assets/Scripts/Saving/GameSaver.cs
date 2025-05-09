@@ -98,10 +98,10 @@ public class GameSaver : MonoBehaviour
         to.maxMana          = from.maxMana;
         to.currentMana      = from.currentMana;
 
-        to.attack           = from.attack;
-        to.defence          = from.defence;
-        to.creativity       = from.creativity;
-        to.recovery         = from.recovery;
+        to.currentATK           = from.currentATK;
+        to.currentDEF          = from.currentDEF;
+        to.currentCRE       = from.currentCRE;
+        to.currentRCV         = from.currentRCV;
 
         to.movementSpeed    = from.movementSpeed;
         to.attackCooldownModifier = from.attackCooldownModifier;

@@ -9,6 +9,7 @@ public abstract class Fight : MonoBehaviour, IFight
     [SerializeField] protected Stats stats;
     [Space]
     protected Rigidbody2D rb;
+    protected float manaCharged;
 
     [Header("Attacks")]
     [SerializeField] protected List<Attack> attacks;
@@ -43,7 +44,22 @@ public abstract class Fight : MonoBehaviour, IFight
         rb.gravityScale = 0; //in case I forget to put it in the inspector
 
         FullHealHP();
+        ResetStats();
     }
+
+    #region STATS
+    public virtual void ResetStats()
+    {
+        ResetCurrentAttack();
+        ResetCurrentDefence();
+        ResetCurrentCreativity();
+        ResetCurrentRecovery();
+    }
+
+    public void ResetCurrentAttack()     { stats.currentATK = stats.attack;     }
+    public void ResetCurrentDefence()    { stats.currentDEF = stats.defence;    }
+    public void ResetCurrentCreativity() { stats.currentCRE = stats.creativity; }
+    public void ResetCurrentRecovery()   { stats.currentRCV = stats.recovery;   }
 
     public virtual void CopyStatsInto(Stats baseStats, Stats stats)
     {
@@ -57,12 +73,15 @@ public abstract class Fight : MonoBehaviour, IFight
         stats.movementSpeed          = baseStats.movementSpeed;
         stats.attackCooldownModifier = baseStats.attackCooldownModifier;
 
+        ResetStats();
         FullHealHP();
     }
+    #endregion
 
     public virtual void Attack()
     {
-        attacks[attackIndex].PerformAttack(stats, transform.position);
+        attacks[attackIndex].PerformAttack(stats, transform.position, manaCharged);
+        manaCharged = 0f;
         attackIndex = (attackIndex + 1) % attacks.Count; //increments attackIndex if it's under attacks.Count, else sets it to 0
     }
 
@@ -85,13 +104,13 @@ public abstract class Fight : MonoBehaviour, IFight
         // If attacker crits
         if (crit)
         {
-            damage = atk * 2.5f - Random.Range(stats.defence * 0.5f, stats.defence);
+            damage = atk * 2.5f - Random.Range(stats.currentDEF * 0.5f, stats.currentDEF);
             damage = Mathf.Clamp(damage, 0, Mathf.Infinity);
         }
 
         else
         {
-            damage = Random.Range(atk, atk * 1.5f) - Random.Range(stats.defence * 0.5f, stats.defence);
+            damage = Random.Range(atk, atk * 1.5f) - Random.Range(stats.currentDEF * 0.5f, stats.currentDEF);
             damage = Mathf.Clamp(damage, 0, Mathf.Infinity);
         }
 
@@ -218,9 +237,9 @@ public abstract class Fight : MonoBehaviour, IFight
         stats.maxMana     += amount; 
         stats.currentMana += amount;
     }
-    public void RaiseAttack(int amount)     { stats.attack     += amount; }
-    public void RaiseDefence(int amount)    { stats.defence    += amount; }
-    public void RaiseCreativity(int amount) { stats.creativity += amount; }
-    public void RaiseRecovery(int amount)   { stats.recovery   += amount; }
+    public void RaiseAttack(int amount)     { stats.currentATK     += amount; }
+    public void RaiseDefence(int amount)    { stats.currentDEF    += amount; }
+    public void RaiseCreativity(int amount) { stats.currentCRE += amount; }
+    public void RaiseRecovery(int amount)   { stats.currentRCV   += amount; }
     #endregion
 }

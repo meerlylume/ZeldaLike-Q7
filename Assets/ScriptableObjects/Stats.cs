@@ -17,36 +17,43 @@ public class Stats : ScriptableObject
 
     [Header("Character Stats")]
     public int attack;
+    public int currentATK;
+    [Space]
     public int defence; 
-    public int creativity; 
+    public int currentDEF;
+    [Space]
+    public int creativity;
+    public int currentCRE;
+    [Space]
     public int recovery;
+    public int currentRCV;
     [Space]
 
     [Header("Hidden Stats")] //!\\ WHEN ADDING A STAT, DON'T FORGET TO CHANGE GAMESAVER'S COPY FUNCTION //!\\
     public float movementSpeed;
     public float attackCooldownModifier = 1.0f;
 
-    public bool RollForLuck() { return Random.Range(0, Mathf.Clamp(50 - creativity, 5, Mathf.Infinity)) == 1; }
+    public bool RollForLuck() { return Random.Range(0, Mathf.Clamp(50 - currentCRE, 5, Mathf.Infinity)) == 1; }
 
     public float HealingModifier()
     {
-        return Mathf.Clamp(recovery / 10, 1, 2); //TEMPORARY CALCULATION
+        return Mathf.Clamp(currentRCV / 10, 1, 2); //TEMPORARY CALCULATION
         //Left a scope because this formula might get more complicated, for example with a status effect that buffs or nerfs healing
     }
 
     public float KnockbackModifier()
     {
-        return attack / 2;
+        return currentATK / 2;
     }
 
     public float ManaAutoRegenTime()
     {
-        return 2 - recovery * 0.1f; //TEMPORARY CALCULATION
+        return 2 - currentRCV * 0.1f; //TEMPORARY CALCULATION
     }
 
     public float LootModifier()
     {
-        return Mathf.Clamp(creativity / 50, 0f, 1f);
+        return Mathf.Clamp(currentCRE / 50, 0f, 1f);
     }
 
     public bool IsLootMaxxedOut()
@@ -58,6 +65,6 @@ public class Stats : ScriptableObject
 
     public float ManaAutoRegenAmount()
     {
-        return 1f + (creativity * 0.1f);
+        return 1f + (currentCRE * 0.1f);
     }
 }

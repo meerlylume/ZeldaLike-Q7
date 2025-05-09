@@ -20,7 +20,7 @@ public class PlayerFight : Fight
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private Button restartButton;
 
-    public UnityEvent ManaRanOutEvent;
+    [HideInInspector] public UnityEvent ManaRanOutEvent;
 
     #region Booleans
     private bool canChargeMana          = true;
@@ -53,7 +53,10 @@ public class PlayerFight : Fight
 
     public void PlayerAttack(InputAction.CallbackContext context)
     {
-        if (context.started) { StartCoroutine(AttackRoutine()); }
+        if (context.started) 
+        { 
+            StartCoroutine(AttackRoutine()); 
+        }
     }
 
     public override void Die()
@@ -114,7 +117,7 @@ public class PlayerFight : Fight
         while (stats.currentMana > 0f && isDroppingMana)
         {
             RemoveMana(amount);
-            //if (isChargingMana) manaCharged += amount;
+            if (isChargingMana) manaCharged += amount;
             if (doParticles && !manaParticles.isPlaying) manaParticles.Play();
             yield return new WaitForSecondsRealtime(time);
         }
