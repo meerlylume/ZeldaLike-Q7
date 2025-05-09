@@ -124,7 +124,7 @@ public class PlayerFight : Fight
     {
         base.RefreshMana();
         if ((inBreatherZone || !inCombatZone) && !isChargingMana && !isAutoRegeneratingMana && stats.currentMana != stats.maxMana) 
-            StartCoroutine(AutoRegenManaRoutine(stats.ManaAutoRegenTime(), 1f));
+            StartCoroutine(AutoRegenManaRoutine(stats.ManaAutoRegenTime(), stats.ManaAutoRegenAmount()));
     }
 
     public IEnumerator AutoRegenManaRoutine(float time, float amount)
@@ -153,6 +153,8 @@ public class PlayerFight : Fight
         if (collision.tag == "NoManaRegenZone") inCombatZone   = false;
 
         if (collision.tag == "BreatherZone")    inBreatherZone = false;
+
+        RefreshMana(); //in case the player leaves a no regen zone
     }
 
     public override void HealHP(float amount)

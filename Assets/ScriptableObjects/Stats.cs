@@ -55,4 +55,9 @@ public class Stats : ScriptableObject
 
         return false;
     }
+
+    public float ManaAutoRegenAmount()
+    {
+        return 1f + (creativity * 0.1f);
+    }
 }
