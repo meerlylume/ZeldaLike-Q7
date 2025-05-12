@@ -26,5 +26,5 @@ MonoBehaviour:
   currentCRE: 6
   recovery: 6
   currentRCV: 6
-  movementSpeed: 5
+  movementSpeed: 6
   attackCooldownModifier: 1

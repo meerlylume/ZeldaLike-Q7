@@ -17,6 +17,7 @@ public class NPC : MonoBehaviour, IInteractable
     protected Image        portraitImage;
     protected GameObject   choicesGrid;
     protected GameObject   choicePrefab;
+    protected GameObject   nextArrow;
     List<GameObject>       choiceButtons = new List<GameObject> { };
 
     protected int          lineIndex;
@@ -41,6 +42,7 @@ public class NPC : MonoBehaviour, IInteractable
         namePanel     = parent.GetNamePanel();
         nameText      = parent.GetNameText();
         portraitImage = parent.GetPortraitImage();
+        nextArrow     = parent.GetNextArrow();
         choicesGrid   = parent.GetChoicesGrid();
         choicePrefab  = parent.GetChoicesPrefab();
     }
@@ -168,25 +170,35 @@ IEnumerator TypeLine()
                 {
                     // NAME
                     case "<name>":
+                    case "<names>":
                         returnedText += "<color=#" + parent.GetNameColor().ToHexString() + ">";
-                        break;
-                    case "</name>":
-                        returnedText += "</color>";
                         break;
 
                     // ITEM
                     case "<item>":
+                    case "<items>":
                         returnedText += "<color=#" + parent.GetItemColor().ToHexString() + ">";
-                        break;
-                    case "</item>":
-                        returnedText += "</color>";
                         break;
 
                     // PLACE
                     case "<place>":
+                    case "<places>":
                         returnedText += "<color=#" + parent.GetPlaceColor().ToHexString() + ">";
                         break;
+
+                    // MECHANIC
+                    case "<mechanic>":
+                    case "<mechanics>":
+                        returnedText += "<color=#" + parent.GetMechanicColor().ToHexString() + ">";
+                        break;
+                    case "</name>":
+                    case "</names>":
+                    case "</item>":
+                    case "</items>":
                     case "</place>":
+                    case "</places>":
+                    case "</mechanic>":
+                    case "</mechanics>":
                         returnedText += "</color>";
                         break;
 
@@ -301,5 +313,6 @@ IEnumerator TypeLine()
         dialogueText.transform.localPosition  = new Vector3(-dialogueText.transform.localPosition.x, dialogueText.transform.localPosition.y);
         namePanel.transform.localPosition     = new Vector3(-namePanel.transform.localPosition.x, namePanel.transform.localPosition.y);
         portraitImage.transform.localPosition = new Vector3(-portraitImage.transform.localPosition.x, portraitImage.transform.localPosition.y);
+        nextArrow.transform.eulerAngles       = new Vector3(0, nextArrow.transform.eulerAngles.y - 180, 270);
     }
 }

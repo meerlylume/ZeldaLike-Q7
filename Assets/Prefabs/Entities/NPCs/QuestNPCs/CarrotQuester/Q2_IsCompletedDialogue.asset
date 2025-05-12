@@ -15,11 +15,12 @@ MonoBehaviour:
   name: Carol
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:
-  - Thanks again! I owe you!
-  dialogueChoices: {fileID: 0}
+  - Hi again <name>Canelle</name>, what's up?
+  dialogueChoices: {fileID: 11400000, guid: 2d5c3948adb1bf34c9b7633f4924df76, type: 2}
   questTrigger: 0
+  nextDialogue: {fileID: 0}
   giveItems: 0
   itemsToGive: {fileID: 0}

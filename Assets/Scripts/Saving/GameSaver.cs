@@ -74,7 +74,6 @@ public class GameSaver : MonoBehaviour
             playerFight.LoadStats(saveData);
 
             playerFight.SetCanChargeMana(saveData.manaChargeUnlocked);
-            //player.GetComponent<PlayerInventory>().SetInventoryData(saveData.playerInventory);
 
             // Player Inventory
             PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
@@ -102,34 +101,37 @@ public class GameSaver : MonoBehaviour
     {
         CopyStats(cannelleFirstStats, cannelleCurrentStats);
 
-        SaveData saveData = new() 
+        SaveData saveData = new()
         {
             // Unlocks
             manaChargeUnlocked = false,
 
             // Stats
-            maxHP             = cannelleFirstStats.maxHP,
-            currentHP         = cannelleFirstStats.currentHP,
+            maxHP = cannelleFirstStats.maxHP,
+            currentHP = cannelleFirstStats.currentHP,
 
-            maxMana           = cannelleFirstStats.maxMana,
-            currentMana       = cannelleFirstStats.currentMana,
+            maxMana = cannelleFirstStats.maxMana,
+            currentMana = cannelleFirstStats.currentMana,
 
-            maxAttack         = cannelleFirstStats.attack,
-            currentAttack     = cannelleFirstStats.currentATK,
+            maxAttack = cannelleFirstStats.attack,
+            currentAttack = cannelleFirstStats.currentATK,
 
-            maxDefence        = cannelleFirstStats.defence,
-            currentDefence    = cannelleFirstStats.currentDEF,
+            maxDefence = cannelleFirstStats.defence,
+            currentDefence = cannelleFirstStats.currentDEF,
 
-            maxCreativity     = cannelleFirstStats.creativity,
+            maxCreativity = cannelleFirstStats.creativity,
             currentCreativity = cannelleFirstStats.currentCRE,
 
-            maxRecovery       = cannelleFirstStats.recovery,
-            currentRecovery   = cannelleFirstStats.currentRCV,
+            maxRecovery = cannelleFirstStats.recovery,
+            currentRecovery = cannelleFirstStats.currentRCV,
 
             // Inventory
-            money      = 0,
-            items      = new List<Item>(),
-            quantities = new List<int>()
+            money = 0,
+            items = new List<Item>(),
+            quantities = new List<int>(),
+
+            //pos
+            playerPosition = new Vector3(-5, 0, 0),
         };
 
         // Write

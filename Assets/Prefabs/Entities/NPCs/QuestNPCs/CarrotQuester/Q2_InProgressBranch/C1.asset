@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Carol
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:
   - Well, not until I get my <item>carrots</item>...
@@ -23,5 +23,6 @@ MonoBehaviour:
   - Wouldn't want another coward like me using one up only to chicken out, right?
   dialogueChoices: {fileID: 0}
   questTrigger: 0
+  nextDialogue: {fileID: 0}
   giveItems: 0
   itemsToGive: {fileID: 0}

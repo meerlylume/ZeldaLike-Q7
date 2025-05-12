@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: _Q2_Root_B1
   m_EditorClassIdentifier: 
   choices:
-  - Heal better?
-  - Want me to get you some carrots?
+  - <mechanic>Heal</mechanic> better?
+  - Want me to get you some <item>carrots</items>?
   - Good luck then.
   outcomes:
   - {fileID: 11400000, guid: 69ab097d48fb02840893a30288bdc897, type: 2}

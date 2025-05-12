@@ -15,12 +15,13 @@ MonoBehaviour:
   name: Mooncake
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:
   - <name>Lyssians</name> are nothing compared to <name>The Managarm</name>. Be careful
     out there.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
+  nextDialogue: {fileID: 0}
   giveItems: 0
   itemsToGive: {fileID: 0}

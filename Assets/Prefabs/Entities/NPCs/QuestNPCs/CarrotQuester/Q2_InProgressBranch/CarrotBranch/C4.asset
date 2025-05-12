@@ -15,13 +15,14 @@ MonoBehaviour:
   name: Carol
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:
   - Cooking them robs them of their texture, their crunch.
-  - It's basically what makes it a carrot.
+  - It's basically what makes it a <item>carrot</item>.
   - Aside from the orange.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
+  nextDialogue: {fileID: 0}
   giveItems: 0
   itemsToGive: {fileID: 0}
