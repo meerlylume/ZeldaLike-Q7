@@ -11,13 +11,14 @@ public class NPCDialogue : ScriptableObject
     public bool   isPortraitOnTheRight = true; [Space]
 
     [Header("Speech Variables")]
-    public float talkingSpeed = 0.25f; [Space]
+    public float talkingSpeed = 0.02f; [Space]
     //talking sound & pitch goes here
 
     [Header("Dialogue")]
     public string[] dialogueLines; [Space]
     public DialogueChoices dialogueChoices; [Space]
     public bool questTrigger = false;
+    public NPCDialogue nextDialogue;
 
     [Header("Items")]
     public bool giveItems = false;

@@ -16,7 +16,7 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.02
+  talkingSpeed: 0.01
   dialogueLines:
   - Believe it or not, but Mana can do other things than light lanterns or be pretty.
   - We had it in excess when we were living on <place>The Moon</place>, but we didn't

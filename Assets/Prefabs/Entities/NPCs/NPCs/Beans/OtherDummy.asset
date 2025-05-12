@@ -16,7 +16,7 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.05
+  talkingSpeed: 0.02
   dialogueLines:
   - Oh hi <name>Cannelle</name>, didn't see you there.
   - So... <name>General Arsh</name> is visiting from <place>Blaumond Kingdom</place>,
@@ -31,3 +31,6 @@ MonoBehaviour:
   - Don't go harassing him to take you to <place>The Moon</place>. Okay?
   dialogueChoices: {fileID: 0}
   questTrigger: 0
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

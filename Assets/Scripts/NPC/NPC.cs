@@ -17,7 +17,7 @@ public class NPC : MonoBehaviour, IInteractable
     protected Image        portraitImage;
     protected GameObject   choicesGrid;
     protected GameObject   choicePrefab;
-    List<GameObject>     choiceButtons = new List<GameObject> { };
+    List<GameObject>       choiceButtons = new List<GameObject> { };
 
     protected int          lineIndex;
     protected bool         isTyping;
@@ -228,6 +228,12 @@ IEnumerator TypeLine()
         isTyping         = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
+
+        if (branchDialogueData.nextDialogue != null)
+        {
+            StartNewDialogue(branchDialogueData.nextDialogue);
+            return;
+        }
 
         branchDialogueData = rootDialogueData;
     }

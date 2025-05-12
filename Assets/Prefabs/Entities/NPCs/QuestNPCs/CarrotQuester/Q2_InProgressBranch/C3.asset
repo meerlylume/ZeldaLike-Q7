@@ -16,7 +16,7 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.02
+  talkingSpeed: 0.01
   dialogueLines:
   - Why so many questions? They taste good!
   dialogueChoices: {fileID: 11400000, guid: dfd1037feae76004094580f9c8856b14, type: 2}

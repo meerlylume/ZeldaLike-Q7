@@ -16,10 +16,12 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.02
+  talkingSpeed: 0.01
   dialogueLines:
   - Hey there, didn't expected to meet another one of us here.
   - I wanted to get some <item>carrots</item>, but I'm no good at fighting...
   - At least I can heal up better here.
   dialogueChoices: {fileID: 11400000, guid: f8aec0b688872a24c8b6fa4c177c0b6e, type: 2}
   questTrigger: 0
+  giveItems: 0
+  itemsToGive: {fileID: 0}

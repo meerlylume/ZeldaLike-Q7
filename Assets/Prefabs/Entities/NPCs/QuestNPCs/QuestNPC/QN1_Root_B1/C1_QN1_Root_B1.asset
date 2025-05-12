@@ -16,7 +16,7 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.02
+  talkingSpeed: 0.01
   dialogueLines:
   - You- you're serious?
   - Hm...
@@ -25,3 +25,5 @@ MonoBehaviour:
   - Just... don't get hurt, ok? And back out if you need to.
   dialogueChoices: {fileID: 0}
   questTrigger: 1
+  giveItems: 0
+  itemsToGive: {fileID: 0}
