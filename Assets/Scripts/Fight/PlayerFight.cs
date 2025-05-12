@@ -34,6 +34,15 @@ public class PlayerFight : Fight
     #region Get/Set
     public Stats GetStats()           { return stats;  }
     public void SetStats(Stats value) { stats = value; }
+    public void LoadStats(SaveData saveData)
+    {
+        stats.maxHP      = saveData.maxHP;
+        stats.maxMana    = saveData.maxMana;
+        stats.attack     = saveData.maxAttack;
+        stats.defence    = saveData.maxDefence;
+        stats.creativity = saveData.maxCreativity;
+        stats.recovery   = saveData.maxRecovery;
+    }
     public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
     public bool GetCanChargeMana()           { return canChargeMana;   }
     public void SetCanChargeMana(bool value) {  canChargeMana = value; }

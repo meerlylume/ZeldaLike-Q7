@@ -22,13 +22,20 @@ public class GameSaver : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         PlayerFight playerFight = player.GetComponent<PlayerFight>();
+        Stats pStats = playerFight.GetStats();
 
         SaveData saveData = new()
         {
             playerPosition     = player.transform.position,
-            playerStats        = playerFight.GetStats(),
+            //playerStats        = playerFight.GetStats(),
             manaChargeUnlocked = playerFight.GetCanChargeMana(),
-            playerInventory    = player.gameObject.GetComponent<PlayerInventory>().GetInventoryData()
+            playerInventory    = player.gameObject.GetComponent<PlayerInventory>().GetInventoryData(),
+            maxHP              = pStats.maxHP,
+            maxMana            = pStats.maxMana,
+            maxAttack          = pStats.attack,
+            maxDefence         = pStats.defence,
+            maxCreativity      = pStats.creativity,
+            maxRecovery        = pStats.recovery,
         };
 
         SaveChests(saveData);
@@ -44,9 +51,11 @@ public class GameSaver : MonoBehaviour
 
             // Player
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.transform.position = saveData.playerPosition;
+            player.transform.position = saveData.playerPosition; //position
+
             PlayerFight playerFight = player.GetComponent<PlayerFight>();
-            playerFight.SetStats(saveData.playerStats);
+            playerFight.LoadStats(saveData);
+
             playerFight.SetCanChargeMana(saveData.manaChargeUnlocked);
             player.GetComponent<PlayerInventory>().SetInventoryData(saveData.playerInventory);
 

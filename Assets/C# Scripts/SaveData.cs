@@ -10,6 +10,13 @@ public class SaveData
     public InventoryData playerInventory;
     public bool manaChargeUnlocked;
 
+    public float maxHP;
+    public float maxMana;
+    public int   maxAttack;
+    public int   maxDefence;
+    public int   maxCreativity;
+    public int   maxRecovery;
+
     // Chests
     public List<ChestData> chests = new List<ChestData>();
 }
