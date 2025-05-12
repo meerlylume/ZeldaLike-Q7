@@ -16,11 +16,15 @@ MonoBehaviour:
   isAlly: 0
   maxHP: 20
   currentHP: 0
-  maxMana: 0
+  maxMana: 1
   currentMana: 2
   attack: 5
+  currentATK: 0
   defence: 2
+  currentDEF: 0
   creativity: 1
+  currentCRE: 0
   recovery: 1
+  currentRCV: 0
   movementSpeed: 4
   attackCooldownModifier: 2

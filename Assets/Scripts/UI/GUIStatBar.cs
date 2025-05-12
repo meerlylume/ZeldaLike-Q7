@@ -23,10 +23,10 @@ public class GUIStatBar : MonoBehaviour
 
     private Slider slider;
 
-    private void Start()
+    private void Awake()
     {
         slider = GetComponent<Slider>();
-        fill = fillGameobject.GetComponent<Image>();
+        fill   = fillGameobject.GetComponent<Image>();
     }
 
     public void RefreshBar(float newMax, float currentValue)
@@ -54,7 +54,7 @@ public class GUIStatBar : MonoBehaviour
 
         if (slider.value < slider.maxValue / 4)
         {
-            fill.color = c_fourthFill;
+            fill.color       = c_fourthFill;
             background.color = c_fourthBackground;
             return;
         }
@@ -66,7 +66,7 @@ public class GUIStatBar : MonoBehaviour
             return;
         }
 
-        fill.color = c_baseFill;
+        fill.color       = c_baseFill;
         background.color = c_baseBackground;
     }
 }
