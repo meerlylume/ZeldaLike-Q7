@@ -17,7 +17,7 @@ public class Chest : Inventory, IInteractable
     public bool GetIsOpen() { return isOpen; }
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -37,6 +37,8 @@ public class Chest : Inventory, IInteractable
 
     public void Interact()
     {
+        Debug.Log($"Interacting, CanInteract: {CanInteract()}");
+
         if (!CanInteract()) return;
         isOpen = true;
         CheckIfOpen();

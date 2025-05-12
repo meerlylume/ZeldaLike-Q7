@@ -237,9 +237,25 @@ public abstract class Fight : MonoBehaviour, IFight
         stats.maxMana     += amount; 
         stats.currentMana += amount;
     }
-    public void RaiseAttack(int amount)     { stats.currentATK += amount; }
-    public void RaiseDefence(int amount)    { stats.currentDEF += amount; }
-    public void RaiseCreativity(int amount) { stats.currentCRE += amount; }
-    public void RaiseRecovery(int amount)   { stats.currentRCV += amount; }
+    public void RaiseAttack(int amount)     
+    { 
+        stats.attack     += amount; 
+        stats.currentATK += amount;
+    }
+    public void RaiseDefence(int amount)    
+    { 
+        stats.defence    += amount; 
+        stats.currentDEF += amount;
+    }
+    public void RaiseCreativity(int amount) 
+    { 
+        stats.creativity += amount; 
+        stats.currentCRE += amount;
+    }
+    public void RaiseRecovery(int amount)   
+    { 
+        stats.recovery   += amount; 
+        stats.currentRCV += amount;
+    }
     #endregion
 }
