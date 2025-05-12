@@ -19,16 +19,40 @@ public class GameSaver : MonoBehaviour
 
     public void SaveGame()
     {
+        // Get Player in scene
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
+            // Get Player's stats
         PlayerFight playerFight = player.GetComponent<PlayerFight>();
+        Stats pStats = playerFight.GetStats();
+
+            // Get Player's inventory
+        PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
+        InventoryData inventoryData = playerInventory.GetInventoryData();
 
         SaveData saveData = new()
         {
+            //player pos
             playerPosition     = player.transform.position,
-            playerStats        = playerFight.GetStats(),
+            //unlocks
             manaChargeUnlocked = playerFight.GetCanChargeMana(),
-            playerInventory    = player.gameObject.GetComponent<PlayerInventory>().GetInventoryData()
+            //stats
+            maxHP              = pStats.maxHP,
+            currentHP          = pStats.currentHP,
+            maxMana            = pStats.maxMana,
+            currentMana        = pStats.currentMana,
+            maxAttack          = pStats.attack,
+            currentAttack      = pStats.currentATK,
+            maxDefence         = pStats.defence,
+            currentDefence     = pStats.currentDEF,
+            maxCreativity      = pStats.creativity,
+            currentCreativity  = pStats.currentCRE,
+            maxRecovery        = pStats.recovery,
+            currentRecovery    = pStats.currentRCV,
+            //inventory
+            money      = inventoryData.money,
+            items      = inventoryData.items,
+            quantities = inventoryData.quantities,
         };
 
         SaveChests(saveData);
@@ -44,11 +68,20 @@ public class GameSaver : MonoBehaviour
 
             // Player
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.transform.position = saveData.playerPosition;
+            player.transform.position = saveData.playerPosition; //position
+
             PlayerFight playerFight = player.GetComponent<PlayerFight>();
-            playerFight.SetStats(saveData.playerStats);
+            playerFight.LoadStats(saveData);
+
             playerFight.SetCanChargeMana(saveData.manaChargeUnlocked);
-            player.GetComponent<PlayerInventory>().SetInventoryData(saveData.playerInventory);
+            //player.GetComponent<PlayerInventory>().SetInventoryData(saveData.playerInventory);
+
+            // Player Inventory
+            PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
+            InventoryData inventoryData = playerInventory.GetInventoryData();
+            inventoryData.money      = saveData.money;
+            inventoryData.items      = saveData.items;
+            inventoryData.quantities = saveData.quantities;
 
             // Chest
             Chest[] chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
@@ -67,23 +100,41 @@ public class GameSaver : MonoBehaviour
 
     public void DeleteSave()
     {
-        SaveData saveData = new() { playerInventory = cannelleInventoryData };
-
-        // Player Stats
         CopyStats(cannelleFirstStats, cannelleCurrentStats);
-        saveData.playerStats = cannelleCurrentStats;
-        saveData.manaChargeUnlocked = false;
-        // Inventory
-        if (saveData.playerInventory) saveData.playerInventory.WipeInventory();
-        else
+
+        SaveData saveData = new() 
         {
-            GameObject player        = GameObject.FindGameObjectWithTag("Player");
-            saveData.playerInventory = player.GetComponent<PlayerInventory>().GetInventoryData();
-            saveData.playerInventory.WipeInventory();
-        }
+            // Unlocks
+            manaChargeUnlocked = false,
+
+            // Stats
+            maxHP             = cannelleFirstStats.maxHP,
+            currentHP         = cannelleFirstStats.currentHP,
+
+            maxMana           = cannelleFirstStats.maxMana,
+            currentMana       = cannelleFirstStats.currentMana,
+
+            maxAttack         = cannelleFirstStats.attack,
+            currentAttack     = cannelleFirstStats.currentATK,
+
+            maxDefence        = cannelleFirstStats.defence,
+            currentDefence    = cannelleFirstStats.currentDEF,
+
+            maxCreativity     = cannelleFirstStats.creativity,
+            currentCreativity = cannelleFirstStats.currentCRE,
+
+            maxRecovery       = cannelleFirstStats.recovery,
+            currentRecovery   = cannelleFirstStats.currentRCV,
+
+            // Inventory
+            money      = 0,
+            items      = new List<Item>(),
+            quantities = new List<int>()
+        };
 
         // Write
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
+        Application.Quit();
     }
 
     private void OnApplicationQuit()
@@ -94,20 +145,28 @@ public class GameSaver : MonoBehaviour
 
     private void CopyStats(Stats from, Stats to)
     {
-        to.isAlly           = from.isAlly;
-        to.name             = from.name;
+        to.isAlly        = from.isAlly;
+        to.name          = from.name;
 
-        to.maxHP            = from.maxHP;
-        to.currentHP        = from.currentHP;
-        to.maxMana          = from.maxMana;
-        to.currentMana      = from.currentMana;
+        to.maxHP         = from.maxHP;
+        to.currentHP     = from.currentHP;
 
-        to.attack           = from.attack;
-        to.defence          = from.defence;
-        to.creativity       = from.creativity;
-        to.recovery         = from.recovery;
+        to.maxMana       = from.maxMana;
+        to.currentMana   = from.currentMana;
 
-        to.movementSpeed    = from.movementSpeed;
+        to.attack        = from.attack;
+        to.currentATK    = from.currentATK;
+
+        to.defence       = from.defence;
+        to.currentDEF    = from.currentDEF;
+
+        to.creativity    = from.creativity;
+        to.currentCRE    = from.currentCRE;
+
+        to.recovery      = from.recovery;
+        to.currentRCV    = from.currentRCV;
+
+        to.movementSpeed = from.movementSpeed;
         to.attackCooldownModifier = from.attackCooldownModifier;
     }
 
