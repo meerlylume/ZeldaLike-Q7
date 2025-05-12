@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choices:
   - Can I have that <item>Boost Crystal</item>?
-  - Why Mana?
-  - Why carrots?
+  - Why <mechanic>Mana</mechanic>?
+  - Why <item>carrots</item>?
   - Nothing, just stopping by.
   outcomes:
   - {fileID: 11400000, guid: 0d23b7df34428d145bce127ab1d4b369, type: 2}

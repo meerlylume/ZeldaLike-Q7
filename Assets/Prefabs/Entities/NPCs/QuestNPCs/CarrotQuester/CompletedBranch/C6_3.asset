@@ -10,20 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
-  m_Name: C1_QN1_Root_B1
+  m_Name: C6_3
   m_EditorClassIdentifier: 
-  name: Mooncake
+  name: Carol
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
-  talkingSpeed: 0.01
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.02
   dialogueLines:
-  - You- you're serious?
-  - Hm...
-  - Well, I wouldn't exactly mind if you did get rid of those creatures, but... how
-    do I say this?
-  - Just... don't get hurt, ok? And back out if you need to.
+  - Oh...
+  - Thank you for this life-changing observation, <name>Cannelle</name>...
   dialogueChoices: {fileID: 0}
-  questTrigger: 1
+  questTrigger: 0
+  nextDialogue: {fileID: 0}
   giveItems: 0
   itemsToGive: {fileID: 0}

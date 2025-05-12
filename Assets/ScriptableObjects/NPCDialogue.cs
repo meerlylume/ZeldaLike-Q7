@@ -8,7 +8,7 @@ public class NPCDialogue : ScriptableObject
     public new string name;
     public Sprite npcSprite;
     public Sprite npcPortrait; 
-    public bool   isPortraitOnTheRight = true; [Space]
+    public bool   isPortraitOnTheRight = false; [Space]
 
     [Header("Speech Variables")]
     public float talkingSpeed = 0.02f; [Space]

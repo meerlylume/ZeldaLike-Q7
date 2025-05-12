@@ -15,19 +15,21 @@ MonoBehaviour:
   name: Carol
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:
-  - Believe it or not, but Mana can do other things than light lanterns or be pretty.
+  - Believe it or not, but <mechanic>mana</mechanic> can do other things than light
+    lanterns or look pretty.
   - We had it in excess when we were living on <place>The Moon</place>, but we didn't
     have much to use it on.
   - <name>The Managarm</name> wanted it for a reason...
-  - 'There''s plenty of spells it can be used for: attacking, healing, boosting,
-    and so on.'
+  - 'There''s plenty of <mechanic>spells</mechanic> it can be used for: attacking,
+    healing, boosting, and so on.'
   - I myself only know how to fight with it, but again, I'm too cowardly to fight
     anyway.
   - I'd love to see if you'll get a better use of it.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
+  nextDialogue: {fileID: 0}
   giveItems: 0
   itemsToGive: {fileID: 0}

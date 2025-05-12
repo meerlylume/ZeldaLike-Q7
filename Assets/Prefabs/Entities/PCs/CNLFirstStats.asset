@@ -19,8 +19,12 @@ MonoBehaviour:
   maxMana: 10
   currentMana: 10
   attack: 6
+  currentATK: 0
   defence: 6
+  currentDEF: 0
   creativity: 6
+  currentCRE: 0
   recovery: 6
-  movementSpeed: 5
+  currentRCV: 0
+  movementSpeed: 6
   attackCooldownModifier: 1

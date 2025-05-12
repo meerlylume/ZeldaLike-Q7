@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Cannelle
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 0
+  isPortraitOnTheRight: 1
   talkingSpeed: 0.02
   dialogueLines:
   - I'm not stupid, <name>Tilly</name>, I know they're avoiding me.

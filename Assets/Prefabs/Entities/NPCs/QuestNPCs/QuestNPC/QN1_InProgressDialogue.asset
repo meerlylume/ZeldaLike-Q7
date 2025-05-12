@@ -15,12 +15,13 @@ MonoBehaviour:
   name: Mooncake
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:
   - So you're actually going to try?
   - Don't be reckless. I don't want anyone to blame me if you get hurt.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
+  nextDialogue: {fileID: 0}
   giveItems: 0
   itemsToGive: {fileID: 0}

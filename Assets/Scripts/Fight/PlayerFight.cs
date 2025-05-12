@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -34,14 +35,21 @@ public class PlayerFight : Fight
     #region Get/Set
     public Stats GetStats()           { return stats;  }
     public void SetStats(Stats value) { stats = value; }
+
     public void LoadStats(SaveData saveData)
     {
-        stats.maxHP      = saveData.maxHP;
-        stats.maxMana    = saveData.maxMana;
-        stats.attack     = saveData.maxAttack;
-        stats.defence    = saveData.maxDefence;
-        stats.creativity = saveData.maxCreativity;
-        stats.recovery   = saveData.maxRecovery;
+        stats.maxHP       = saveData.maxHP;
+        stats.currentHP   = saveData.currentHP;
+        stats.maxMana     = saveData.maxMana;
+        stats.currentMana = saveData.currentMana;
+        stats.attack      = saveData.maxAttack;
+        stats.currentATK  = saveData.currentAttack;
+        stats.defence     = saveData.maxDefence;
+        stats.currentDEF  = saveData.currentDefence;
+        stats.creativity  = saveData.maxCreativity;
+        stats.currentCRE  = saveData.currentCreativity;
+        stats.recovery    = saveData.maxRecovery;
+        stats.currentRCV  = saveData.currentRecovery;
     }
     public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
     public bool GetCanChargeMana()           { return canChargeMana;   }
@@ -215,5 +223,21 @@ public class PlayerFight : Fight
     {
         isDroppingMana = false;
         isChargingMana = false;
+    }
+
+    public void GODMODE()
+    {
+        stats.maxHP = 9999999f;
+        stats.currentHP = 9999999f;
+        stats.maxMana = 9999999f;
+        stats.currentMana = 9999999f;
+        stats.attack = 9999999;
+        stats.currentATK = 9999999;
+        stats.defence = 9999999;
+        stats.currentDEF = 9999999;
+        stats.creativity = 9999999;
+        stats.currentCRE = 9999999;
+        stats.recovery = 9999999;
+        stats.currentRCV = 9999999;
     }
 }

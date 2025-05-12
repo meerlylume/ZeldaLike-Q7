@@ -15,16 +15,18 @@ MonoBehaviour:
   name: Carol
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:
   - Oh, that's very kind of you, I'd appreciate it!
   - I think I'll need about <item>5 carrots</item>, here, have this <item>Gauge Boost
     Crystal</item>, it should help you out.
-  - <item>Boost Crystals</item> can boost one of two stats, this one can boost your
-    <item>health</item> or <item>mana gauge</item>.
-  - I'll teach you about Mana once you get me the carrots, alright?
+  - <item>Boost Crystals</item> can boost one of two <mechanic>stats</mechanic>,
+    this one can boost your <mechanic>HP</mechanic> or <mechanic>mana gauge</mechanic>.
+  - I'll teach you about <mechanic>mana</mechanic> once you get me the <item>carrots</item>,
+    alright?
   dialogueChoices: {fileID: 0}
   questTrigger: 1
+  nextDialogue: {fileID: 0}
   giveItems: 1
   itemsToGive: {fileID: 11400000, guid: 7bf616a3dbeaf6a418d1e189d5392076, type: 2}

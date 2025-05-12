@@ -15,12 +15,13 @@ MonoBehaviour:
   name: Carol
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:
   - For someone who used to be an inn-keeper, you have the weirdest food standards.
-  - Though yeah, orange is a factor.
+  - But yeah, orange is a factor.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
+  nextDialogue: {fileID: 0}
   giveItems: 0
   itemsToGive: {fileID: 0}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: C1_2
+  m_EditorClassIdentifier: 
+  name: Mooncake
+  npcSprite: {fileID: 0}
+  npcPortrait: {fileID: 0}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.01
+  dialogueLines:
+  - You- you're serious?
+  - Hm...
+  - Well, I wouldn't exactly mind if you did get rid of those creatures, but... how
+    do I say this?
+  - Just... don't get hurt, ok? And back out if you need to.
+  dialogueChoices: {fileID: 0}
+  questTrigger: 1
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

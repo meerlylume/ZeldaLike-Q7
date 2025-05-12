@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Tilly
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.02
   dialogueLines:
   - <name>Cannelle</name>, if you're just here to bash them, you can just leave.

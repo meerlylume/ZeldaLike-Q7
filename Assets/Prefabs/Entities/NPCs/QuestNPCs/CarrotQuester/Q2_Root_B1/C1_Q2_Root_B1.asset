@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Carol
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 1
+  isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:
   - Yeah, you heard me right!
@@ -23,8 +23,9 @@ MonoBehaviour:
     wilderness.
   - You don't have to worry about <name>lyssians</name> here, so you can take your
     time and heal more.
-  - You should probably stock up on <name>mana</name> while you can too.
+  - You should probably stock up on <mechanic>mana</mechanic> while you can too.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
+  nextDialogue: {fileID: 0}
   giveItems: 0
   itemsToGive: {fileID: 0}

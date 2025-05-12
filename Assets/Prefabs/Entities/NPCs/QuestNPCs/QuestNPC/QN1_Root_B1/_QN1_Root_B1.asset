@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: _QN1_Root_B1
   m_EditorClassIdentifier: 
   choices:
-  - I will!
+  - Actually, I will!
   - Haha...
   outcomes:
-  - {fileID: 11400000, guid: db3b96a017d575442ada0bb1ce55dc56, type: 2}
+  - {fileID: 11400000, guid: 970fff87904449a479b77a373377f8f9, type: 2}
   - {fileID: 11400000, guid: 96212552b5f675d45ad0473493d6a59d, type: 2}

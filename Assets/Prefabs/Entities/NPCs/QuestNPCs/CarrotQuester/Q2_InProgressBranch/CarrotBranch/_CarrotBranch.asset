@@ -17,7 +17,7 @@ MonoBehaviour:
   - Well at least they're orange.
   - The texture's nice, but not the taste.
   - Only cooked.
-  - I prefer lettuce.
+  - I prefer <item>lettuce</item>.
   - They are literally the worst vegetable ever.
   outcomes:
   - {fileID: 11400000, guid: e0eaaf774f7aea741a1601df0d8d539f, type: 2}
