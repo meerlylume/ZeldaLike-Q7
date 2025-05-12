@@ -16,7 +16,7 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.02
+  talkingSpeed: 0.01
   dialogueLines:
   - Don't you have literally anything more important to do?
   dialogueChoices: {fileID: 0}

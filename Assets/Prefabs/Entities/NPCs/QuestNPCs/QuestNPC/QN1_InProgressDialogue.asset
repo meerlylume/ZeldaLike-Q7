@@ -16,9 +16,11 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.02
+  talkingSpeed: 0.01
   dialogueLines:
   - So you're actually going to try?
   - Don't be reckless. I don't want anyone to blame me if you get hurt.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
+  giveItems: 0
+  itemsToGive: {fileID: 0}

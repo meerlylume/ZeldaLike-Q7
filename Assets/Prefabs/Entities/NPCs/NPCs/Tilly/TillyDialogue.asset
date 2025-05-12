@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
-  m_Name: QB1
+  m_Name: TillyDialogue
   m_EditorClassIdentifier: 
-  name: Dummy
+  name: Tilly
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 0
-  talkingSpeed: 0.75
+  isPortraitOnTheRight: 1
+  talkingSpeed: 0.02
   dialogueLines:
-  - you better!
-  - my quest is..
-  - murder!! (5 <name>Monsters</name>)
-  dialogueChoices: {fileID: 0}
-  quest: {fileID: 0}
+  - Hi <name>Cannelle</name>, gonna train again today?
+  - The <name>>Good Knights</name> are busy today, you're gonna have to make do with
+    the <name>Dummy</name> right here.
+  dialogueChoices: {fileID: 11400000, guid: 6c1f14af108bd334aa8ee7e59c216441, type: 2}
+  questTrigger: 0
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

@@ -16,7 +16,7 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.02
+  talkingSpeed: 0.01
   dialogueLines:
   - Those <name>lyssians</name> are a real bother! Always chasing travellers around...
     I hope they won't be here when <name>General Arsh</name> visits.
@@ -25,3 +25,5 @@ MonoBehaviour:
   - Why don't you start by killing 5 <name>lyssians</name>? Ha!
   dialogueChoices: {fileID: 11400000, guid: 9b4f37c202c49524fa27dc9af1080426, type: 2}
   questTrigger: 0
+  giveItems: 0
+  itemsToGive: {fileID: 0}

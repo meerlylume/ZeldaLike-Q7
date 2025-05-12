@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
-  m_Name: QB2
+  m_Name: C1_2
   m_EditorClassIdentifier: 
-  name: Dummy
+  name: Cannelle
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 0
-  talkingSpeed: 0.75
+  talkingSpeed: 0.02
   dialogueLines:
-  - o- oh...
-  - ya weni marei mirakyara hirei juri yu mirekerason kire jari yuri nyerahe nyurahera
-    nanyura na ware rifeferani ni fera ni
+  - I'm not stupid, <name>Tilly</name>, I know they're avoiding me.
   dialogueChoices: {fileID: 0}
-  quest: {fileID: 0}
+  questTrigger: 0
+  nextDialogue: {fileID: 11400000, guid: bd14195328a021e45811a9018ea4b48a, type: 2}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

@@ -16,7 +16,7 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.02
+  talkingSpeed: 0.01
   dialogueLines:
   - Hi Cannelle, what's up?
   dialogueChoices: {fileID: 11400000, guid: b03df7a95e2819148a8bfc1854a97c95, type: 2}

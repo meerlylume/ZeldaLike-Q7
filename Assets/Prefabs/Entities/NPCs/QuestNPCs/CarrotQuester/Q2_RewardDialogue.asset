@@ -16,10 +16,16 @@ MonoBehaviour:
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
   isPortraitOnTheRight: 1
-  talkingSpeed: 0.02
+  talkingSpeed: 0.01
   dialogueLines:
   - Thanks a bunch <name>Cannelle</name>! I really owe you one!
-  - 
+  - As promised, I'll teach you how to use Mana to fight more effectively.
+  - First off, start by concentrating your mana by holding tab.
+  - Then, once you feel like you've got enough mana, attack!
+  - You'll deal way more damage, though be careful!
+  - Mana only regenerates in <place>Towns</place> or <place>Breather Zones</place>.
+  - You wouldn't want to run out of it in a pinch! Especially since you need it to
+    access your inventory.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
   giveItems: 0
