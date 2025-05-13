@@ -64524,6 +64524,10 @@ PrefabInstance:
       propertyPath: portraitImage
       value: 
       objectReference: {fileID: 208005541925917466}
+    - target: {fileID: 3217912915186631738, guid: f1a66793ffa51e64aad332fecacf601c, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 5363182669398611555}
     - target: {fileID: 5599604158015664287, guid: f1a66793ffa51e64aad332fecacf601c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.11
