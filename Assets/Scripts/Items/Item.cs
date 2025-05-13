@@ -24,11 +24,15 @@ public abstract class Item : MonoBehaviour, IInteractable
 
     public bool CanInteract() { return !isPickedUp; }
 
-    public void Interact()
+    public void Interact(InteractionDetector interactor)
     {
+        if (!CanInteract()) return;
+
         isPickedUp = true;
 
         spriteRenderer.enabled = false;
+
+        interactor.ItemInteract(this);
     }
 
     public void HighlightSprite(bool highlight)
@@ -37,5 +41,10 @@ public abstract class Item : MonoBehaviour, IInteractable
 
         if (highlight) spriteRenderer.sprite = highlightedSprite;
         else           spriteRenderer.sprite = sprite;
+    }
+
+    public void Interact()
+    {
+        //throw new System.NotImplementedException();
     }
 }

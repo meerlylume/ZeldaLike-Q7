@@ -17,4 +17,11 @@ public class Teleporter : MonoBehaviour, IInteractable
     {
 
     }
+
+    public void Interact(InteractionDetector interactor)
+    {
+        if (!CanInteract()) return;
+
+        interactor.TeleporterInteract(this);
+    }
 }

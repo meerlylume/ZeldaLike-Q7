@@ -330,4 +330,6 @@ IEnumerator TypeLine()
         portraitImage.transform.localPosition = new Vector3(-portraitImage.transform.localPosition.x, portraitImage.transform.localPosition.y);
         nextArrow.transform.eulerAngles       = new Vector3(0, nextArrow.transform.eulerAngles.y - 180, 270);
     }
+
+    public void Interact(InteractionDetector interactor) { interactor.NPCInteract(this); }
 }
