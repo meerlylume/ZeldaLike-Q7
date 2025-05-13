@@ -45654,22 +45654,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.2
@@ -47329,6 +47313,65 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &401042354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 401042356}
+  - component: {fileID: 401042355}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &401042355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401042354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a051cfb407be7341a03c7be1ea34bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnEnemiesEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 401042355}
+        m_TargetAssemblyTypeName: EventManager, Assembly-CSharp
+        m_MethodName: OnRespawnEnemies
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &401042356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401042354}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.388512, y: -21.152748, z: 3.5596797}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &407294413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47348,22 +47391,6 @@ PrefabInstance:
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -50336,22 +50363,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.89
@@ -52150,22 +52161,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.19
@@ -52322,22 +52317,6 @@ PrefabInstance:
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52903,22 +52882,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (15)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31.33
@@ -53178,22 +53141,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30.13
@@ -53358,22 +53305,6 @@ PrefabInstance:
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53834,22 +53765,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.69
@@ -53919,22 +53834,6 @@ PrefabInstance:
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54131,22 +54030,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (14)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.78
@@ -54228,22 +54111,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.15
@@ -54314,22 +54181,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.16
@@ -54399,22 +54250,6 @@ PrefabInstance:
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54530,6 +54365,11 @@ PrefabInstance:
 --- !u!1 &1533148176 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7919191403356978913, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
+  m_PrefabInstance: {fileID: 6846296225208907423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1534281745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8604821834356501562, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
   m_PrefabInstance: {fileID: 6846296225208907423}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1536350499 stripped
@@ -55072,22 +54912,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (16)
       objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
-      objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.52
@@ -55157,22 +54981,6 @@ PrefabInstance:
     - target: {fileID: 3485425075975010247, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_Name
       value: Monster (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654979592163870730, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305816674192066646, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75000006
       objectReference: {fileID: 0}
     - target: {fileID: 6239661729758954393, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -65034,6 +64842,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1414072405}
+    - target: {fileID: 3285378661144251519, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
+      propertyPath: healthBarObject
+      value: 
+      objectReference: {fileID: 1534281745}
     - target: {fileID: 3797955230010470319, guid: 32456bf8d5c7b2e45a8d618667ca571e, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 4
@@ -65361,3 +65173,4 @@ SceneRoots:
   - {fileID: 4151864926656620621}
   - {fileID: 2245095282361629505}
   - {fileID: 210928904}
+  - {fileID: 401042356}

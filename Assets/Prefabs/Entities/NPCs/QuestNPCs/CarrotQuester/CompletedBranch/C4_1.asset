@@ -15,13 +15,13 @@ MonoBehaviour:
   name: Cannelle
   npcSprite: {fileID: 0}
   npcPortrait: {fileID: 0}
-  isPortraitOnTheRight: 0
+  isPortraitOnTheRight: 1
   talkingSpeed: 0.02
   dialogueLines:
   - I keep running out of it! I need it to open my <mechanic>inventory</mechanic>
     and <mechanic>heal</mechanic> in fights.
   dialogueChoices: {fileID: 0}
   questTrigger: 0
-  nextDialogue: {fileID: 0}
+  nextDialogue: {fileID: 11400000, guid: 40a1458a213db7d4399dfd778df37b65, type: 2}
   giveItems: 0
   itemsToGive: {fileID: 0}

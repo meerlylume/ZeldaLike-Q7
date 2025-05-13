@@ -19,8 +19,8 @@ MonoBehaviour:
   talkingSpeed: 0.02
   dialogueLines:
   - What do you mean? Why not?
-  dialogueChoices: {fileID: 11400000, guid: c224e0bfd37a7d549af85de8a122204b, type: 2}
+  dialogueChoices: {fileID: 0}
   questTrigger: 0
-  nextDialogue: {fileID: 0}
+  nextDialogue: {fileID: 11400000, guid: 712b6e45d2005b740bfabc3736d56a36, type: 2}
   giveItems: 0
   itemsToGive: {fileID: 0}
