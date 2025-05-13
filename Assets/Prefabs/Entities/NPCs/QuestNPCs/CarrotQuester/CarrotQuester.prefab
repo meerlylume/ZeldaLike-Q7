@@ -62,15 +62,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rewards: {fileID: 11400000, guid: 7bf616a3dbeaf6a418d1e189d5392076, type: 2}
-  name: Give 5 carrots
-  description: Get 5 carrots and deliver them to The Carrot Quester.
-  rewardsDesc: You get something really good that's not implemented yet but trust
-    me
-  asker: The Carrot Quester
+  name: Carrots please!
+  description: Get 5 carrots and deliver them to Carol.
+  rewardsDesc: Mana Focus Ability
+  asker: Carol
   isInProgressDialogue: {fileID: 11400000, guid: 0974fa7922ef54a48b4c1fd1343c146d, type: 2}
   rewardDialogue: {fileID: 11400000, guid: 8108044f8a50ec6468ea0e2083caf0e7, type: 2}
   isCompletedDialogue: {fileID: 11400000, guid: f480886007a4e6b4b9ccfaa8bfec2563, type: 2}
   playerInventory: {fileID: 0}
+  playerFight: {fileID: 0}
   requiredItems: {fileID: 11400000, guid: 3315874f36ddfc34d84cd3e86a88d9cc, type: 2}
 --- !u!212 &4772110947788529750
 SpriteRenderer:
