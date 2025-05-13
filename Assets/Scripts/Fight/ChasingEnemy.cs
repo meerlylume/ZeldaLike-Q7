@@ -21,6 +21,8 @@ public class ChasingEnemy : EnemyFight
 
     private void FixedUpdate()
     {
+        if (!isAlive) return;
+
         if (!(GetIsChasing() && GetPlayerFight())) return;
 
         Vector2 direction = GetPlayerFight().transform.position - transform.position;

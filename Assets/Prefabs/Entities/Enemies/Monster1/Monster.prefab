@@ -216,7 +216,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.75000006, y: 0.75000006, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6720518598975355625}
@@ -240,7 +240,7 @@ MonoBehaviour:
   - {fileID: 5508319690698197638, guid: d34df89d9ed3c854392d374a2999626e, type: 3}
   textLifetime: 1
   worldCanvas: {fileID: 5305816674192066646}
-  healthBar: {fileID: 7083857896090026041}
+  healthBarObject: {fileID: 6473901948142443300}
   manaBar: {fileID: 0}
   damageTextPrefab: {fileID: 3889677253225551517, guid: 5af4fc47820721d44b18d8f803ef9d2a, type: 3}
   critTextPrefab: {fileID: 5102333147670426686, guid: 2672e5c4ea0fd3e4b852de99375a3e96, type: 3}
@@ -425,7 +425,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1073450119
   m_SortingOrder: 0

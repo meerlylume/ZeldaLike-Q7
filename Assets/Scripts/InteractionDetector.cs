@@ -78,6 +78,7 @@ public class InteractionDetector : MonoBehaviour
         if (fullHealer && fullHealer.CanInteract())
         {
             playerFight.FullHeal();
+            fullHealer.Interact();
             return;
         }
 

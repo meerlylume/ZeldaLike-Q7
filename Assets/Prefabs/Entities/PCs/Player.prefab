@@ -3813,7 +3813,7 @@ MonoBehaviour:
   - {fileID: 5508319690698197638, guid: d34df89d9ed3c854392d374a2999626e, type: 3}
   textLifetime: 1
   worldCanvas: {fileID: 2424738464658870097}
-  healthBar: {fileID: 972096457559388504}
+  healthBarObject: {fileID: 0}
   manaBar: {fileID: 7082705226707610290}
   damageTextPrefab: {fileID: 3889677253225551517, guid: 5af4fc47820721d44b18d8f803ef9d2a, type: 3}
   critTextPrefab: {fileID: 5102333147670426686, guid: 2672e5c4ea0fd3e4b852de99375a3e96, type: 3}
@@ -6268,7 +6268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.881065, y: 16.390957}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 12.2212}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2424738464658870097

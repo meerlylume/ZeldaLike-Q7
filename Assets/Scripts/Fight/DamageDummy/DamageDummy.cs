@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class DamageDummy : EnemyFight
 {
-    public override void Die() { return; }
+    public override void Start() { return; }
+
+    public override void Die()   { return; }
 
     public override void TakeKnockback(float knockback, Vector2 attackPos) { return; }
 

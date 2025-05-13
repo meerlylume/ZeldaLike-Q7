@@ -21,16 +21,19 @@ public abstract class Fight : MonoBehaviour, IFight
     [SerializeField] protected float textLifetime = 1f; //TEMPORARY
 
     [Header("UI References")]
-    [SerializeField] Canvas           worldCanvas;
-    [SerializeField] private GUIStatBar healthBar;
-    [SerializeField] private GUIStatBar manaBar;
-    [SerializeField] GameObject       damageTextPrefab;
-    [SerializeField] GameObject       critTextPrefab;
+    [SerializeField] Canvas             worldCanvas;
+    [SerializeField] protected GameObject healthBarObject;
+                     protected GUIStatBar healthBar;
+    [SerializeField] protected GUIStatBar manaBar;
+    [SerializeField] GameObject         damageTextPrefab;
+    [SerializeField] GameObject         critTextPrefab;
     [Space]
+
+    protected Collider2D collider2d;
 
     [Space]
     [Header("TEMPORARY")]
-    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
 
     #region Getters
     public virtual bool CanTakeDamage()                { return canTakeDamage;                      }
@@ -41,6 +44,8 @@ public abstract class Fight : MonoBehaviour, IFight
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider2d = GetComponent<Collider2D>();
+        healthBar = healthBarObject.GetComponent<GUIStatBar>();
         rb.gravityScale = 0; //in case I forget to put it in the inspector
 
         FullHealHP();
@@ -92,7 +97,10 @@ public abstract class Fight : MonoBehaviour, IFight
         isAlive       = false;
 
         // /!\ THIS IS ONLY TEMPORARY /!\
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        rb.linearVelocity = Vector2.zero;
+        spriteRenderer.enabled = false;
+        collider2d.enabled = false;
     }
 
     public virtual void Die(Stats killer) { Die(); }

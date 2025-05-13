@@ -1,22 +1,26 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyFight : Fight
 {
     protected Stats baseStats;
     [Header("Monster Loot")]
-    [SerializeField] LootTable lootTable;
-    [SerializeField] float lootRadius;
-    [SerializeField] float timeBetweenDrops = 0.1f;
-    private Vector3 deathPos;
+    [SerializeField] protected LootTable lootTable;
+    [SerializeField] protected float lootRadius;
+    [SerializeField] protected float timeBetweenDrops = 0.1f;
+    protected Vector3 deathPos;
+    protected Vector3 spawnPos;
     public static int enemyKillCount;
 
     public override void Start()
     {
+        spawnPos  = transform.position;
         baseStats = stats;
         stats     = ScriptableObject.CreateInstance<Stats>();
+        healthBar = healthBarObject.GetComponent<GUIStatBar>();
         CopyBaseStats();
+
+        EventManager.Instance.AddEnemy(this);
 
         base.Start();
     }
@@ -75,15 +79,29 @@ public class EnemyFight : Fight
                 }
             }
         }
-        
 
         base.Die();
+        healthBarObject.SetActive(isAlive);
     }
 
     public override void RefreshMana()
     {
         // Enemies have no mana bar, and don't use mana at all, at least for now
         return;
+    }
+
+    public void Respawn()
+    {
+        isAlive                 = true;
+
+        healthBarObject.SetActive(true);
+        canTakeDamage           = true;
+        collider2d.enabled      = true;
+        spriteRenderer.enabled  = true;
+        rb.linearVelocity       = Vector2.zero;
+        transform.position      = spawnPos;
+
+        FullHeal();
     }
 
     private void OnDrawGizmosSelected()

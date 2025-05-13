@@ -19,7 +19,7 @@ MonoBehaviour:
   talkingSpeed: 0.02
   dialogueLines:
   - We're not doing this again.
-  dialogueChoices: {fileID: 11400000, guid: d1d4ca461ef28d645af7aa0423b2d2c3, type: 2}
+  dialogueChoices: {fileID: 0}
   questTrigger: 0
   nextDialogue: {fileID: 0}
   giveItems: 0
