@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -12,11 +13,11 @@ public class InteractionDetector : MonoBehaviour
 
     private List <GameObject> interactableGameobjects = new List<GameObject>();
     private bool canInteract = true;
+    int index;
 
-    private void Start()
-    {
-        interactionIcon.SetActive(false);
-    }
+    private void Start() { interactionIcon.SetActive(false); }
+
+    private void CheckInteractionIcon() { interactionIcon.SetActive(!(interactableGameobjects.Count == 0)); }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
@@ -30,71 +31,51 @@ public class InteractionDetector : MonoBehaviour
 
     public void DoInteract()
     {
-        if (!canInteract) return;
-
         if (interactableGameobjects.Count == 0) return;
 
-        int index = interactableGameobjects.Count - 1;
-
-        //NPC
-        interactableGameobjects[index].TryGetComponent(out NPC npc);
-        if (npc)
-        {
-            npc.Interact();
-            npc.SetPlayerReference(transform.parent.gameObject);
-            CheckInteractionIcon();
-            return;
-        }
-
-        //ITEM
-        interactableGameobjects[index].TryGetComponent(out Item item);
-        if (item && item.CanInteract())
-        {
-            item.Interact();
-            playerInventory.AddItem(item, 1);
-            interactableGameobjects.RemoveAt(index);
-            CheckInteractionIcon();
-            return;
-        }
-
-        //CHEST
-        interactableGameobjects[index].TryGetComponent(out Chest chest);
-        if (chest && chest.CanInteract())
-        {
-            chest.Interact();
-            InventoryData chestInventory = chest.GetInventory();
-            for (int i = 0; chestInventory.items.Count > i; i++)
-            {
-                playerInventory.AddItem(chestInventory.items[i], chestInventory.quantities[i]);
-                playerInventory.AddMoney(chestInventory.money);
-            }
-            interactableGameobjects.RemoveAt(index);
-            CheckInteractionIcon();
-            return;
-        }
-
-        //FULL HEALER
-        interactableGameobjects[index].TryGetComponent(out FullHealer fullHealer);
-        if (fullHealer && fullHealer.CanInteract())
-        {
-            playerFight.FullHeal();
-            fullHealer.Interact();
-            return;
-        }
-
-        interactableGameobjects[index].TryGetComponent(out Teleporter teleporter);
-        if (teleporter && teleporter.CanInteract())
-        {
-            playerFight.transform.position = teleporter.GetDestination();
-
-            currentCamera.SetActive(false);
-            currentCamera = teleporter.GetNewCamera();
-            currentCamera.SetActive(true);
-        }
+        index = interactableGameobjects.Count - 1;
 
         interactableGameobjects[index].TryGetComponent(out IInteractable interactable);
-        interactable?.Interact();
+        interactable?.Interact(this);
+
+        CheckInteractionIcon();
     }
+
+    public void ItemInteract(Item item) 
+    { 
+        playerInventory.AddItem(item, 1); 
+        interactableGameobjects.RemoveAt(index);
+    }
+
+    public void TeleporterInteract(Teleporter teleporter)
+    {
+        playerFight.transform.position = teleporter.GetDestination();
+
+        currentCamera.SetActive(false);
+        currentCamera = teleporter.GetNewCamera();
+        currentCamera.SetActive(true);
+    }
+
+    public void ChestInteract(Chest chest)
+    {
+        InventoryData chestInventory = chest.GetInventory();
+        for (int i = 0; chestInventory.items.Count > i; i++)
+        {
+            playerInventory.AddItem(chestInventory.items[i], chestInventory.quantities[i]);
+            playerInventory.AddMoney(chestInventory.money);
+        }
+        interactableGameobjects.RemoveAt(index);
+    }
+
+    public void FullHealerInteract(FullHealer fullHealer) { playerFight.FullHeal(); }
+
+    public void NPCInteract(NPC npc)
+    {
+        npc.Interact();
+        npc.SetPlayerReference(transform.parent.gameObject);
+    }
+
+    #region Collisions
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out IInteractable interactable) && interactable.CanInteract()) 
@@ -114,12 +95,10 @@ public class InteractionDetector : MonoBehaviour
             
             for (int i = 0; i < interactableGameobjects.Count; i++)
             {
-                if (interactableGameobjects[i] == collision.gameObject)
-                {
-                    interactableGameobjects.RemoveAt(i);
-                    CheckInteractionIcon();
-                    break;
-                }
+                if (interactableGameobjects[i] != collision.gameObject) continue;
+                interactableGameobjects.RemoveAt(i);
+                CheckInteractionIcon();
+                break;
             }
         }
 
@@ -128,9 +107,5 @@ public class InteractionDetector : MonoBehaviour
 
         CheckInteractionIcon();
     }
-
-    private void CheckInteractionIcon()
-    {
-        interactionIcon.SetActive(!(interactableGameobjects.Count == 0));
-    }
+    #endregion
 }

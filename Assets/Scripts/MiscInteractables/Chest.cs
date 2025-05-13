@@ -37,14 +37,18 @@ public class Chest : Inventory, IInteractable
 
     public void Interact()
     {
-        Debug.Log($"Interacting, CanInteract: {CanInteract()}");
-
-        if (!CanInteract()) return;
-        isOpen = true;
-        CheckIfOpen();
+        
     }
 
     public InventoryData GetInventory() { return inventory; }
+
+    public void Interact(InteractionDetector interactor)
+    {
+        if (!CanInteract()) return;
+        interactor.ChestInteract(this);
+        isOpen = true;
+        CheckIfOpen();
+    }
 }
 
 [System.Serializable]
