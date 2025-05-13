@@ -6,6 +6,7 @@ public class QuestNPC : NPC
     protected NPCDialogue trueRootDialogue;
     protected QuestTracker questTracker;
     protected PlayerInventory playerInventory;
+    private bool doCheck = true;
     public Quest GetQuest() { return quest; }
     public void SetQuest(Quest value) { quest = value; }
 
@@ -13,6 +14,7 @@ public class QuestNPC : NPC
     {
         base.Start();
         trueRootDialogue = rootDialogueData;
+        doCheck = true;
 
         CheckQuestDialogue();
     }
@@ -50,7 +52,13 @@ public class QuestNPC : NPC
 
     public override void StartDialogue()
     {
-        if (rootDialogueData != quest.GetIsInProgressDialogue() && rootDialogueData != quest.GetIsCompletedDialogue()) CheckQuestDialogue(); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        //if (rootDialogueData != quest.GetIsInProgressDialogue() && rootDialogueData != quest.GetIsCompletedDialogue()) CheckQuestDialogue(); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+        if (doCheck)
+        {
+            CheckQuestDialogue();
+            doCheck = false;
+        }
 
         base.StartDialogue();
     }
@@ -63,7 +71,33 @@ public class QuestNPC : NPC
             questTracker.TrackQuest(quest);
         }
 
-        base.EndDialogue();
+        if (branchDialogueData.dialogueChoices != null)
+        {
+            DisplayDialogueChoices();
+            isWaitingForChoice = true;
+            doCheck = false;
+        }
+
+        else 
+        { 
+            if (playerMovement) playerMovement.UnfreezePlayerMovement();
+            doCheck = true;
+        }
+
+        StopAllCoroutines();
+        isDialogueActive = false;
+        isTyping = false;
+        dialogueText.SetText("");
+        dialoguePanel.SetActive(false);
+
+        if (branchDialogueData.nextDialogue != null)
+        {
+            doCheck = false;
+            StartNewDialogue(branchDialogueData.nextDialogue);
+            return;
+        }
+
+        branchDialogueData = rootDialogueData;
     }
 
     public override void SetPlayerReference(GameObject _player)
