@@ -27,7 +27,7 @@ MonoBehaviour:
   - <mechanic>Mana</mechanic> only regenerates in <place>Towns</place> or <place>Breather
     Zones</place>.
   - You wouldn't want to run out of it in a pinch! Especially since you need it to
-    access your <mechanic>inventory</mechanic>.
+    access your <mechanic>inventory</mechanic>.<reward>
   dialogueChoices: {fileID: 0}
   questTrigger: 0
   nextDialogue: {fileID: 0}

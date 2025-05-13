@@ -5,7 +5,6 @@ public class QuestNPC : NPC
     [SerializeField] private Quest quest;
     protected NPCDialogue trueRootDialogue;
     protected QuestTracker questTracker;
-    protected PlayerInventory playerInventory;
     private bool doCheck = true;
     public Quest GetQuest() { return quest; }
     public void SetQuest(Quest value) { quest = value; }
@@ -65,6 +64,19 @@ public class QuestNPC : NPC
 
     public override void EndDialogue()
     {
+        if (branchDialogueData.giveItems)
+        {
+            Debug.Log("GIVE ITEMS");
+            playerInventory.AddMoney(branchDialogueData.itemsToGive.money);
+
+            for (int i = 0; i < branchDialogueData.itemsToGive.items.Count; i++)
+            {
+                if (branchDialogueData.itemsToGive.items.Count != branchDialogueData.itemsToGive.quantities.Count)
+                    Debug.LogError("WRONG INVENTORY DATA");
+                playerInventory.AddItem(branchDialogueData.itemsToGive.items[i], branchDialogueData.itemsToGive.quantities[i]);
+            }
+        }
+
         if (branchDialogueData.questTrigger)
         {
             quest.AcceptQuest();
@@ -103,8 +115,7 @@ public class QuestNPC : NPC
     public override void SetPlayerReference(GameObject _player)
     {
         base.SetPlayerReference(_player);
-        questTracker    = _player.GetComponent<QuestTracker>();
-        playerInventory = _player.GetComponent<PlayerInventory>();
+        questTracker = _player.GetComponent<QuestTracker>();
     }
 
     public override void GiveQuestRewards() { quest.GiveQuestRewards(playerInventory); }

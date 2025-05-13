@@ -28,6 +28,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     protected NPCParent parent;
     protected PlayerMovement playerMovement;
+    protected PlayerInventory playerInventory;
 
     public void SetIsWaitingForChoice(bool value) { isWaitingForChoice = value; }
 
@@ -227,6 +228,19 @@ IEnumerator TypeLine()
 
     public virtual void EndDialogue()
     {
+        if (branchDialogueData.giveItems)
+        {
+            Debug.Log("GIVE ITEMS");
+            playerInventory.AddMoney(branchDialogueData.itemsToGive.money);
+            
+            for (int i = 0; i < branchDialogueData.itemsToGive.items.Count; i++)
+            {
+                if (branchDialogueData.itemsToGive.items.Count != branchDialogueData.itemsToGive.quantities.Count)
+                    Debug.LogError("WRONG INVENTORY DATA");
+                playerInventory.AddItem(branchDialogueData.itemsToGive.items[i], branchDialogueData.itemsToGive.quantities[i]);
+            }
+        }
+
         if (branchDialogueData.dialogueChoices != null)
         {
             DisplayDialogueChoices();
@@ -286,7 +300,8 @@ IEnumerator TypeLine()
 
     public virtual void SetPlayerReference(GameObject _player)
     {
-        playerMovement = _player.GetComponent<PlayerMovement>();
+        playerMovement  = _player.GetComponent<PlayerMovement>();
+        playerInventory = _player.GetComponent<PlayerInventory>();
     }
 
     protected void CheckPortraitPosition()
