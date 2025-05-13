@@ -66,7 +66,6 @@ public class QuestNPC : NPC
     {
         if (branchDialogueData.giveItems)
         {
-            Debug.Log("GIVE ITEMS");
             playerInventory.AddMoney(branchDialogueData.itemsToGive.money);
 
             for (int i = 0; i < branchDialogueData.itemsToGive.items.Count; i++)

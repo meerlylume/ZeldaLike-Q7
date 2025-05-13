@@ -30,12 +30,6 @@ public class IC_GaugeBoostCrystal : BoostCrystal
         manaOption.TryGetComponent(out manaButton);
         manaButton.SetText("Mana");
         manaButton.Submit.AddListener(RaiseMaxMana);
-
-        // Handle Cancel
-        GameObject cancelOption = CreateButton();
-        cancelOption.TryGetComponent(out cancelButton);
-        cancelButton.SetText("Cancel");
-        cancelButton.Submit.AddListener(Cancel);
     }
 
     public void RaiseMaxHP()

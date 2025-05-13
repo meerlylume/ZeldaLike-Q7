@@ -27,12 +27,6 @@ public class IC_PhysicalBoostCrystal : BoostCrystal
         defenceOption.TryGetComponent(out defenceButton);
         defenceButton.SetText("Defence");
         defenceButton.Submit.AddListener(RaiseDefence);
-
-        // Handle Cancel
-        GameObject cancelOption = CreateButton();
-        cancelOption.TryGetComponent(out cancelButton);
-        cancelButton.SetText("Cancel");
-        cancelButton.Submit.AddListener(Cancel);
     }
 
     public void RaiseAttack()

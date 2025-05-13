@@ -27,12 +27,6 @@ public class IC_SpiritualBoostCrystal : BoostCrystal
         recoveryOption.TryGetComponent(out recoveryButton);
         recoveryButton.SetText("Recovery");
         recoveryButton.Submit.AddListener(RaiseRecovery);
-
-        // Handle Cancel
-        GameObject cancelOption = CreateButton();
-        cancelOption.TryGetComponent(out cancelButton);
-        cancelButton.SetText("Cancel");
-        cancelButton.Submit.AddListener(Cancel);
     }
 
     public void RaiseCreativity()
