@@ -45541,14 +45541,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 572117022}
     m_Modifications:
-    - target: {fileID: 1724496372120490065, guid: ee2965fcef1109340a5fab74ba31038f, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 339.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 1724496372120490065, guid: ee2965fcef1109340a5fab74ba31038f, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 80.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3485425075975010247, guid: ee2965fcef1109340a5fab74ba31038f, type: 3}
       propertyPath: m_Name
       value: Dummonster
@@ -51753,6 +51745,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 572117022}
     m_Modifications:
+    - target: {fileID: 821922616577233453, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2201052470313659658, guid: f978236cb7a88964098065ab39bc24b7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
