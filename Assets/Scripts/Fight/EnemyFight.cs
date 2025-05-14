@@ -80,7 +80,7 @@ public class EnemyFight : Fight
             }
         }
 
-        base.Die();
+        Die();
         healthBarObject.SetActive(isAlive);
     }
 
@@ -90,7 +90,7 @@ public class EnemyFight : Fight
         return;
     }
 
-    public void Respawn()
+    public virtual void Respawn()
     {
         isAlive                 = true;
 
