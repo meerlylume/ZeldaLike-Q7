@@ -105,7 +105,7 @@ public class NPC : MonoBehaviour, IInteractable
         StartCoroutine(TypeLine());
     }
 
-IEnumerator TypeLine()
+protected IEnumerator TypeLine()
     {
         //Stop player movement
         yield return new WaitForEndOfFrame();
@@ -323,7 +323,7 @@ IEnumerator TypeLine()
         else overworldSprite.flipX = false;
     }
 
-    protected void CheckPortraitPosition()
+    protected virtual void CheckPortraitPosition()
     {
         //if the portrait is to the LEFT of the dialogue box
         if (portraitImage.transform.localPosition.x > 0) 
@@ -342,7 +342,7 @@ IEnumerator TypeLine()
         }
     }
 
-    protected void SwapPortraitSide()
+    protected virtual void SwapPortraitSide()
     {
         dialogueText.transform.localPosition  = new Vector3(-dialogueText.transform.localPosition.x, dialogueText.transform.localPosition.y);
         namePanel.transform.localPosition     = new Vector3(-namePanel.transform.localPosition.x, namePanel.transform.localPosition.y);

@@ -4,9 +4,11 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
+    public bool isDefaultSave;
+
     // PLAYER
         // Position
-    public Vector2 playerPosition;
+    public Vector3 playerPosition;
 
         // Unlocks
     public bool manaChargeUnlocked;

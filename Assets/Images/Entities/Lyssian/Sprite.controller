@@ -23,7 +23,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: ea8275e7cfeb2bb4a9e404604f0be99d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
-  m_MirrorParameter: flipSprite
+  m_MirrorParameter: flip
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1101 &-8910825443297816194
@@ -75,7 +75,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: 5270ee0383437d04882389bd801e94ad, type: 2}
   m_Tag: 
   m_SpeedParameter: 
-  m_MirrorParameter: flipSprite
+  m_MirrorParameter: flip
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1101 &-2837952432795702195
@@ -127,7 +127,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: 8da469c4064b18b42a5ba00c5b08159b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
-  m_MirrorParameter: flipSprite
+  m_MirrorParameter: flip
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1101 &-608226026823595890
@@ -161,7 +161,7 @@ AnimatorController:
   m_Name: Sprite
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: flipSprite
+  - m_Name: flip
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
