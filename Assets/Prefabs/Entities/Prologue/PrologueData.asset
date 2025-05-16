@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: PrologueData
+  m_EditorClassIdentifier: 
+  identity: {fileID: 0}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.05
+  dialogueLines:
+  - <name>Cannelle</name> is a moon bunny. Like all other moon bunnies, she lives
+    on the <place>moon</place>.
+  - Well, <i>lived</i>...
+  - <place>The Moon</place> used to be a far-away safe haven, isolated from all dangers
+    of <place>Earth</place>. Where <name>Cannelle</name> lived with her wife, <name>Merry</name>.
+  - Until one day, a dreaded beast known as <name>The Managarm</name> attacked.
+  - In its greed, it chased everyone off the <place>moon</place>, except for <name>Merry</name>,
+    who was left behind.
+  - Tired of waiting around for the knights to actually do their job, <name>Cannelle</name>
+    attempts to make her own way back, and save her wife.
+  dialogueChoices: {fileID: 0}
+  questTrigger: 0
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

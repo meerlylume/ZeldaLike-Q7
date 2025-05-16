@@ -1,20 +1,25 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSaver : MonoBehaviour
 {
+    public static GameSaver Instance;
+
     private string saveLocation;
     [Header("Defaults")]
     [SerializeField] private Stats cannelleFirstStats;
     [SerializeField] private Stats cannelleCurrentStats;
     [SerializeField] private InventoryData cannelleInventoryData;
 
-    private void Start()
+    private void Awake()
     {
-        saveLocation = Path.Combine(Application.persistentDataPath, "saveData.json");
+        if (Instance == null)      { Instance = this;     }
+        else if (Instance != null) { Destroy(gameObject); }
 
-        LoadGame();
+        saveLocation = Path.Combine(Application.persistentDataPath, "saveData.json");
     }
 
     public void SaveGame()
@@ -32,8 +37,10 @@ public class GameSaver : MonoBehaviour
 
         SaveData saveData = new()
         {
+            isDefaultSave = false,
+
             //player pos
-            playerPosition     = player.transform.position,
+            playerPosition = player.transform.position,
             //unlocks
             manaChargeUnlocked = playerFight.GetCanChargeMana(),
             //stats
@@ -62,12 +69,19 @@ public class GameSaver : MonoBehaviour
 
     public void LoadGame()
     {
+        if (SceneManager.GetActiveScene().name != "Game")
+        {
+            StartCoroutine(WaitForSceneLoad());
+            return;
+        }
+
         if (File.Exists(saveLocation))
         {
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
 
             // Player
             GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (!player) Debug.LogWarning("NO PLAYER GAMEOBJECT FOUND ON LOAD");
             player.transform.position = saveData.playerPosition; //position
 
             PlayerFight playerFight = player.GetComponent<PlayerFight>();
@@ -77,7 +91,7 @@ public class GameSaver : MonoBehaviour
 
             // Player Inventory
             PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
-            InventoryData inventoryData = playerInventory.GetInventoryData();
+            InventoryData inventoryData     = playerInventory.GetInventoryData();
             inventoryData.money      = saveData.money;
             inventoryData.items      = saveData.items;
             inventoryData.quantities = saveData.quantities;
@@ -97,12 +111,31 @@ public class GameSaver : MonoBehaviour
         else SaveGame();
     }
 
+    public IEnumerator WaitForSceneLoad()
+    {
+        SceneManager.LoadScene("Game");
+
+        while (!GameObject.FindGameObjectWithTag("Player")){
+            yield return new WaitForEndOfFrame();
+        }
+
+        LoadGame();
+    }
+
+    public void OnRestart()
+    {
+        SceneManager.LoadScene("Game");
+        LoadGame();
+    }
+
     public void DeleteSave()
     {
         CopyStats(cannelleFirstStats, cannelleCurrentStats);
 
         SaveData saveData = new()
         {
+            isDefaultSave = true,
+
             // Unlocks
             manaChargeUnlocked = false,
 
@@ -136,13 +169,6 @@ public class GameSaver : MonoBehaviour
 
         // Write
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
-        Application.Quit();
-    }
-
-    private void OnApplicationQuit()
-    {
-        //SaveGame();
-        Debug.Log("OnApplicationQuit()");
     }
 
     private void CopyStats(Stats from, Stats to)
@@ -184,5 +210,17 @@ public class GameSaver : MonoBehaviour
             newChest.IsOpen    = chest.GetIsOpen();
             saveData.chests.Add(newChest);
         }
+    }
+
+    public bool HasSaveFile()
+    {
+        if (File.Exists(saveLocation))
+        {
+            SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
+
+            return !saveData.isDefaultSave;
+        }
+
+        return false;
     }
 }
