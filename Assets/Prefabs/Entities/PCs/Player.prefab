@@ -3141,9 +3141,9 @@ GameObject:
   m_Component:
   - component: {fileID: 356489471640585990}
   - component: {fileID: 1964469839399220240}
+  - component: {fileID: 4203015405524518643}
   - component: {fileID: 8866202204598637704}
   - component: {fileID: 3285378661144251519}
-  - component: {fileID: 5378168281552671222}
   - component: {fileID: 1544510492908036348}
   - component: {fileID: 2493246765725959757}
   - component: {fileID: 5825525581810070386}
@@ -3203,8 +3203,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5378168281552671222}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 4203015405524518643}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -3291,9 +3291,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Interact[/Keyboard/e]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3285378661144251519}
-        m_TargetAssemblyTypeName: PlayerFight, Assembly-CSharp
-        m_MethodName: PlayerAttack
+      - m_Target: {fileID: 4203015405524518643}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnAttack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3358,6 +3358,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4203015405524518643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2425832166832809274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78024e7759423004ab16e66c86c8a6db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFight: {fileID: 3285378661144251519}
 --- !u!114 &8866202204598637704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3405,18 +3418,15 @@ MonoBehaviour:
   ManaRanOutEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5378168281552671222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2425832166832809274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa7d68a044907847b6d4035c084ba3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  FreezeMovementEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DisableMovementEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ManaChargingEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1544510492908036348
 MonoBehaviour:
   m_ObjectHideFlags: 0

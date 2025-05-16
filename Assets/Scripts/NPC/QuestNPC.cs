@@ -91,7 +91,11 @@ public class QuestNPC : NPC
 
         else 
         { 
-            if (playerMovement) playerMovement.UnfreezePlayerMovement();
+            if (playerController)
+            {
+                playerController.UnfreezePlayerMovement();
+                playerController.SetCanAttack(true);
+            }
             doCheck = true;
         }
 
