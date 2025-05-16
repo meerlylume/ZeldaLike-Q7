@@ -67,6 +67,10 @@ public class PlayerFight : Fight
         RefreshMana();
 
         gameOverUI.SetActive(false);
+
+        anims = spriteObject.GetComponent<Anims>();
+        anims.AttackFrameEvent.AddListener(Attack);
+        playerMovement.SetAnims(anims);
     }
 
     public void PlayerAttack(InputAction.CallbackContext context)

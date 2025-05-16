@@ -9,9 +9,11 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove;
     private Rigidbody2D rb;
     private Vector2 knockbackForce;
+    private Anims anims;
 
     #region Get/Set
     public void    SetSpeed(float value)            { moveSpeed      = value; }
+    public void    SetAnims(Anims value)            { anims          = value; }
     public void    InManaChargingSpeed(bool value)    { 
         if (value) speedModifier = 0.5f;
         else       speedModifier = 1f;
@@ -66,6 +68,9 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+
+        if (moveInput.x != 0) anims.SetFlipSprite(moveInput.x < 0);
+
         rb.linearVelocity = moveInput.normalized * moveSpeed * speedModifier;
     }
 }

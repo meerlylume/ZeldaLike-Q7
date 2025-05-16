@@ -5,10 +5,8 @@ using UnityEngine;
 public class NPCDialogue : ScriptableObject
 {
     [Header("Identity")]
-    public new string name;
-    public Sprite npcSprite;
-    public Sprite npcPortrait; 
-    public bool   isPortraitOnTheRight = false; [Space]
+    public Identity identity;
+    public bool isPortraitOnTheRight = false; [Space]
 
     [Header("Speech Variables")]
     public float talkingSpeed = 0.02f; [Space]

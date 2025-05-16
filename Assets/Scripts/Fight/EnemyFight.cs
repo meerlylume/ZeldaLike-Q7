@@ -97,8 +97,8 @@ public class EnemyFight : Fight
         healthBarObject.SetActive(true);
         canTakeDamage           = true;
         collider2d.enabled      = true;
-        spriteRenderer.enabled  = true;
         rb.linearVelocity       = Vector2.zero;
+        spriteObject.SetActive(true);
         transform.position      = spawnPos;
 
         FullHeal();

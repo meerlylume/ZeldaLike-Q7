@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
   m_Name: Q2_RootDialogue
   m_EditorClassIdentifier: 
-  name: Carol
-  npcSprite: {fileID: 0}
-  npcPortrait: {fileID: 0}
+  identity: {fileID: 11400000, guid: b6b5ddefdb29117419229812dceaaa06, type: 2}
   isPortraitOnTheRight: 0
   talkingSpeed: 0.01
   dialogueLines:

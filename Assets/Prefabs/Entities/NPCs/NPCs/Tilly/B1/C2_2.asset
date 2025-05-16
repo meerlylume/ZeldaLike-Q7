@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
   m_Name: C2_2
   m_EditorClassIdentifier: 
-  name: Cannelle
-  npcSprite: {fileID: 0}
-  npcPortrait: {fileID: 0}
+  identity: {fileID: 11400000, guid: 6d17823a63f44114c95d2b68472fec3a, type: 2}
   isPortraitOnTheRight: 1
   talkingSpeed: 0.02
   dialogueLines:
