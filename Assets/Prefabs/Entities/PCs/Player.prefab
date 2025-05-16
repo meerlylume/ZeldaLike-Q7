@@ -2036,13 +2036,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344820974355898173}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.25, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.69, z: 1}
+  m_LocalScale: {x: 1, y: 0.69, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2678686479168865794}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6395384888553330494
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2087,12 +2087,12 @@ SpriteRenderer:
   m_SortingLayerID: -58805345
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -8111138777676370632, guid: 359d8b061480fc442870ad7c6de2341c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.1, y: 2.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3395,7 +3395,7 @@ MonoBehaviour:
   manaBar: {fileID: 7082705226707610290}
   damageTextPrefab: {fileID: 3889677253225551517, guid: 5af4fc47820721d44b18d8f803ef9d2a, type: 3}
   critTextPrefab: {fileID: 5102333147670426686, guid: 2672e5c4ea0fd3e4b852de99375a3e96, type: 3}
-  spriteRenderer: {fileID: 6366090582225010525}
+  spriteObject: {fileID: 7198818926576675722}
   healthBarnimator: {fileID: 7255011324944682989}
   healthBarShakeTime: 0.25
   manAnimator: {fileID: 8543404564629255894}
@@ -14540,9 +14540,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6700279935335630871}
+  - component: {fileID: 2088723515904219612}
   - component: {fileID: 6366090582225010525}
+  - component: {fileID: 7785746750140836423}
   m_Layer: 0
-  m_Name: CannelleSpriteTestRender_0
+  m_Name: OverworldSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14563,6 +14565,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 356489471640585990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2088723515904219612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198818926576675722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5ef11d879ef8945aeeffe100811b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackFrameEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!212 &6366090582225010525
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14607,17 +14624,39 @@ SpriteRenderer:
   m_SortingLayerID: -1247302803
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4695033381793622376, guid: f3ee61de979c99a4795a6f86a2f4aba6, type: 3}
+  m_Sprite: {fileID: 9168410104788718492, guid: 27158ac2ff620134a85c3f1fb049af5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.63, y: 8.33}
+  m_Size: {x: 0.73142856, y: 2.122857}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7785746750140836423
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198818926576675722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d26f4fd047b56489115a74a5eaa605, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7251213048404388191
 GameObject:
   m_ObjectHideFlags: 0
@@ -15606,7 +15645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -333.5, y: 200}
+  m_AnchoredPosition: {x: -222, y: 200}
   m_SizeDelta: {x: 205, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5988681628194628290

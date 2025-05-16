@@ -30,10 +30,11 @@ public abstract class Fight : MonoBehaviour, IFight
     [Space]
 
     protected Collider2D collider2d;
+    protected Anims anims;
 
     [Space]
-    [Header("TEMPORARY")]
-    [SerializeField] protected SpriteRenderer spriteRenderer;
+    [Header("Sprite")]
+    [SerializeField] protected GameObject spriteObject;
 
     #region Getters
     public virtual bool CanTakeDamage()                { return canTakeDamage;                      }
@@ -96,10 +97,8 @@ public abstract class Fight : MonoBehaviour, IFight
         canTakeDamage = false;
         isAlive       = false;
 
-        // /!\ THIS IS ONLY TEMPORARY /!\
-        //gameObject.SetActive(false);
         rb.linearVelocity = Vector2.zero;
-        spriteRenderer.enabled = false;
+        spriteObject.SetActive(false);
         collider2d.enabled = false;
     }
 
@@ -137,6 +136,8 @@ public abstract class Fight : MonoBehaviour, IFight
 
         DamageDisplay(totalDamage, crit, attackPos);
         RefreshHP();
+
+        if (isAlive) anims.SetHurt();
 
         if (stats.currentHP <= 0) { Die(attacker); }
     }
@@ -217,15 +218,9 @@ public abstract class Fight : MonoBehaviour, IFight
     {
         if (isInCooldown) yield break;
 
-        // Attack
-        Attack();
-        if (stats.name == "Cannelle") spriteRenderer.color = Color.gray; //temporary
-        
-        //Cooldown
+        anims.SetAttack();
         isInCooldown = true;
         yield return new WaitForSeconds(attacks[attackIndex].GetCooldown(stats));
-        if (stats.name == "Cannelle") spriteRenderer.color = Color.white; //temporary
-
         isInCooldown = false;
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Principal;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] protected NPCDialogue rootDialogueData;
+    protected SpriteRenderer overworldSprite;
     protected NPCDialogue branchDialogueData;
 
     protected GameObject   dialoguePanel;
@@ -46,6 +48,8 @@ public class NPC : MonoBehaviour, IInteractable
         nextArrow     = parent.GetNextArrow();
         choicesGrid   = parent.GetChoicesGrid();
         choicePrefab  = parent.GetChoicesPrefab();
+
+        overworldSprite = GetComponent<SpriteRenderer>();
     }
 
     public virtual void StartNewDialogue(NPCDialogue newData)
@@ -91,8 +95,10 @@ public class NPC : MonoBehaviour, IInteractable
         isDialogueActive = true;
         lineIndex        = 0;
 
-        nameText.SetText(branchDialogueData.name);
-        portraitImage.sprite = branchDialogueData.npcPortrait;
+        if (!branchDialogueData.identity) Debug.LogWarning("Branch Dialogue Data has no Identity");
+
+        nameText.SetText(branchDialogueData.identity.name);
+        if (branchDialogueData.identity.portrait) portraitImage.sprite = branchDialogueData.identity.portrait;
 
         dialoguePanel.SetActive(true);
 
@@ -298,10 +304,12 @@ IEnumerator TypeLine()
         return resultText;
     }
 
-    public virtual void SetPlayerReference(GameObject _player)
+    public virtual void SetPlayerReference(GameObject player)
     {
-        playerMovement  = _player.GetComponent<PlayerMovement>();
-        playerInventory = _player.GetComponent<PlayerInventory>();
+        playerMovement  = player.GetComponent<PlayerMovement>();
+        playerInventory = player.GetComponent<PlayerInventory>();
+        if (player.transform.position.x < transform.position.x) overworldSprite.flipX = true;
+        else overworldSprite.flipX = false;
     }
 
     protected void CheckPortraitPosition()
