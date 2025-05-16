@@ -6,7 +6,7 @@ public class SaveData
 {
     public bool isDefaultSave;
 
-    // PLAYER
+    // --- PLAYER
         // Position
     public Vector3 playerPosition;
 
@@ -37,6 +37,9 @@ public class SaveData
     public List<Item> items;
     public List<int>  quantities;
 
-    // CHESTS   
+        // Quests
+    public List<Quest> quests = new List<Quest>();
+
+    // --- CHESTS   
     public List<ChestData> chests = new List<ChestData>();
 }
