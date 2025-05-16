@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: Q2_RootDialogue
+  m_EditorClassIdentifier: 
+  identity: {fileID: 11400000, guid: b6b5ddefdb29117419229812dceaaa06, type: 2}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.01
+  dialogueLines:
+  - Hey there, didn't expected to meet another one of us here.
+  - I wanted to get some <item>carrots</item>, but I'm no good at fighting...
+  - At least I can <mechanic>heal</mechanic> up better here.
+  dialogueChoices: {fileID: 11400000, guid: f8aec0b688872a24c8b6fa4c177c0b6e, type: 2}
+  questTrigger: 0
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d80a39c2ef24248902b4997c63c3a2, type: 3}
+  m_Name: B1
+  m_EditorClassIdentifier: 
+  choices:
+  - How do I <mechanic>focus mana</mechanic> again?
+  - What do <mechanic>mana attacks</mechanic> do again?
+  - How do I <mechanic>recover mana</mechanic> again?
+  - Why would I even want to attack with <mechanic>mana</mechanic>, again?
+  - Why do you even like <item>carrots<item> again?
+  - Rocks.
+  outcomes:
+  - {fileID: 11400000, guid: f5a64871b7696f84f93b32b72b107525, type: 2}
+  - {fileID: 11400000, guid: 87b3ccbf931cc2d49805eb344204b7e1, type: 2}
+  - {fileID: 11400000, guid: 5646225d6300ece4fb2096adf6fc54ea, type: 2}
+  - {fileID: 11400000, guid: dd760a60fad21f14d8189e1095cc03e2, type: 2}
+  - {fileID: 11400000, guid: c2626b132d107f744ab265cd8e111343, type: 2}
+  - {fileID: 11400000, guid: 0516193ffa960b24da7a63609c258645, type: 2}

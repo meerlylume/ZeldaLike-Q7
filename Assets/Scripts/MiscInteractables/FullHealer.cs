@@ -13,4 +13,11 @@ public class FullHealer : MonoBehaviour, IInteractable
     {
         //feedback
     }
+
+    public void Interact(InteractionDetector interactor)
+    {
+        if (!CanInteract()) return;
+        EventManager.Instance.RespawnEnemiesEvent.Invoke();
+        interactor.FullHealerInteract(this);
+    }
 }

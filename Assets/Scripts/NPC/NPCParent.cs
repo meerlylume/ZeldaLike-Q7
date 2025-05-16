@@ -12,6 +12,7 @@ public class NPCParent : MonoBehaviour
     [SerializeField] Image portraitImage;
     [SerializeField] GameObject choicesGrid;
     [SerializeField] GameObject choicePrefab;
+    [SerializeField] GameObject nextArrow;
     [Space]
 
     [Header("Text Colors")]
@@ -19,6 +20,7 @@ public class NPCParent : MonoBehaviour
     [SerializeField] Color nameColor;
     [SerializeField] Color placeColor;
     [SerializeField] Color itemColor;
+    [SerializeField] Color mechanicColor;
 
     public GameObject GetDialoguePanel() { return dialoguePanel; }
     public TMP_Text   GetDialogueText()  { return dialogueText;  }
@@ -27,8 +29,10 @@ public class NPCParent : MonoBehaviour
     public Image      GetPortraitImage() { return portraitImage; }
     public GameObject GetChoicesGrid()   { return choicesGrid;   }
     public GameObject GetChoicesPrefab() { return choicePrefab;  }
+    public GameObject GetNextArrow()     { return nextArrow;     }
     public Color      GetDefaultColor()  { return defaultColor;  }
     public Color      GetNameColor()     { return nameColor;     }
     public Color      GetPlaceColor()    { return placeColor;    }
     public Color      GetItemColor()     { return itemColor;     }
+    public Color      GetMechanicColor() { return mechanicColor; }
 }

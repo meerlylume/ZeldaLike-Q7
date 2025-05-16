@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: C2
+  m_EditorClassIdentifier: 
+  identity: {fileID: 11400000, guid: b6b5ddefdb29117419229812dceaaa06, type: 2}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.01
+  dialogueLines:
+  - Believe it or not, but <mechanic>mana</mechanic> can do other things than light
+    lanterns or look pretty.
+  - We had it in excess when we were living on <place>The Moon</place>, but we didn't
+    have much to use it on.
+  - <name>The Managarm</name> wanted it for a reason...
+  - 'There''s plenty of <mechanic>spells</mechanic> it can be used for: attacking,
+    healing, boosting, and so on.'
+  - I myself only know how to fight with it, but again, I'm too cowardly to fight
+    anyway.
+  - I'd love to see if you'll get a better use of it.
+  dialogueChoices: {fileID: 0}
+  questTrigger: 0
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

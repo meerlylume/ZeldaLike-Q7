@@ -1,9 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryGrid : MonoBehaviour
 {
-    [Header("Text References")]
+    [Header("Info References")]
+    [SerializeField] Image                    itemImage;
     [SerializeField] TextMeshProUGUI          infoText;
     [SerializeField] TextMeshProUGUI          descText;
     [Space]
@@ -19,8 +21,9 @@ public class InventoryGrid : MonoBehaviour
     [SerializeField] GameObject choicePrefab;
 
     // SET
-    public void SetInfoText(string value)     { infoText.text = value;       }
-    public void SetDescText(string value)     { descText.text = value;       }
+    public void SetInfoText(string value)     { infoText.text    = value;    }
+    public void SetDescText(string value)     { descText.text    = value;    }
+    public void SetItemSprite(Sprite value)   { itemImage.sprite = value;    }
     public void SetActiveItemGrid(bool value) { itemGrid.SetActive(value);   }
 
     // GET

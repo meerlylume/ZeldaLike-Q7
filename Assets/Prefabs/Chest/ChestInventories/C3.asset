@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f0997bc6e8b4a4e81476434d4b16ab, type: 3}
   m_Name: C3
   m_EditorClassIdentifier: 
-  money: 420
+  money: 0
   items:
-  - {fileID: 6931089718501590547, guid: 89cc919e14f83c34f91ca2d5190c2c1b, type: 3}
-  - {fileID: 2501275518386469735, guid: dda72e2efd26cb449a55a4fcabc86e4f, type: 3}
-  quantities: 0100000002000000
+  - {fileID: 3353908368094435337, guid: 172925794be3edd4fb1041e7f1d99065, type: 3}
+  quantities: 01000000

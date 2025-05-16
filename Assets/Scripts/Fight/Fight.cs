@@ -9,6 +9,7 @@ public abstract class Fight : MonoBehaviour, IFight
     [SerializeField] protected Stats stats;
     [Space]
     protected Rigidbody2D rb;
+    protected float manaCharged;
 
     [Header("Attacks")]
     [SerializeField] protected List<Attack> attacks;
@@ -20,50 +21,76 @@ public abstract class Fight : MonoBehaviour, IFight
     [SerializeField] protected float textLifetime = 1f; //TEMPORARY
 
     [Header("UI References")]
-    [SerializeField] Canvas     worldCanvas;
-    [SerializeField] Slider     healthSlider;
-    [SerializeField] Slider     manaSlider;
-    [SerializeField] GameObject damageTextPrefab;
-    [SerializeField] GameObject critTextPrefab;
-    [SerializeField] GameObject parryTextPrefab;
+    [SerializeField] Canvas             worldCanvas;
+    [SerializeField] protected GameObject healthBarObject;
+                     protected GUIStatBar healthBar;
+    [SerializeField] protected GUIStatBar manaBar;
+    [SerializeField] GameObject         damageTextPrefab;
+    [SerializeField] GameObject         critTextPrefab;
     [Space]
 
+    protected bool canAttack;
+    protected Collider2D collider2d;
+    protected Anims anims;
+
     [Space]
-    [Header("TEMPORARY")]
-    [SerializeField] SpriteRenderer spriteRenderer;
+    [Header("Sprite")]
+    [SerializeField] protected GameObject spriteObject;
 
     #region Getters
     public virtual bool CanTakeDamage()                { return canTakeDamage;                      }
     public virtual bool IsAlliedWith(Fight fight)      { return fight.stats.isAlly == stats.isAlly; }
     public virtual bool IsAlliedWith(Stats otherStats) { return otherStats.isAlly == stats.isAlly;  }
+    public bool GetCanAttack()                         { return canAttack;                          }
+    public void SetCanAttack(bool value)               { canAttack = value;                         }
     #endregion
 
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider2d = GetComponent<Collider2D>();
+        healthBar = healthBarObject.GetComponent<GUIStatBar>();
         rb.gravityScale = 0; //in case I forget to put it in the inspector
 
         FullHealHP();
+        ResetStats();
     }
+
+    #region STATS
+    public virtual void ResetStats()
+    {
+        ResetCurrentAttack();
+        ResetCurrentDefence();
+        ResetCurrentCreativity();
+        ResetCurrentRecovery();
+    }
+
+    public void ResetCurrentAttack()     { stats.currentATK = stats.attack;     }
+    public void ResetCurrentDefence()    { stats.currentDEF = stats.defence;    }
+    public void ResetCurrentCreativity() { stats.currentCRE = stats.creativity; }
+    public void ResetCurrentRecovery()   { stats.currentRCV = stats.recovery;   }
 
     public virtual void CopyStatsInto(Stats baseStats, Stats stats)
     {
-        stats.name             = baseStats.name;
-        stats.maxHP            = baseStats.maxHP;
-        stats.maxMana          = baseStats.maxMana;
-        stats.attack           = baseStats.attack;
-        stats.defence          = baseStats.defence;
-        stats.creativity       = baseStats.creativity;
-        stats.recovery         = baseStats.recovery;
-        stats.movementSpeed    = baseStats.movementSpeed;
-        stats.cooldownModifier = baseStats.cooldownModifier;
+        stats.name                   = baseStats.name;
+        stats.maxHP                  = baseStats.maxHP;
+        stats.maxMana                = baseStats.maxMana;
+        stats.attack                 = baseStats.attack;
+        stats.defence                = baseStats.defence;
+        stats.creativity             = baseStats.creativity;
+        stats.recovery               = baseStats.recovery;
+        stats.movementSpeed          = baseStats.movementSpeed;
+        stats.attackCooldownModifier = baseStats.attackCooldownModifier;
 
+        ResetStats();
         FullHealHP();
     }
+    #endregion
 
     public virtual void Attack()
     {
-        attacks[attackIndex].PerformAttack(stats, transform.position);
+        attacks[attackIndex].PerformAttack(stats, transform.position, manaCharged);
+        manaCharged = 0f;
         attackIndex = (attackIndex + 1) % attacks.Count; //increments attackIndex if it's under attacks.Count, else sets it to 0
     }
 
@@ -73,28 +100,27 @@ public abstract class Fight : MonoBehaviour, IFight
         canTakeDamage = false;
         isAlive       = false;
 
-        // /!\ THIS IS ONLY TEMPORARY /!\
-        gameObject.SetActive(false);
+        rb.linearVelocity = Vector2.zero;
+        spriteObject.SetActive(false);
+        collider2d.enabled = false;
     }
 
-    private float CalculateDamage(float atk, bool crit, bool parry)
+    public virtual void Die(Stats killer) { Die(); }
+
+    protected float CalculateDamage(float atk, bool crit)
     {
         float damage;
 
-        // If defender parries
-        if (!crit && parry) { return 0.0f; }
-
         // If attacker crits
-        else if (crit && !parry)
+        if (crit)
         {
-            damage = atk * 2.5f - Random.Range(stats.defence * 0.5f, stats.defence);
+            damage = atk * 2.5f - Random.Range(stats.currentDEF * 0.5f, stats.currentDEF);
             damage = Mathf.Clamp(damage, 0, Mathf.Infinity);
         }
 
-        // If neither crit nor parry, or both do
         else
         {
-            damage = Random.Range(atk, atk * 1.5f) - Random.Range(stats.defence * 0.5f, stats.defence);
+            damage = Random.Range(atk, atk * 1.5f) - Random.Range(stats.currentDEF * 0.5f, stats.currentDEF);
             damage = Mathf.Clamp(damage, 0, Mathf.Infinity);
         }
 
@@ -102,36 +128,31 @@ public abstract class Fight : MonoBehaviour, IFight
         return damage;
     }
 
-    public virtual void TakeDamage(float atk, bool crit, Vector2 attackPos)
+    public virtual void TakeDamage(float atk, bool crit, Vector2 attackPos, Stats attacker)
     {
         if (!isAlive) return;
         if (!canTakeDamage) return;
 
-
-        bool parry = stats.RollForLuck();
-
-        float totalDamage = CalculateDamage(atk, crit, parry);
+        float totalDamage = CalculateDamage(atk, crit);
 
         stats.currentHP = Mathf.Clamp(stats.currentHP - totalDamage, 0, stats.maxHP);
 
-        DamageDisplay(totalDamage, crit, parry, attackPos);
-        OnHPChanged();
+        DamageDisplay(totalDamage, crit, attackPos);
+        RefreshHP();
 
-        if (stats.currentHP <= 0) { Die(); }
+        if (isAlive) anims.SetHurt();
+
+        if (stats.currentHP <= 0) { Die(attacker); }
     }
 
-    private void DamageDisplay(float totalDamage, bool crit, bool parry, Vector2 attackPos)
+    protected void DamageDisplay(float totalDamage, bool crit, Vector2 attackPos)
     {
         if (!worldCanvas) return;
         
         GameObject newText = null;
 
-        // if neither crit nor parry or both crit and parry
-        if (!(crit ^ parry)) { newText = Instantiate(damageTextPrefab); }
-        // if crit only
-        else if (crit)       { newText = Instantiate(critTextPrefab);   }
-        // if parry only
-        else if (parry)      { newText = Instantiate(parryTextPrefab);  }
+        if (crit) newText = Instantiate(critTextPrefab);   
+        else      newText = Instantiate(damageTextPrefab); 
 
         if (!newText) return;
 
@@ -147,32 +168,47 @@ public abstract class Fight : MonoBehaviour, IFight
         damageText.Push(pushDir, textLifetime, pushStrength, intTotalDamage.ToString());
     }
 
+    public virtual void TakeKnockback(float knockback, Vector2 attackPos)
+    {
+        Vector2 pushDir = new Vector2(transform.position.x, transform.position.y) - attackPos;
+
+        //handle knockback res
+        rb.AddForce(pushDir * knockback, ForceMode2D.Impulse);
+    }
+
     public virtual void HealHP(float amount)
     {
         if (!isAlive || amount <= 0) return;
-        stats.currentHP = Mathf.Clamp(stats.currentHP + amount /** stats.HealingModifier()*/, stats.currentHP, stats.maxHP);
-        OnHPChanged();
+        stats.currentHP = Mathf.Clamp(stats.currentHP + amount * stats.HealingModifier(), stats.currentHP, stats.maxHP);
+        RefreshHP();
     }
 
     public virtual void FullHealHP()
     {
         if (!isAlive) return;
         stats.currentHP = stats.maxHP;
-        OnHPChanged();
+        RefreshHP();
     }
 
     public virtual void HealMana(float amount)
     {
         if (!isAlive) return;
         stats.currentMana = Mathf.Clamp(stats.currentMana + amount * stats.HealingModifier(), 0, stats.maxMana);
-        OnManaChanged();
+        RefreshMana();
+    }
+
+    public virtual void RemoveMana(float amount)
+    {
+        if (!isAlive) return;
+        stats.currentMana = Mathf.Clamp(stats.currentMana - amount, 0, stats.maxMana);
+        RefreshMana();
     }
 
     public virtual void FullHealMana()
     {
         if (!isAlive) return;
         stats.currentMana = stats.maxMana;
-        OnManaChanged();
+        RefreshMana();
     }
 
     public virtual void FullHeal()
@@ -185,34 +221,15 @@ public abstract class Fight : MonoBehaviour, IFight
     {
         if (isInCooldown) yield break;
 
-        // Attack
-        Attack();
-        if (stats.name == "Cannelle") spriteRenderer.color = Color.gray;
-        
-        //Cooldown
+        anims.SetAttack();
         isInCooldown = true;
         yield return new WaitForSeconds(attacks[attackIndex].GetCooldown(stats));
-        if (stats.name == "Cannelle") spriteRenderer.color = Color.white;
-
         isInCooldown = false;
     }
 
     #region HealthBar & ManaBar
-    public virtual void OnHPChanged()   { RefreshHealthBar(); }
-
-    public virtual void OnManaChanged() { RefreshManaBar();   }
-
-    public virtual void RefreshHealthBar()
-    {
-        healthSlider.maxValue = stats.maxHP;
-        healthSlider.value    = stats.currentHP;
-    }
-
-    public virtual void RefreshManaBar()
-    {
-        manaSlider.maxValue = stats.maxMana;
-        manaSlider.value    = stats.currentMana;
-    }
+    public virtual void RefreshHP()   { healthBar.RefreshBar(stats.maxHP, stats.currentHP);   }
+    public virtual void RefreshMana() { manaBar.RefreshBar(stats.maxMana, stats.currentMana); }
     #endregion
 
     #region Stat Raising (item usage)
@@ -226,9 +243,25 @@ public abstract class Fight : MonoBehaviour, IFight
         stats.maxMana     += amount; 
         stats.currentMana += amount;
     }
-    public void RaiseAttack(int amount)     { stats.attack     += amount; }
-    public void RaiseDefence(int amount)    { stats.defence    += amount; }
-    public void RaiseCreativity(int amount) { stats.creativity += amount; }
-    public void RaiseRecovery(int amount)   { stats.recovery   += amount; }
+    public void RaiseAttack(int amount)     
+    { 
+        stats.attack     += amount; 
+        stats.currentATK += amount;
+    }
+    public void RaiseDefence(int amount)    
+    { 
+        stats.defence    += amount; 
+        stats.currentDEF += amount;
+    }
+    public void RaiseCreativity(int amount) 
+    { 
+        stats.creativity += amount; 
+        stats.currentCRE += amount;
+    }
+    public void RaiseRecovery(int amount)   
+    { 
+        stats.recovery   += amount; 
+        stats.currentRCV += amount;
+    }
     #endregion
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Principal;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] protected NPCDialogue rootDialogueData;
+    protected SpriteRenderer overworldSprite;
     protected NPCDialogue branchDialogueData;
 
     protected GameObject   dialoguePanel;
@@ -17,7 +19,8 @@ public class NPC : MonoBehaviour, IInteractable
     protected Image        portraitImage;
     protected GameObject   choicesGrid;
     protected GameObject   choicePrefab;
-    List<GameObject>     choiceButtons = new List<GameObject> { };
+    protected GameObject   nextArrow;
+    List<GameObject>       choiceButtons = new List<GameObject> { };
 
     protected int          lineIndex;
     protected bool         isTyping;
@@ -26,7 +29,8 @@ public class NPC : MonoBehaviour, IInteractable
     protected string       tagDetector;
 
     protected NPCParent parent;
-    protected PlayerMovement playerMovement;
+    protected PlayerController playerController;
+    protected PlayerInventory playerInventory;
 
     public void SetIsWaitingForChoice(bool value) { isWaitingForChoice = value; }
 
@@ -41,8 +45,11 @@ public class NPC : MonoBehaviour, IInteractable
         namePanel     = parent.GetNamePanel();
         nameText      = parent.GetNameText();
         portraitImage = parent.GetPortraitImage();
+        nextArrow     = parent.GetNextArrow();
         choicesGrid   = parent.GetChoicesGrid();
         choicePrefab  = parent.GetChoicesPrefab();
+
+        overworldSprite = GetComponent<SpriteRenderer>();
     }
 
     public virtual void StartNewDialogue(NPCDialogue newData)
@@ -88,19 +95,25 @@ public class NPC : MonoBehaviour, IInteractable
         isDialogueActive = true;
         lineIndex        = 0;
 
-        nameText.SetText(branchDialogueData.name);
-        portraitImage.sprite = branchDialogueData.npcPortrait;
+        if (!branchDialogueData.identity) Debug.LogWarning("Branch Dialogue Data has no Identity");
+
+        nameText.SetText(branchDialogueData.identity.name);
+        if (branchDialogueData.identity.portrait) portraitImage.sprite = branchDialogueData.identity.portrait;
 
         dialoguePanel.SetActive(true);
 
         StartCoroutine(TypeLine());
     }
 
-IEnumerator TypeLine()
+protected IEnumerator TypeLine()
     {
         //Stop player movement
         yield return new WaitForEndOfFrame();
-        if (playerMovement) playerMovement.DisablePlayerMovement();
+        if (playerController)
+        {
+            playerController.FreezePlayerMovement();
+            playerController.SetCanAttack(false);
+        }
 
         //Clear the dialogue text and start typing
         isTyping = true;
@@ -168,25 +181,35 @@ IEnumerator TypeLine()
                 {
                     // NAME
                     case "<name>":
+                    case "<names>":
                         returnedText += "<color=#" + parent.GetNameColor().ToHexString() + ">";
-                        break;
-                    case "</name>":
-                        returnedText += "</color>";
                         break;
 
                     // ITEM
                     case "<item>":
+                    case "<items>":
                         returnedText += "<color=#" + parent.GetItemColor().ToHexString() + ">";
-                        break;
-                    case "</item>":
-                        returnedText += "</color>";
                         break;
 
                     // PLACE
                     case "<place>":
+                    case "<places>":
                         returnedText += "<color=#" + parent.GetPlaceColor().ToHexString() + ">";
                         break;
+
+                    // MECHANIC
+                    case "<mechanic>":
+                    case "<mechanics>":
+                        returnedText += "<color=#" + parent.GetMechanicColor().ToHexString() + ">";
+                        break;
+                    case "</name>":
+                    case "</names>":
+                    case "</item>":
+                    case "</items>":
                     case "</place>":
+                    case "</places>":
+                    case "</mechanic>":
+                    case "</mechanics>":
                         returnedText += "</color>";
                         break;
 
@@ -215,19 +238,45 @@ IEnumerator TypeLine()
 
     public virtual void EndDialogue()
     {
+        if (branchDialogueData.giveItems)
+        {
+            Debug.Log("GIVE ITEMS");
+            playerInventory.AddMoney(branchDialogueData.itemsToGive.money);
+            
+            for (int i = 0; i < branchDialogueData.itemsToGive.items.Count; i++)
+            {
+                if (branchDialogueData.itemsToGive.items.Count != branchDialogueData.itemsToGive.quantities.Count)
+                    Debug.LogError("WRONG INVENTORY DATA");
+                playerInventory.AddItem(branchDialogueData.itemsToGive.items[i], branchDialogueData.itemsToGive.quantities[i]);
+            }
+        }
+
         if (branchDialogueData.dialogueChoices != null)
         {
             DisplayDialogueChoices();
             isWaitingForChoice = true;
         }
 
-        else { if (playerMovement) playerMovement.EnablePlayerMovement(); }
+        else 
+        { 
+            if (playerController)
+            {
+                playerController.UnfreezePlayerMovement();
+                playerController.SetCanAttack(true);
+            }
+        }
 
         StopAllCoroutines();
         isDialogueActive = false;
         isTyping         = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
+
+        if (branchDialogueData.nextDialogue != null)
+        {
+            StartNewDialogue(branchDialogueData.nextDialogue);
+            return;
+        }
 
         branchDialogueData = rootDialogueData;
     }
@@ -266,12 +315,15 @@ IEnumerator TypeLine()
         return resultText;
     }
 
-    public virtual void SetPlayerReference(GameObject _player)
+    public virtual void SetPlayerReference(GameObject player)
     {
-        playerMovement = _player.GetComponent<PlayerMovement>();
+        playerController  = player.GetComponent<PlayerController>();
+        playerInventory = player.GetComponent<PlayerInventory>();
+        if (player.transform.position.x < transform.position.x) overworldSprite.flipX = true;
+        else overworldSprite.flipX = false;
     }
 
-    protected void CheckPortraitPosition()
+    protected virtual void CheckPortraitPosition()
     {
         //if the portrait is to the LEFT of the dialogue box
         if (portraitImage.transform.localPosition.x > 0) 
@@ -290,10 +342,13 @@ IEnumerator TypeLine()
         }
     }
 
-    protected void SwapPortraitSide()
+    protected virtual void SwapPortraitSide()
     {
         dialogueText.transform.localPosition  = new Vector3(-dialogueText.transform.localPosition.x, dialogueText.transform.localPosition.y);
         namePanel.transform.localPosition     = new Vector3(-namePanel.transform.localPosition.x, namePanel.transform.localPosition.y);
         portraitImage.transform.localPosition = new Vector3(-portraitImage.transform.localPosition.x, portraitImage.transform.localPosition.y);
+        nextArrow.transform.eulerAngles       = new Vector3(0, nextArrow.transform.eulerAngles.y - 180, 270);
     }
+
+    public void Interact(InteractionDetector interactor) { interactor.NPCInteract(this); }
 }

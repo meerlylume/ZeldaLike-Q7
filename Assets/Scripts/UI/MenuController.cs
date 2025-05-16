@@ -10,17 +10,35 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject menuDefaultSelection;
     [SerializeField] GameObject settingsDefaultSelection;
     [SerializeField] EventSystem eventSystem;
+    [SerializeField] PlayerFight playerFight;
+
     void Start()
     {
         OnOpenCloseMenu(false);
+        playerFight.ManaRanOutEvent.AddListener(ForceClose);
     }
 
     public void ToggleMenu(InputAction.CallbackContext context)
     {
         if (context.started) OpenSelected(menuDefaultSelection);
     }
+
+    private void ForceClose()
+    {
+        OnOpenCloseMenu(false);
+    }
+
     private void OnOpenCloseMenu(bool isOpen)
     {
+        if (isOpen && !playerFight.DoDefaultMenu())
+        {
+            if (!playerFight.HasMana()) return;
+
+            playerFight.OnMenuOpen();
+        }
+
+        if (!isOpen) playerFight.OnMenuClose();
+        
         menuCanvas.SetActive(isOpen);
 
         if (isOpen) { Time.timeScale = 0f; }

@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class IC_PhysicalBoostCrystal : BoostCrystal
 {
-    [Header("Strength/Defence Boost Ranges")]
-    public int minRandomRange = 1;
-    public int maxRandomRange = 3;
+    [Header("Boost Amount")]
+    public int boostAmount;
 
     protected PlayerInventory playerInventory;
     MenuOption attackButton;
@@ -28,27 +27,17 @@ public class IC_PhysicalBoostCrystal : BoostCrystal
         defenceOption.TryGetComponent(out defenceButton);
         defenceButton.SetText("Defence");
         defenceButton.Submit.AddListener(RaiseDefence);
-
-        // Handle Cancel
-        GameObject cancelOption = CreateButton();
-        cancelOption.TryGetComponent(out cancelButton);
-        cancelButton.SetText("Cancel");
-        cancelButton.Submit.AddListener(Cancel);
     }
 
     public void RaiseAttack()
     {
-        int amount = Random.Range(minRandomRange, maxRandomRange);
-        playerInventory.GetFight().RaiseAttack(amount);
-        playerInventory.RemoveItem(this);
+        playerInventory.GetFight().RaiseAttack(boostAmount);
         EndChoose();
     }
 
     public void RaiseDefence()
     {
-        int amount = Random.Range(minRandomRange, maxRandomRange);
-        playerInventory.GetFight().RaiseDefence(amount);
-        playerInventory.RemoveItem(this);
+        playerInventory.GetFight().RaiseDefence(boostAmount);
         EndChoose();
     }
 
@@ -56,6 +45,8 @@ public class IC_PhysicalBoostCrystal : BoostCrystal
     public override void EndChoose()
     {
         base.EndChoose();
+
+        playerInventory.RemoveItem(this);
 
         if (attackButton) Destroy(attackButton.gameObject);
         if (defenceButton) Destroy(defenceButton.gameObject);

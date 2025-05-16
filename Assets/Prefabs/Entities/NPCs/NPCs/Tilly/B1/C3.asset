@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: C3
+  m_EditorClassIdentifier: 
+  identity: {fileID: 11400000, guid: 6d17823a63f44114c95d2b68472fec3a, type: 2}
+  isPortraitOnTheRight: 1
+  talkingSpeed: 0.02
+  dialogueLines:
+  - Actually, I'm heading out in <place>Gardlyss</place> today!
+  - It's time I put all my training to use!
+  - We can't have <name>General Arsh</name> visiting while <place>The Village</place>
+    is overrun with those creatures, right?
+  - (And it's not like the <name>Good Knights</name> are gonna do annything about
+    it...)
+  dialogueChoices: {fileID: 0}
+  questTrigger: 0
+  nextDialogue: {fileID: 11400000, guid: e41fdd52a0f987a4da65e5d61960d1f6, type: 2}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: TillyDialogue
+  m_EditorClassIdentifier: 
+  identity: {fileID: 11400000, guid: 11b77d92845efbc4db60d56b416c7615, type: 2}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.02
+  dialogueLines:
+  - Hi <name>Cannelle</name>, gonna train again today?
+  - The <name>>Good Knights</name> are busy today, you're gonna have to make do with
+    the <name>Dummy</name> right here.
+  dialogueChoices: {fileID: 11400000, guid: 6c1f14af108bd334aa8ee7e59c216441, type: 2}
+  questTrigger: 0
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

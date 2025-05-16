@@ -53,10 +53,12 @@ MonoBehaviour:
   portraitImage: {fileID: 0}
   choicesGrid: {fileID: 0}
   choicePrefab: {fileID: 8476606600417076956, guid: 1ae4e7a353553de4f820bc4a60407e20, type: 3}
+  nextArrow: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  nameColor: {r: 0.99215686, g: 0.5568628, b: 1, a: 1}
+  nameColor: {r: 0.87058824, g: 0.2627451, b: 0.49019608, a: 1}
   placeColor: {r: 0.3882353, g: 0.93333334, b: 0.50980395, a: 1}
   itemColor: {r: 1, g: 0.9019608, b: 0.32156864, a: 1}
+  mechanicColor: {r: 0.49411768, g: 0.8313726, b: 0.97647065, a: 1}
 --- !u!1001 &2613037796432200531
 PrefabInstance:
   m_ObjectHideFlags: 0

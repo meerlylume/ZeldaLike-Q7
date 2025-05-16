@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: OtherDummy
+  m_EditorClassIdentifier: 
+  identity: {fileID: 11400000, guid: ab0da9cbdcc2eff4585f988d679eb58e, type: 2}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.02
+  dialogueLines:
+  - Oh hi <name>Cannelle</name>, didn't see you there.
+  - So... <name>General Arsh</name> is visiting from <place>Blaumond Kingdom</place>,
+    huh?
+  - It must be a difficult journey, what with all the angry <name>lyssians</name>
+    runnning around.
+  - I mean, I'm not worried about him, he's a General and all... but it's ought to
+    be a stressful and unpleasant journey.
+  - We need to be good hosts to him, make a good impression, if we want <place>Blaumond</place>'s
+    help.
+  - ...
+  - Don't go harassing him to take you to <place>The Moon</place>. Okay?
+  dialogueChoices: {fileID: 0}
+  questTrigger: 0
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

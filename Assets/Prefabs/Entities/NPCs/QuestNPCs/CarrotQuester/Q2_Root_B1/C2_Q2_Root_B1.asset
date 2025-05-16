@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: C2_Q2_Root_B1
+  m_EditorClassIdentifier: 
+  identity: {fileID: 11400000, guid: b6b5ddefdb29117419229812dceaaa06, type: 2}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.01
+  dialogueLines:
+  - Oh, that's very kind of you, I'd appreciate it!
+  - I think I'll need about <item>5 carrots</item>, here, have this <item>Gauge Boost
+    Crystal</item>, it should help you out.
+  - <item>Boost Crystals</item> can boost one of two <mechanic>stats</mechanic>,
+    this one can boost your <mechanic>HP</mechanic> or <mechanic>mana gauge</mechanic>.
+  - I'll teach you about <mechanic>mana</mechanic> once you get me the <item>carrots</item>,
+    alright?
+  dialogueChoices: {fileID: 0}
+  questTrigger: 1
+  nextDialogue: {fileID: 0}
+  giveItems: 1
+  itemsToGive: {fileID: 11400000, guid: 7bf616a3dbeaf6a418d1e189d5392076, type: 2}

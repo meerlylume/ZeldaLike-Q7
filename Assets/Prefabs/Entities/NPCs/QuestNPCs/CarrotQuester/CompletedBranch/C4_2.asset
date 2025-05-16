@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: C4_2
+  m_EditorClassIdentifier: 
+  identity: {fileID: 11400000, guid: b6b5ddefdb29117419229812dceaaa06, type: 2}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.02
+  dialogueLines:
+  - You're better off healing at <place>Breather Zones</place>, you heal about <mechanic>twice
+    as more</mechanic> in there!
+  - Or, maybe you could find some <item>Gauge Boost Crystals</item> and use them
+    to get more <mechanic>mana</mechanic> to spare.
+  - Or look for some <item>Spiritual Boost Crystals</item> to raise your <mechanic>Creativity</mechanic>
+    or <mechanic>Recovery</mechanic>?
+  - The more recovery you have, the more you heal from <mechanic>auto-regeneration</mechanic>
+    and <item>items</item>.
+  - The more <mechanic>creativity</mechanic> you have, the stronger the damage boost
+    from mana focusing gets!
+  - You also get <mechanic>critical hits</mechanic> more often, so that can help
+    in fights too!
+  - Oh, and more <mechanic>recovery</mechanic> also means you don't have to deal
+    with negative status effects for as long.
+  - Theoretically. Status effects are for a later version.
+  - <mechanic>Creativity</mechanic> would give you more chance at inflicting negative
+    status effects on your foes, theoretically.
+  - And <mechanic>recovery</mechanic> makes you faster while you're charging mana.
+  - It's a tough choice to make, isn't it?
+  dialogueChoices: {fileID: 11400000, guid: 5c95893f62374844ea479e6ff4ff38fa, type: 2}
+  questTrigger: 0
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}

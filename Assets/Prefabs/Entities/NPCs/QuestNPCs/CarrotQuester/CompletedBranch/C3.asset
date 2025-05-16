@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c638fb551286554fad8e59627ebc6df, type: 3}
+  m_Name: C3
+  m_EditorClassIdentifier: 
+  identity: {fileID: 11400000, guid: b6b5ddefdb29117419229812dceaaa06, type: 2}
+  isPortraitOnTheRight: 0
+  talkingSpeed: 0.02
+  dialogueLines:
+  - Well there's a few ways to go about it.
+  - Either you stop at a <place>Town</place> or <place>Breather Zone</place>
+  - Or you're extremely lucky, or rich, and find a <item>Mana Potion</item>.
+  - You won't find any around here though, you'd have more luck in <place>Migda Town<place>,
+    the <place>Blaumond Kingdom's capital</place>.
+  - It's off limits though. Maybe with more development time...
+  dialogueChoices: {fileID: 0}
+  questTrigger: 0
+  nextDialogue: {fileID: 0}
+  giveItems: 0
+  itemsToGive: {fileID: 0}
