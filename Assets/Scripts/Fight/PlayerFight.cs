@@ -8,10 +8,11 @@ public class PlayerFight : Fight
 {
     //PlayerController playerMovement;
 
-    [Header("HealthBar Shake")]
+    [Header("Character GUI")]
     [SerializeField] private Animator healthBarnimator;
     [SerializeField] private float    healthBarShakeTime;
-    [SerializeField] private Animator manAnimator; [Space]
+    [SerializeField] private Animator manAnimator;
+    [SerializeField] Animator portraitAnim; [Space]
 
     [Header("Particles")]
     [SerializeField] private ParticleSystem manaParticles; [Space]
@@ -210,6 +211,7 @@ public class PlayerFight : Fight
     {
         base.TakeDamage(atk, crit, attackPos, attacker);
 
+        portraitAnim.SetTrigger("hurtTrigger");
         StartCoroutine(HealthBarShakeRoutine(healthBarShakeTime));
     }
 
