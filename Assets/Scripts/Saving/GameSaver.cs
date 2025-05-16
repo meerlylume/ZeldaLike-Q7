@@ -35,6 +35,9 @@ public class GameSaver : MonoBehaviour
         PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
         InventoryData inventoryData = playerInventory.GetInventoryData();
 
+            // Get Player's quests
+        List<Quest> playerQuests = player.GetComponent<QuestTracker>().GetQuests();
+
         SaveData saveData = new()
         {
             isDefaultSave = false,
@@ -60,6 +63,8 @@ public class GameSaver : MonoBehaviour
             money      = inventoryData.money,
             items      = inventoryData.items,
             quantities = inventoryData.quantities,
+            //quests
+            quests = playerQuests,
         };
 
         SaveChests(saveData);
@@ -95,6 +100,10 @@ public class GameSaver : MonoBehaviour
             inventoryData.money      = saveData.money;
             inventoryData.items      = saveData.items;
             inventoryData.quantities = saveData.quantities;
+
+            // Quests
+            QuestTracker questTracker = player.GetComponent<QuestTracker>();
+            questTracker.SetQuests(saveData.quests);
 
             // Chest
             Chest[] chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
@@ -162,6 +171,9 @@ public class GameSaver : MonoBehaviour
             money = 0,
             items = new List<Item>(),
             quantities = new List<int>(),
+
+            // Quests
+            quests = new List<Quest>(),
 
             //pos
             playerPosition = new Vector3(-5, 0, 0),

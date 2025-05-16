@@ -16,6 +16,7 @@ public class QuestTracker : MonoBehaviour
     private List<Quest> quests = new List<Quest>();
 
     public  List<Quest> GetQuests() { return quests; }
+    public void SetQuests(List<Quest> value) { quests = value; }
 
     public void TrackQuest(Quest quest) { quests.Add(quest); }
 
