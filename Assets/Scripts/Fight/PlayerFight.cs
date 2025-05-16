@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerFight : Fight
 {
-    PlayerMovement playerMovement;
+    //PlayerController playerMovement;
 
     [Header("HealthBar Shake")]
     [SerializeField] private Animator healthBarnimator;
@@ -21,6 +21,9 @@ public class PlayerFight : Fight
     [SerializeField] private Button restartButton;
 
     [HideInInspector] public UnityEvent ManaRanOutEvent;
+    [HideInInspector] public UnityEvent<bool> FreezeMovementEvent;
+    [HideInInspector] public UnityEvent<bool> DisableMovementEvent;
+    [HideInInspector] public UnityEvent<bool> ManaChargingEvent;
 
     #region Booleans
     private bool canChargeMana          = false;
@@ -50,35 +53,37 @@ public class PlayerFight : Fight
         stats.recovery    = saveData.maxRecovery;
         stats.currentRCV  = saveData.currentRecovery;
     }
-    public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
+    //public void SetPlayerSpeed() { playerMovement.SetSpeed(stats.movementSpeed); }
+    public float GetPlayerSpeed() { return stats.movementSpeed; }
+    public Anims GetAnims() { return anims;  }
     public bool GetCanChargeMana()           { return canChargeMana;   }
     public void SetCanChargeMana(bool value) {  canChargeMana = value; }
     public bool HasMana() { return stats.currentMana > 0; }
     #endregion
 
+    private void Awake()
+    {
+        anims = spriteObject.GetComponent<Anims>();
+        anims.AttackFrameEvent.AddListener(Attack);
+    }
+
     public override void Start()
     {
         base.Start();
-        playerMovement    = GetComponent<PlayerMovement>();
-        playerMovement.SetSpeed(stats.movementSpeed);
         stats.currentMana = stats.maxMana;
 
         RefreshHP();
         RefreshMana();
 
         gameOverUI.SetActive(false);
-
-        anims = spriteObject.GetComponent<Anims>();
-        anims.AttackFrameEvent.AddListener(Attack);
-        playerMovement.SetAnims(anims);
+        canAttack = true;
     }
 
-    public void PlayerAttack(InputAction.CallbackContext context)
+    public void PlayerAttack()
     {
-        if (context.started) 
-        { 
-            StartCoroutine(AttackRoutine()); 
-        }
+        if (!canAttack) return;
+
+        StartCoroutine(AttackRoutine());
     }
 
     public override void Die()
@@ -86,7 +91,7 @@ public class PlayerFight : Fight
         //Stop Movement
         //Gameover Coroutine
 
-        playerMovement.FreezePlayerMovement();
+        FreezeMovementEvent.Invoke(true);
         GetComponent<SpriteRenderer>().enabled = false;
         gameOverUI.SetActive(true);
         restartButton.Select();
@@ -102,12 +107,13 @@ public class PlayerFight : Fight
 
     public IEnumerator KnockbackRoutine(float knocktime, Vector2 knockbackStrength)
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
-        playerMovement.DisablePlayerMovement();
+        DisableMovementEvent.Invoke(true);
+
         rb.AddForce(knockbackStrength, ForceMode2D.Impulse);
+
         yield return new WaitForSeconds(knocktime / 4);
-        playerMovement.EnablePlayerMovement();
-        GetComponent<SpriteRenderer>().color = Color.white;
+
+        DisableMovementEvent.Invoke(false);
     }
 
     public void ChargeMana(InputAction.CallbackContext context)
@@ -118,7 +124,7 @@ public class PlayerFight : Fight
         {
             if (!isChargingMana) StartCoroutine(AutoDropManaRoutine(1f, 1f, true));
             isChargingMana = true;
-            playerMovement.InManaChargingSpeed(true);
+            ManaChargingEvent.Invoke(true);
             //start mana focusing animation
         }
 
@@ -126,7 +132,7 @@ public class PlayerFight : Fight
         {
             isDroppingMana = false;
             RefreshMana();
-            playerMovement.InManaChargingSpeed(false);
+            ManaChargingEvent.Invoke(false);
             //stop mana focusing animation
         }
     }

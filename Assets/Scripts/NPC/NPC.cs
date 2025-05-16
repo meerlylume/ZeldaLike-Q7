@@ -29,7 +29,7 @@ public class NPC : MonoBehaviour, IInteractable
     protected string       tagDetector;
 
     protected NPCParent parent;
-    protected PlayerMovement playerMovement;
+    protected PlayerController playerController;
     protected PlayerInventory playerInventory;
 
     public void SetIsWaitingForChoice(bool value) { isWaitingForChoice = value; }
@@ -109,7 +109,11 @@ IEnumerator TypeLine()
     {
         //Stop player movement
         yield return new WaitForEndOfFrame();
-        if (playerMovement) playerMovement.FreezePlayerMovement();
+        if (playerController)
+        {
+            playerController.FreezePlayerMovement();
+            playerController.SetCanAttack(false);
+        }
 
         //Clear the dialogue text and start typing
         isTyping = true;
@@ -253,7 +257,14 @@ IEnumerator TypeLine()
             isWaitingForChoice = true;
         }
 
-        else { if (playerMovement) playerMovement.UnfreezePlayerMovement(); }
+        else 
+        { 
+            if (playerController)
+            {
+                playerController.UnfreezePlayerMovement();
+                playerController.SetCanAttack(true);
+            }
+        }
 
         StopAllCoroutines();
         isDialogueActive = false;
@@ -306,7 +317,7 @@ IEnumerator TypeLine()
 
     public virtual void SetPlayerReference(GameObject player)
     {
-        playerMovement  = player.GetComponent<PlayerMovement>();
+        playerController  = player.GetComponent<PlayerController>();
         playerInventory = player.GetComponent<PlayerInventory>();
         if (player.transform.position.x < transform.position.x) overworldSprite.flipX = true;
         else overworldSprite.flipX = false;

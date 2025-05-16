@@ -29,6 +29,7 @@ public abstract class Fight : MonoBehaviour, IFight
     [SerializeField] GameObject         critTextPrefab;
     [Space]
 
+    protected bool canAttack;
     protected Collider2D collider2d;
     protected Anims anims;
 
@@ -40,6 +41,8 @@ public abstract class Fight : MonoBehaviour, IFight
     public virtual bool CanTakeDamage()                { return canTakeDamage;                      }
     public virtual bool IsAlliedWith(Fight fight)      { return fight.stats.isAlly == stats.isAlly; }
     public virtual bool IsAlliedWith(Stats otherStats) { return otherStats.isAlly == stats.isAlly;  }
+    public bool GetCanAttack()                         { return canAttack;                          }
+    public void SetCanAttack(bool value)               { canAttack = value;                         }
     #endregion
 
     public virtual void Start()
