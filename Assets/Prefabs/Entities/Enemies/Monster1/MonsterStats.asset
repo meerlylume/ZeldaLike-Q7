@@ -18,7 +18,7 @@ MonoBehaviour:
   currentHP: 0
   maxMana: 1
   currentMana: 2
-  attack: 5
+  attack: 7
   currentATK: 0
   defence: 2
   currentDEF: 0
